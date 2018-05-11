@@ -1,0 +1,64 @@
+@font-face {
+  font-family: "Raleway";
+  src: url(/fonts/Raleway-Regular.ttf) format("truetype");
+}
+
+html, body {
+  height: 100%;
+  /*min-height: 100%;*/
+  width: 99%;
+  margin: 0px;
+  padding: 0px;
+  font-family: "Raleway";
+}
+
+h1, h2 {
+  margin: 0px
+}
+
+#header {
+  width: 100%;
+  height: content;
+  background-color: rgb(244, 66, 66);
+  margin: 0px;
+  padding: 10px;
+}
+
+#body {
+  padding-top: 30px;
+  padding-bottom: 20px;
+  padding-left: 30px;
+  background-color: rgb(247, 227, 227);
+  width: 99%;
+  min-height: 80%;
+  overflow: auto;
+  margin: 0px;
+  padding-bottom: 70px;
+}
+
+.form_container {
+  background-color: rgb(242, 242, 242);
+  border-radius: 10px;
+  height: content;
+  width: 40%;
+  float: left;
+  padding: 20px;
+  margin-right: 30px;
+  margin-top: 20px;
+}
+
+#footer {
+  width: 98%;
+  height: content;
+  background-color: rgb(155, 122, 122);
+  margin: 0px;
+  padding: 10px;
+  overflow: auto;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+#help_link {
+  float: right;
+}
