@@ -47,6 +47,14 @@ h1, h2 {
   margin-top: 20px;
 }
 
+.form_container h2 {
+  font-size: 25px
+}
+
+.form_container h3 {
+  font-size: 20px
+}
+
 #footer {
   width: 98%;
   height: content;
