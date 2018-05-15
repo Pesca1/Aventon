@@ -16,18 +16,25 @@
         <h1>Bienvenido a Aventón!</h1>
           <div class="form_container">
             <h2>Iniciar sesión</h2>
-            <form>
-              <h3>Ingrese su mail:</h3>
-              <input type="email" name="mail">
+            <form method="POST" action="/php/iniciar_sesion.php">
+                <div class="form-group col-md-6">
+                  <h3>Ingrese su mail:</h3>
+                  <input type="email" class="form-control" name="mail">
+              </div>
+
               <br>
-              <h3>Ingrese su contraseña:</h3>
-              <input type="password" name="password">
-              <br><br>
-              <input type="submit" text="Iniciar Sesión">
+              <div class="form-group col-md-6">
+                <h3>Ingrese su contraseña:</h3>
+                <input type="password" class="form-control" name="password">
+              </div>
+                <div class="form-group col-md-6">
+                  <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                </div>
               <br><br>
               <a href="/php/recuperar_contraseña.php">Olvide mi contraseña!</a>
             </form>
           </div>
+
           <div class="form_container">
             <h2>Crear una cuenta</h2>
             <form action="/php/registrar_usuario.php" method="post">
