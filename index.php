@@ -76,8 +76,8 @@
               <h3>Ingrese su contraseña nuevamente:</h3>
               <input type="password" name="password_confirmation" id="passwd_confirm" required>
               <br>
-              <h3>Seleccione una foto de perfil</h3>
-              <input type="hidden" name="max_file_size" value="5000000">
+              <h3>Seleccione una foto de perfil (Opcional)</h3>
+              <input type="hidden" name="MAX_FILE_SIZE" value="5000000">
               <input type="file" name="profile_picture">
               <br>
               <br>
@@ -93,4 +93,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="/js/registrar_usuario.js"></script>
+  <?php
+    if(isset($_GET['reg'])){
+      if($_GET['reg'] == 'false'){
+        echo '<script> show_error("El mail ya se encuentra registrado."); </script>';
+      } else if($_GET['reg'] == 'true'){
+        echo '<script> show_success("Registrado con éxito!"); </script>';
+      }
+    }
+  ?>
 </html>

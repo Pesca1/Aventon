@@ -13,16 +13,36 @@
   $result = mysqli_query($conn, $query);
 
   if(mysqli_fetch_assoc($result)){
-  	echo "Ingrese el mail otra vez<br>";
+  	header("Location: /index.php?reg=false");
   } else {
-  	
-    $target_dir = "/img/profile_users/";
-    $target_file = $target_dir . basename($_FILES["profile_picture"]["name"]);
-    echo "Foto: $target_file";
 
-    $query = "INSERT INTO usuario (nombre, apellido, mail, contrasenia) VALUES('$user_name', '$user_surname', '$user_mail', '$user_password')";
-  	mysqli_query($conn, $query);
-  	echo "<br>Registrado.";
+    $query = "INSERT INTO usuario (nombre, apellido, mail, contrasenia, fecha_de_nacimiento) VALUES('$user_name', '$user_surname', '$user_mail', '$user_password', STR_TO_DATE('$user_birth_day-$user_birth_month-$user_birth_year', '%d-%m-%Y'))";
+    mysqli_query($conn, $query);
+  	
+    if(($_FILES["profile_picture"]["name"] != "") && ($_FILES['profile_picture']["size"] <= 5000000) && ($_FILES['profile_picture']["size"] > 0)){
+      echo "Subiendo foto<br>";
+      echo "tamaño: " . $_FILES['profile_picture']["size"] . "<br>";
+      $target_dir = "../img/profile_users/";
+
+      $query = "SELECT id_usuario FROM usuario WHERE mail='$user_mail'";
+      $result = mysqli_query($conn, $query);
+      $id = mysqli_fetch_assoc($result)["id_usuario"];
+
+      $ext = "." . pathinfo($_FILES["profile_picture"]["name"], PATHINFO_EXTENSION);
+      $picture_name = "user". $id . $ext;
+      $target_file = $target_dir . $picture_name;
+
+      $query = "UPDATE usuario SET foto_perfil='$picture_name' WHERE id_usuario=$id";
+      $result = mysqli_query($conn, $query);
+
+      if(move_uploaded_file($_FILES["profile_picture"]["tmp_name"], $target_file)){
+        echo "Archivo subido a ". $target_file;
+      } else {
+        echo "Error!";
+      }
+    }
+  	
+    header("Location: /index.php?reg=true");
   }
 
 include("cerrar_conexion.php");
