@@ -35,9 +35,12 @@
 
           <div class="form_container">
             <h2>Crear una cuenta</h2>
-            <form action="/php/registrar_usuario.php" method="post" id="register_form">
-              <h3>Ingrese su nombre completo:</h3>
+            <form enctype="multipart/form-data" action="/php/registrar_usuario.php" method="post" id="register_form">
+              <h3>Ingrese su nombre:</h3>
               <input type="text" name="name" required>
+              <br>
+              <h3>Ingrese su apellido:</h3>
+              <input type="text" name="surname" required>
               <br>
               <h3>Ingrese su mail:</h3>
               <input type="email" name="mail" required>
@@ -72,6 +75,10 @@
               <br>
               <h3>Ingrese su contraseña nuevamente:</h3>
               <input type="password" name="password_confirmation" id="passwd_confirm" required>
+              <br>
+              <h3>Seleccione una foto de perfil</h3>
+              <input type="hidden" name="max_file_size" value="5000000">
+              <input type="file" name="profile_picture">
               <br>
               <br>
               <input type="submit" text="Iniciar Sesión">
