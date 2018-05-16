@@ -16,15 +16,14 @@
           <div class="form_container">
             <h2>Iniciar sesión</h2>
             <form method="POST" action="/php/iniciar_sesion.php">
-                <div class="form-group col-md-6">
-                  <h3>Ingrese su mail:</h3>
-                  <input type="email" class="form-control" name="mail">
+              <div class="form-group col-md-6">
+                <h3>Ingrese su mail:</h3>
+                <input type="email" class="form-control" name="mail" required="required">
               </div>
-
               <br>
               <div class="form-group col-md-6">
                 <h3>Ingrese su contraseña:</h3>
-                <input type="password" class="form-control" name="password">
+                <input type="password" class="form-control" name="password" required="required">
               </div>
                 <div class="form-group col-md-6">
                   <button type="submit" class="btn btn-primary">Iniciar sesión</button>
