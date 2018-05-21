@@ -16,6 +16,16 @@ function show_success(text, color){
 	$('.error').css('background-color', 'rgb(189, 255, 113)');
 }
 
+function validateEmail(sEmail) {
+    var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    if (filter.test(sEmail)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 $('#register_form').submit(function(){
 
 	var passwd = $.trim($('#passwd').val());
@@ -37,3 +47,17 @@ $('#register_form').submit(function(){
 		return false;
 	}
 });
+
+/*$("#recover_passwd").click(function (e){
+	e.preventDefault();
+	var mail = $.trim($("#login_mail").val());
+	if((mail.length != 0) && validateEmail(mail)){
+		$.post("/php/recuperar_contraseña.php", mail, function(data){
+			show_success("La contraseña fue enviada a su dirección de email. Respuesta: data");
+		});
+		return false;
+	} else {
+		show_error("Ingrese una dirección de email válida.");
+		return false;
+	}
+});*/
