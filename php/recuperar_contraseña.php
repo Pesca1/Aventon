@@ -1,9 +1,9 @@
 <?php
 	include("abrir_conexion.php");
 
-	echo "Hola"
+	echo "Hola";
 
-	$query = "SELECT contrasenia FROM usuario WHERE mail='$mail'";
+	$query = "SELECT contrasenia FROM usuario WHERE mail='mail'";
 
 	$sent = mail("joaquindea@hotmail.es", "Contraseña de Aventon", "Tu contraseña es: caca");
 	if($sent){
