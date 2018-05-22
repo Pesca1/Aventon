@@ -21,11 +21,11 @@
       $_SESSION['user_mail'] = $user_mail;
       $_SESSION['start'] = time();
       $_SESSION['expire'] = $_SESSION['start'] + (5 * 60); //sesion de 5 minutos
-      
+
       header('location: /pantalla_principal.php');
     }
   } else {
-   header('location: /index.php');
+   header('location: /index.php?login_error');
   }
   include("cerrar_conexion.php");
  ?>

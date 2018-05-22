@@ -101,5 +101,10 @@
         echo '<script> show_success("Registrado con éxito!"); </script>';
       }
     }
+
+    if(isset($_GET['login_error'])){
+      echo '<script> show_error("Usuario o contraseña incorrecto."); </script>';
+    }
+
   ?>
 </html>
