@@ -99,6 +99,10 @@
         echo '<script> show_success("Registrado con éxito!"); </script>';
       }
     }
+
+    if(isset($_GET['login_error'])){
+      echo '<script> show_error("Usuario o contraseña incorrecto."); </script>';
+    }
     /*if(isset($_GET['recover'])){
       if($_GET['recover'] == 'false'){
         echo '<script> show_error("Hubo un error al enviar el email. Vuelva a intentarlo mas tarde."); </script>';
