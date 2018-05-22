@@ -7,4 +7,5 @@
   <button class="btn"><a href="/php/cerrar_sesion.php">Cerrar Sesión</a></button>
   <button class="btn"><a href="/php/listar_vehiculos.php">Mis Vehículos</a></button>
   <button class="btn"><a href="/php/listar_viajes.php">Mis Viajes</a></button>
+  <button class="btn"><a href="/php/ver_perfil.php">Mi Perfil</a></button>
 </div>
