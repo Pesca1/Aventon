@@ -1,3 +1,9 @@
+<?php 
+  session_start();
+  if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+    header("Location: pantalla_principal.php");
+  }
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,7 +15,7 @@
   </head>
   <body>
       <div id="header">
-        <h2>Aventón</h2>
+        <img id="logo" src="/img/logo.jpeg" />
       </div>
       <div id="body">
         <h1>Bienvenido a Aventón!</h1>
@@ -102,6 +108,12 @@
 
     if(isset($_GET['login_error'])){
       echo '<script> show_error("Usuario o contraseña incorrecto."); </script>';
+    }
+    if(isset($_GET['session_expire'])){
+      echo '<script> show_error("Su sesión expiró, por favor ingrese nuevamente."); </script>';
+    }
+    if(isset($_GET['no_session'])){
+      echo '<script> show_error("Debe iniciar sesión para utilizar esta función."); </script>';
     }
     /*if(isset($_GET['recover'])){
       if($_GET['recover'] == 'false'){

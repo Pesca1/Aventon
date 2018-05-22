@@ -1,3 +1,4 @@
+<?php include("verficar_sesion.php"); ?>
 <!DOCTYPE html>
 <html>
   <head>
