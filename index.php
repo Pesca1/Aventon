@@ -18,7 +18,7 @@
             <form method="POST" action="/php/iniciar_sesion.php">
               <div class="form-group col-md-6">
                 <h3>Ingrese su mail:</h3>
-                <input type="email" class="form-control" name="mail" required="required">
+                <input type="email" class="form-control" name="mail" required="required" id="login_mail">
               </div>
               <br>
               <div class="form-group col-md-6">
@@ -29,7 +29,7 @@
                   <button type="submit" class="btn btn-primary">Iniciar sesión</button>
                 </div>
               <br><br>
-              <a href="/php/recuperar_contraseña.php">Olvide mi contraseña!</a>
+              <a href="/php/recuperar_contraseña.php" id="recover_passwd">Olvide mi contraseña!</a>
             </form>
           </div>
 
@@ -105,6 +105,12 @@
     if(isset($_GET['login_error'])){
       echo '<script> show_error("Usuario o contraseña incorrecto."); </script>';
     }
-
+    /*if(isset($_GET['recover'])){
+      if($_GET['recover'] == 'false'){
+        echo '<script> show_error("Hubo un error al enviar el email. Vuelva a intentarlo mas tarde."); </script>';
+      } else if($_GET['recover'] == 'true'){
+        echo '<script> show_success("La contraseña fue enviada a su dirección de email."); </script>';
+      }
+    }*/
   ?>
 </html>
