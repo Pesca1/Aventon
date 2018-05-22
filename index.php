@@ -1,3 +1,9 @@
+<?php
+  session_start();
+  if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+    header("Location: pantalla_principal.php");
+  }
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,7 +15,7 @@
   </head>
   <body>
       <div id="header">
-        <h2>Aventón</h2>
+        <img id="logo" src="/img/logo.jpeg" />
       </div>
       <div id="body">
         <h1>Bienvenido a Aventón!</h1>

@@ -3,13 +3,13 @@
 session_start();
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
 }else{
-  echo "esta pagina es solo para usuario registrados.<br>";
+  header("Location: /index.php?no_session");
   exit;
 }
 $now = time();
 if ($now > $_SESSION['expire']){
   session_destroy();
-  echo "su sesion terminó";
+  header("Location: /index.php?session_expire");
 }else {
   $_SESSION['expire'] = time() + 5 * 60;
 }
