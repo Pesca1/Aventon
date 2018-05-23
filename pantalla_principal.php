@@ -7,11 +7,15 @@
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="/css/index.css" rel="stylesheet" type="text/css">
   </head>
+
   <body>
+  
       <?php
         include("php/verficar_sesion.php");
        ?>
+
     <?php include("php/header.php"); ?>
+
     <div class="jumbotron">
       <h1 class="display-4">Bienvenido a la pantalla principal</h1>
       <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
