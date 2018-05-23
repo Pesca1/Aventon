@@ -11,7 +11,7 @@ if ($now > $_SESSION['expire']){
   session_destroy();
   header("Location: /index.php?session_expire");
 }else {
-  $_SESSION['expire'] = time() + 5 * 60;
+  $_SESSION['expire'] = time() + 10 * 60;
 }
 
  ?>

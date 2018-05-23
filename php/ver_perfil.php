@@ -65,6 +65,7 @@
       $query = mysqli_query($conn,"SELECT * from $table_user WHERE mail = '$_SESSION[user_mail]'");
       $mostrar=mysqli_fetch_assoc($query);
       $user_info = $mostrar['contrasenia'];  
+      $user_picture = ($mostrar['foto_perfil']!='')? $mostrar['foto_perfil'] : '/img/system/default_user.jpg';
 ?> 
   
 
@@ -82,7 +83,7 @@
       
 	<div class="row">
           <div class="col-lg-4">
-            <img class="rounded-circle" src=<?php echo $mostrar["foto_perfil"];?>  alt="Generic placeholder image" width="140" height="140">
+            <img class="rounded-circle" src=<?php echo "'$user_picture'";?>  alt="Foto de perfil" width="140" height="140">
             <h2> <?php echo $mostrar["nombre"]; echo ' '; echo $mostrar["apellido"]; ?></h2>
 		 <h2>		
 	       <?php echo $_SESSION["user_mail"]; ?>

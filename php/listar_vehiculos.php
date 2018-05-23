@@ -1,6 +1,6 @@
 <?php include("verficar_sesion.php"); ?>
 <!DOCTYPE html>
-<html>
+<html> 
   <head>
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" >
     <link href="/css/index.css" rel="stylesheet" type="text/css">
@@ -36,8 +36,8 @@
 			<div class="vehicle-photos">
 				<?php
 					while($photo = mysqli_fetch_assoc($photo_query)){
-						$photo_src = $photo['foto'];
-						echo "<img src='/img/vehicles/".$photo_src."'/>";
+						$photo_src = "/img/vehicles/".$photo['foto'];
+						echo "<a href='$photo_src'><img src='$photo_src'/></a>";
 					}
 				?>
 			</div>
