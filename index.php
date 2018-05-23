@@ -1,3 +1,9 @@
+<?php 
+  session_start();
+  if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+    header("Location: pantalla_principal.php");
+  }
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,7 +15,7 @@
   </head>
   <body>
       <div id="header">
-        <h2>Aventón</h2>
+        <img id="logo" src="/img/logo.jpeg" />
       </div>
       <div id="body">
         <h1>Bienvenido a Aventón!</h1>
@@ -18,7 +24,7 @@
             <form method="POST" action="/php/iniciar_sesion.php">
               <div class="form-group col-md-6">
                 <h3>Ingrese su mail:</h3>
-                <input type="email" class="form-control" name="mail" required="required">
+                <input type="email" class="form-control" name="mail" required="required" id="login_mail">
               </div>
               <br>
               <div class="form-group col-md-6">
@@ -29,7 +35,7 @@
                   <button type="submit" class="btn btn-primary">Iniciar sesión</button>
                 </div>
               <br><br>
-              <a href="/php/recuperar_contraseña.php">Olvide mi contraseña!</a>
+              <a href="/php/recuperar_contraseña.php" id="recover_passwd">Olvide mi contraseña!</a>
             </form>
           </div>
 
@@ -89,9 +95,7 @@
         <a id="help_link"  href="/php/ayuda.php">Ayuda y Contacto</a>
       </div>
   </body>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <?php include("php/bootstrap.php"); ?>
   <script src="/js/registrar_usuario.js"></script>
   <?php
     if(isset($_GET['reg'])){
@@ -101,5 +105,22 @@
         echo '<script> show_success("Registrado con éxito!"); </script>';
       }
     }
+
+    if(isset($_GET['login_error'])){
+      echo '<script> show_error("Usuario o contraseña incorrecto."); </script>';
+    }
+    if(isset($_GET['session_expire'])){
+      echo '<script> show_error("Su sesión expiró, por favor ingrese nuevamente."); </script>';
+    }
+    if(isset($_GET['no_session'])){
+      echo '<script> show_error("Debe iniciar sesión para utilizar esta función."); </script>';
+    }
+    /*if(isset($_GET['recover'])){
+      if($_GET['recover'] == 'false'){
+        echo '<script> show_error("Hubo un error al enviar el email. Vuelva a intentarlo mas tarde."); </script>';
+      } else if($_GET['recover'] == 'true'){
+        echo '<script> show_success("La contraseña fue enviada a su dirección de email."); </script>';
+      }
+    }*/
   ?>
 </html>
