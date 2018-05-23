@@ -3,7 +3,7 @@ $my_sql_user = "root";
 $my_sql_password = "";
 $my_sql_server = "localhost";
 
-$my_sql_db= "Aventon";
+$my_sql_db= "aventon";
 $table_user = "usuario";
 
 
