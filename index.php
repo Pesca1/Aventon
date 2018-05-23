@@ -1,7 +1,7 @@
 <?php
   session_start();
   if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
-    header("Location: pantalla_principal.php");
+    header("Location: /vistas/pantalla_principal.php");
   }
 ?>
 <!DOCTYPE html>
@@ -91,9 +91,9 @@
             </form>
         </div>
       </div>
-      <?php include("php/footer.php") ?>
+      <?php include("vistas/footer.php") ?>
   </body>
-  <?php include("php/bootstrap.php"); ?>
+  <?php include("vistas/bootstrap.php"); ?>
   <script src="/js/registrar_usuario.js"></script>
   <?php
     if(isset($_GET['reg'])){

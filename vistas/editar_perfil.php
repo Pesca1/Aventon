@@ -9,17 +9,9 @@
   </head>
   <body>
     <?php
-      include("php/verficar_sesion.php");
+      include("../php/verficar_sesion.php");
      ?>
-     <div id="header">
-       <h2>Aventón</h2>
-       <form class="" action="/php/cerrar_sesion.php" method="get">
-         <button type="submit" class="btn btn-outline-danger" action="/php/cerrar_sesion.php">Cerrar sesión</button>
-       </form>
-       <form class="" action="editar_perfil.php" method="get">
-         <button type="submit" class="btn btn-outline-success" action="/php/editar_perfil.php">Editar perfil</button>
-       </form>
-     </div><br>
+     <?php include("header.php"); ?><br>
 
      <div class="container">
         <h5>Editar perfil</h2><br><br>
@@ -61,5 +53,5 @@
 
 
   </body>
-  <?php include("php/bootstrap.php"); ?>
+  <?php include("../vistas/bootstrap.php"); ?>
 </html>

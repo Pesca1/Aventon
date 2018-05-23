@@ -21,5 +21,5 @@
                             mail='$user_mail' Where id_usuario='$user_id'";
   mysqli_query($conn, $sSQL);
   include("cerrar_conexion.php");
-  header("Location: /pantalla_principal.php");
+  header("Location: /vistas/ver_perfil.php");
  ?>

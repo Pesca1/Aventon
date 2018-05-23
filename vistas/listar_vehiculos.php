@@ -1,6 +1,6 @@
-<?php include("verficar_sesion.php"); ?>
+<?php include("../php/verficar_sesion.php"); ?>
 <!DOCTYPE html>
-<html> 
+<html>
   <head>
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" >
     <link href="/css/index.css" rel="stylesheet" type="text/css">
@@ -10,8 +10,8 @@
     <?php include("header.php"); ?>
     <div id="body">
     	<h1>Mis Vehículos</h1>
-		<?php 
-			include("abrir_conexion.php");
+		<?php
+			include("../php/abrir_conexion.php");
 
 			$id = $_SESSION['user_id'];
 			$query = "SELECT * FROM vehiculo WHERE id_usuario='$id'";
@@ -50,6 +50,7 @@
 					?>
 
 		<h2>No hay ningún vehículo registrado!</h2>
+    
 
 					<?php
 				}
@@ -57,7 +58,7 @@
 				echo "Hubo un error al conectarse a la base de datos, por favor intente nuevamente mas tarde.";
 			}
 
-			include("cerrar_conexion.php");
+			include("../php/cerrar_conexion.php");
 		?>
     </div>
     <?php include("footer.php") ?>

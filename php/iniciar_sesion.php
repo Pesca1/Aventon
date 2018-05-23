@@ -26,7 +26,7 @@
       $_SESSION['expire'] = $_SESSION['start'] + (5 * 60); //sesion de 5 minutos
       $_SESSION['user_id'] = $consult['id_usuario'];
 
-      header('location: /pantalla_principal.php');
+      header('location: /vistas/pantalla_principal.php');
     }
   } else {
    header('location: /index.php?login_error');
