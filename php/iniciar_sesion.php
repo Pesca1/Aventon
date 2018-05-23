@@ -24,6 +24,7 @@
       $_SESSION['user_mail'] = $user_mail;
       $_SESSION['start'] = time();
       $_SESSION['expire'] = $_SESSION['start'] + (5 * 60); //sesion de 5 minutos
+      $_SESSION['user_id'] = $consult['id_usuario'];
 
       header('location: /pantalla_principal.php');
     }

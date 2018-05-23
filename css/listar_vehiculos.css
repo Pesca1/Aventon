@@ -1,0 +1,22 @@
+.vehicle {
+	height: 160px;
+	width: calc(100% - 30px);
+	background-color: rgb(242, 242, 242);
+	margin-bottom: 20px;
+	margin-top: 10px;
+	border-radius: 10px;
+	padding: 15px;
+}
+
+.vehicle-info {
+	float: left;
+}
+
+.vehicle-photos {
+	float: right;
+}
+
+.vehicle-photos img {
+	height: 100px;
+	margin-right: 15px;
+}

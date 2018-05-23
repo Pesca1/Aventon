@@ -91,9 +91,7 @@
             </form>
         </div>
       </div>
-      <div id="footer">
-        <a id="help_link"  href="/php/ayuda.php">Ayuda y Contacto</a>
-      </div>
+      <?php include("php/footer.php") ?>
   </body>
   <?php include("php/bootstrap.php"); ?>
   <script src="/js/registrar_usuario.js"></script>
