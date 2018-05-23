@@ -26,8 +26,13 @@
 						?>
 
 		<div class="vehicle">
-			<h3><?php echo $vehicle['marca']." ".$vehicle['modelo']; ?></h3>
-			<?php echo $vehicle['asientos']." asientos - Patente: ".$vehicle['patente']. $query; ?>
+			<div class="vehicle-info">
+				<h3><?php echo $vehicle['marca']." ".$vehicle['modelo']; ?></h3>
+				<?php echo $vehicle['asientos']." asientos - Patente: ".$vehicle['patente']; ?>
+				<br>
+				<br>
+				<button class="btn"><a href="modificar_vehiculo.php">Modificar Información</a></button>
+			</div>
 			<div class="vehicle-photos">
 				<?php
 					while($photo = mysqli_fetch_assoc($photo_query)){
