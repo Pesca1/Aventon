@@ -7,16 +7,32 @@
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="/css/index.css" rel="stylesheet" type="text/css">
   </head>
+
   <body>
+  
       <?php
         include("php/verficar_sesion.php");
        ?>
+  
     <div id="header">
       <h2>Aventón</h2>
+      <br>
+      <table>
+      <tr>
+      <td>
       <form class="" action="/php/cerrar_sesion.php" method="get">
         <button type="submit" class="btn btn-outline-danger" action="/php/cerrar_sesion.php">Cerrar sesión</button>
       </form>
+      </td> 
+      <td>
+      <form class="" action="/php/verPerfil.php" method="get">
+        <button type="submit" class="btn btn-outline-danger" action="/php/perfil.php">Ver perfil</button>
+      </form>
+      </td> 
+      </tr>
+      </table>
     </div>
+
     <div class="jumbotron">
       <h1 class="display-4">Bienvenido a la pantalla principal</h1>
       <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
