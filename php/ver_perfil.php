@@ -65,7 +65,7 @@
       $query = mysqli_query($conn,"SELECT * from $table_user WHERE mail = '$_SESSION[user_mail]'");
       $mostrar=mysqli_fetch_assoc($query);
       $user_info = $mostrar['contrasenia'];  
-      $user_picture = ($mostrar['foto_perfil']!='')? $mostrar['foto_perfil'] : '/img/system/default_user.jpg';
+      $user_picture = ($mostrar['foto_perfil']!='')? '/img/profile_users/'.$mostrar['foto_perfil'] : '/img/system/default_user.jpg';
 ?> 
   
 
