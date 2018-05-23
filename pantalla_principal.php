@@ -11,12 +11,7 @@
       <?php
         include("php/verficar_sesion.php");
        ?>
-    <div id="header">
-      <h2>Aventón</h2>
-      <form class="" action="/php/cerrar_sesion.php" method="get">
-        <button type="submit" class="btn btn-outline-danger" action="/php/cerrar_sesion.php">Cerrar sesión</button>
-      </form>
-    </div>
+    <?php include("php/header.php"); ?>
     <div class="jumbotron">
       <h1 class="display-4">Bienvenido a la pantalla principal</h1>
       <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
