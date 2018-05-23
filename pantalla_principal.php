@@ -13,25 +13,8 @@
       <?php
         include("php/verficar_sesion.php");
        ?>
-  
-    <div id="header">
-      <h2>Aventón</h2>
-      <br>
-      <table>
-      <tr>
-      <td>
-      <form class="" action="/php/cerrar_sesion.php" method="get">
-        <button type="submit" class="btn btn-outline-danger" action="/php/cerrar_sesion.php">Cerrar sesión</button>
-      </form>
-      </td> 
-      <td>
-      <form class="" action="/php/verPerfil.php" method="get">
-        <button type="submit" class="btn btn-outline-danger" action="/php/perfil.php">Ver perfil</button>
-      </form>
-      </td> 
-      </tr>
-      </table>
-    </div>
+
+    <?php include("php/header.php"); ?>
 
     <div class="jumbotron">
       <h1 class="display-4">Bienvenido a la pantalla principal</h1>
