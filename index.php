@@ -112,13 +112,16 @@
     if(isset($_GET['no_session'])){
       echo '<script> show_error("Debe iniciar sesión para utilizar esta función."); </script>';
     }
+    if(isset($_GET['wrong_email'])){
+      echo '<script> show_error("El mail ingresado no esta registrado en Aventón."); </script>';
+    }
 
-    /*if(isset($_GET['recover'])){
+    if(isset($_GET['recover'])){
       if($_GET['recover'] == 'false'){
         echo '<script> show_error("Hubo un error al enviar el email. Vuelva a intentarlo mas tarde."); </script>';
       } else if($_GET['recover'] == 'true'){
         echo '<script> show_success("La contraseña fue enviada a su dirección de email."); </script>';
       }
-    }*/
+    }
   ?>
 </html>

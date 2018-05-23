@@ -38,7 +38,7 @@
       if(move_uploaded_file($_FILES["profile_picture"]["tmp_name"], $target_file)){
         echo "Archivo subido a ". $target_file;
       } else {
-        echo "Error!";
+        echo "Error!".mysqli_error($conn);
       }
     }
   	

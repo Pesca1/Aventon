@@ -1,0 +1,16 @@
+Primero, instalar ssmtp
+
+sudo apt-get install ssmtp
+
+Despues copiar el archivo "ssmtp.config" de este directorio a
+/etc/ssmtp/
+
+y editar el archivo php.ini (generalmente esta en /opt/lampp/etc/)
+donde dice
+sendmail_path = algo
+
+reemplazar por
+
+sendmail_path = "/usr/sbin/ssmtp -t"
+
+y listo!
