@@ -1,15 +1,20 @@
 <?php
 	include("abrir_conexion.php");
 
-	echo "Hola";
+	$user_mail = $_POST['user_mail'];
 
-	$query = "SELECT contrasenia FROM usuario WHERE mail='mail'";
-
-	$sent = mail("joaquindea@hotmail.es", "Contraseña de Aventon", "Tu contraseña es: caca");
-	if($sent){
-		/*header("Location: /index.php?recover=true");*/
+	$query = "SELECT contrasenia FROM usuario WHERE mail='$user_mail'";
+	$result = mysqli_query($conn, $query);
+	if($user = mysqli_fetch_assoc($result)){
+		$passwd = $user['contrasenia'];
+		$sent = mail("$user_mail", "Recuperacion de clave de Aventon", "Hola! Nos comunicamos para recordarte tu clave. Clave: $passwd.\nSaludos,\nEquipo de Aventon ");
+		if($sent){
+			header("Location: /index.php?recover=true");
+		} else {
+			header("Location: /index.php?recover=false");
+		}
 	} else {
-		/*header("Location: /index.php?recover=false");*/
+		header("Location: /index.php?wrong_email");
 	}
 
 

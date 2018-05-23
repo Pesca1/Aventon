@@ -48,16 +48,35 @@ $('#register_form').submit(function(){
 	}
 });
 
-/*$("#recover_passwd").click(function (e){
+$.extend(
+{
+    redirectPost: function(location, args)
+    {
+        var form = $('<form></form>');
+        form.attr("method", "post");
+        form.attr("action", location);
+
+        $.each( args, function( key, value ) {
+            var field = $('<input></input>');
+
+            field.attr("type", "hidden");
+            field.attr("name", key);
+            field.attr("value", value);
+
+            form.append(field);
+        });
+        $(form).appendTo('body').submit();
+    }
+});
+
+$("#recover_passwd").click(function (e){
 	e.preventDefault();
 	var mail = $.trim($("#login_mail").val());
 	if((mail.length != 0) && validateEmail(mail)){
-		$.post("/php/recuperar_contraseña.php", mail, function(data){
-			show_success("La contraseña fue enviada a su dirección de email. Respuesta: data");
-		});
+		$.redirectPost("/php/recuperar_contraseña.php", {user_mail: mail});
 		return false;
 	} else {
 		show_error("Ingrese una dirección de email válida.");
 		return false;
 	}
-});*/
+});
