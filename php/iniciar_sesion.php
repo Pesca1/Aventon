@@ -17,6 +17,9 @@
   if (mysqli_num_rows($result) > 0) {
     $consult = mysqli_fetch_assoc($result);
     if ($user_pass == $consult['contrasenia']){
+      $_SESSION['user_name'] = $consult['nombre'];
+      $_SESSION['user_surname'] = $consult['apellido'];
+      $_SESSION['user_id'] = $consult['id_usuario'];
       $_SESSION['loggedin'] = true;
       $_SESSION['user_mail'] = $user_mail;
       $_SESSION['start'] = time();

@@ -105,6 +105,15 @@
         echo '<script> show_success("Registrado con éxito!"); </script>';
       }
     }
+    if(isset($_GET['login_error'])){
+      echo '<script> show_error("Usuario o contraseña incorrecto."); </script>';
+    }
+    if(isset($_GET['session_expire'])){
+      echo '<script> show_error("Su sesión expiró, por favor ingrese nuevamente."); </script>';
+    }
+    if(isset($_GET['no_session'])){
+      echo '<script> show_error("Debe iniciar sesión para utilizar esta función."); </script>';
+    }
 
     /*if(isset($_GET['recover'])){
       if($_GET['recover'] == 'false'){

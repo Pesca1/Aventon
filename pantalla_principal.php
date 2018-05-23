@@ -16,6 +16,9 @@
       <form class="" action="/php/cerrar_sesion.php" method="get">
         <button type="submit" class="btn btn-outline-danger" action="/php/cerrar_sesion.php">Cerrar sesión</button>
       </form>
+      <form class="" action="editar_perfil.php" method="get">
+        <button type="submit" class="btn btn-outline-success" action="/php/editar_perfil.php">Editar perfil</button>
+      </form>
     </div>
     <div class="jumbotron">
       <h1 class="display-4">Bienvenido a la pantalla principal</h1>
