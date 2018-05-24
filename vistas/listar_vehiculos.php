@@ -31,7 +31,8 @@
 				<?php echo $vehicle['asientos']." asientos - Patente: ".$vehicle['patente']; ?>
 				<br>
 				<br>
-				<button class="btn"><a href="modificar_vehiculo.php">Modificar Información</a></button>
+				<button class="btn"><a href="php/modificar_vehiculo.php">Modificar Información</a></button>
+				<button class="btn btn-warning" id="delete_vehicle">Eliminar</button>
 			</div>
 			<div class="vehicle-photos">
 				<?php
@@ -60,8 +61,12 @@
 
 			include("../php/cerrar_conexion.php");
 		?>
+    <br>
+    <button class="btn btn-success"><a href="/php/registrar_vehiculo.php">Agregar vehículo</a></button>
     </div>
     <?php include("footer.php") ?>
   </body>
   <?php include("bootstrap.php"); ?>
+  <script src="/js/registrar_usuario.js" ></script>
+  <script src="/js/listar_vehiculos.js"></script>
 </html>
