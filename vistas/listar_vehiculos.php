@@ -73,6 +73,9 @@
   <script src="/js/registrar_usuario.js" ></script>
   <script src="/js/listar_vehiculos.js"></script>
   <?php
+  	if(isset($_GET['success'])){
+  		echo "<script> show_success('Vehículo registrado con éxito!'); </script>";
+  	}
     if(isset($_GET['success_change'])){
       echo '<script> show_success("¡Acción exitosa!"); </script>';
     }

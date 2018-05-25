@@ -16,12 +16,12 @@
 ?>
 
 
-
+<form method="POST" action="/php/alta_vehiculo.php" id="registrovehiculo">
  <div class="form_container">
     <h2>Registrar vehículo</h2>
     <br>
 
-    <form method="POST" action="/php/alta_vehiculo.php" id="registrovehiculo">
+    
               
         <div class="form-group col-md-6">
             <h3>Ingrese la marca:</h3>
@@ -46,8 +46,6 @@
         </div>
         <br>
         <br>
-
-    </form>
 </div>
 
 
@@ -57,7 +55,12 @@
     	<br>
         <br>
     	<!-- <input type="hidden" name="MAX_FILE_SIZE" value="5000000" required="required" formenctype="multipart/form-data" id="registrovehiculo">-->
-        <input type="file" name="car_picture" formenctype="multipart/form-data" id="registrovehiculo">
+    	<input type="hidden" name="picture_number" value="1" id="number"/>
+    	<div id="pictures">
+        	<input type="file" name="car_picture_1" formenctype="multipart/form-data" class="registrovehiculo">
+    	</div>
+        <br>
+        <button class="btn btn-secondary" id="add_photo">Agregar foto</button>
         <br>
         <br>
         <br>
@@ -66,7 +69,7 @@
             <button type="submit" class="btn btn-primary" formenctype="multipart/form-data" id="registrovehiculo">Registrar vehículo</button>
         </div>
 </div>
-
+</form> 	
 
 
 
@@ -85,4 +88,5 @@ if(isset($_GET['car_error'])){
 
 
 include("../vistas/bootstrap.php"); ?>
+<script type="text/javascript" src="/js/registrar_vehiculo.js"></script>
 </html>
