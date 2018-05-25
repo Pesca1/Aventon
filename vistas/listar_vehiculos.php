@@ -31,8 +31,11 @@
 				<?php echo $vehicle['asientos']." asientos - Patente: ".$vehicle['patente']; ?>
 				<br>
 				<br>
-				<button class="btn"><a href="php/modificar_vehiculo.php">Modificar Información</a></button>
-				<button class="btn btn-warning" id="delete_vehicle">Eliminar</button>
+        <form class="" action="/vistas/editar_vehiculo.php" method="post">
+          <input type="hidden" name="actual_patent" value=<?php echo $vehicle['patente'];?>>
+          <button class="btn" name="">Modificar Información</button>
+          <button class="btn btn-danger" id="delete_vehicle">Eliminar</button>
+        </form>
 			</div>
 			<div class="vehicle-photos">
 				<?php
@@ -51,7 +54,7 @@
 					?>
 
 		<h2>No hay ningún vehículo registrado!</h2>
-    
+
 
 					<?php
 				}
@@ -69,4 +72,9 @@
   <?php include("bootstrap.php"); ?>
   <script src="/js/registrar_usuario.js" ></script>
   <script src="/js/listar_vehiculos.js"></script>
+  <?php
+    if(isset($_GET['success_change'])){
+      echo '<script> show_success("¡Acción exitosa!"); </script>';
+    }
+  ?>
 </html>
