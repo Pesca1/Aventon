@@ -9,14 +9,11 @@
     <link rel="icon" href="../../../../favicon.ico">
 
     <title>Ver perfil</title>
-
-    <!-- Bootstrap core CSS -->
     <link href="../bootstrap-4.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="/css/index.css" rel="stylesheet" type="text/css">
-
-    <!-- Custom styles for this template -->
     <link href="../css/verPerfil.css" rel="stylesheet">
+    <link href="/fonts/fontawesome/fontawesome-all.css" rel="stylesheet">
   </head>
 
   <body>
@@ -44,7 +41,6 @@
     	</td>
     	<td>
           <div class="container marketing">
-
             <!-- Foto circular del usuario y debajo su información -->
 
     	<div class="row">
@@ -73,7 +69,7 @@
     <div class="col-md-4">
       <br><br><br><br>
       <button class="btn btn-warning" ><a href="/vistas/editar_perfil.php">Editar perfil</a></button>
-    </div>
+      <button class="btn btn-danger" ><a href="/vistas/editar_contrasenia.php">Editar contraseña</a></button>
   </div>
 </div>
 
@@ -85,11 +81,8 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write("<script src='../../assets/js/vendor/jquery-slim.min.js'></script>")</script>
@@ -99,5 +92,10 @@
     <script src="../bootstrap-4.1.1/assets/js/vendor/holder.min.js"></script>
     <?php include("footer.php") ?>
   </body>
+   <script src="/js/registrar_usuario.js"></script>
+   <?php
+     if(isset($_GET['success_change'])){
+       echo '<script> show_success("¡Acción exitosa!"); </script>';
+     }
    ?>
 </html>

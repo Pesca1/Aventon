@@ -15,13 +15,14 @@
 
      <div class="container">
         <h5>Editar perfil</h2><br><br>
-            <form method="POST" action="/php/editar_perfil.php">
+            <form method="POST" action="/php/editar_perfil.php" enctype="multipart/form-data">
               <div class="form-row">
                 <div class="form-group col-md-4">
                   <label for="">Foto de perfil</label><br>
-                  <img src="/img/system/example.jpg" width="150" height="150"><br><br>
+                  <?php $user_img = $_SESSION['user_image'] ?>
+                  <img src=/img/profile_users/<?php echo "$user_img";?> width="150" height="150"><br><br>
                   <input type="hidden" name="MAX_FILE_SIZE" value="5000000">
-                  <input type="file" class="form-control-file" name="profile_picture" id="exampleFormControlFile1">
+                  <input type="file" name="profile_image">
                 </div>
                 <div class="form-group col-md-8">
                   <div class="row">

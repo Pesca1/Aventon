@@ -20,8 +20,10 @@
       $_SESSION['user_name'] = $consult['nombre'];
       $_SESSION['user_surname'] = $consult['apellido'];
       $_SESSION['user_id'] = $consult['id_usuario'];
-      $_SESSION['loggedin'] = true;
       $_SESSION['user_mail'] = $user_mail;
+      $_SESSION['user_image'] = $consult['foto_perfil'];
+
+      $_SESSION['loggedin'] = true;
       $_SESSION['start'] = time();
       $_SESSION['expire'] = $_SESSION['start'] + (5 * 60); //sesion de 5 minutos
       $_SESSION['user_id'] = $consult['id_usuario'];
