@@ -28,11 +28,14 @@
 		<div class="vehicle">
 			<div class="vehicle-info">
 				<h3><?php echo $vehicle['marca']." ".$vehicle['modelo']; ?></h3>
-				<?php echo $vehicle['asientos']." asientos - Patente: ".$vehicle['patente']; ?>
+				<?php
+					echo $vehicle['asientos']." asientos - Patente: ".$plate;
+					echo "<input type='hidden' value='$plate' />";
+				?>
 				<br>
 				<br>
 				<button class="btn"><a href="php/modificar_vehiculo.php">Modificar Información</a></button>
-				<button class="btn btn-warning" id="delete_vehicle">Eliminar</button>
+				<button class="btn btn-warning delete_vehicle">Eliminar</button>
 			</div>
 			<div class="vehicle-photos">
 				<?php
@@ -72,6 +75,15 @@
   <?php 
   	if(isset($_GET['success'])){
   		echo "<script> show_success('Vehículo registrado con éxito!'); </script>";
+  	}
+  	if(isset($_GET['pending'])){
+  		echo "<script> show_error('No se puede eliminar el vehículo, hay viajes pendientes con el.'); </script>";
+  	}
+  	if(isset($_GET['deleted'])){
+  		echo "<script> show_success('Vehículo eliminado!'); </script>";
+  	}
+  	if(isset($_GET['error'])){
+  		echo "<script> show_error('Hubo un error al intentar eliminar su vehículo. Por favor vuelva a intentarlo mas tarde.'); </script>";
   	}
   ?>
 </html>

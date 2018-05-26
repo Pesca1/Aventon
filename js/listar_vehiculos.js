@@ -1,6 +1,6 @@
-$("#delete_vehicle").click(function(e){
+$(".delete_vehicle").click(function(e){
   e.preventDefault();
   if(window.confirm("¿Esta seguro de que desea eliminar el vehículo?")){
-    $.redirectPost("/php/eliminar_vehiculo.php", {patente: ""});
+    $.redirectPost("/php/baja_vehiculo.php", {plate: $(this).siblings('input').val()});
   }
 });
