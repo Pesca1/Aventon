@@ -34,8 +34,9 @@
         <form class="" action="/vistas/editar_vehiculo.php" method="post">
           <input type="hidden" name="actual_patent" value=<?php echo $vehicle['patente'];?>>
           <button class="btn" name="">Modificar Información</button>
-          <button class="btn btn-danger" id="delete_vehicle">Eliminar</button>
+          
         </form>
+				<button class="btn btn-danger" id="delete_vehicle">Eliminar</button>
 			</div>
 			<div class="vehicle-photos">
 				<?php

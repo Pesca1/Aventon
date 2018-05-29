@@ -31,7 +31,28 @@
 
   $query = "UPDATE vehiculo SET patente='$new_patent', asientos='$new_seating'";
   mysqli_query($conn, $query);
+
+  for($i = 1; $i <= intval($_POST['picture_number']); $i++){
+    $picture = $_FILES["car_pic_".$i];
+    echo $picture['name'];
+	 	if(($picture["name"]!="")&&($picture["size"]<=5000000)&&($picture["size"]>0)){
+	 		$target_dir = "../img/vehicles/";
+	 		$ext = "." . pathinfo($picture["name"], PATHINFO_EXTENSION);
+	    $picture_name = $new_patent . "-". $i . $ext;
+	    $target_file = $target_dir . $picture_name;
+	    if(move_uploaded_file($picture["tmp_name"], $target_file)){
+
+	      $sql = "UPDATE fotos_vehiculo SET patente='$new_patent', foto='$picture_name' WHERE patente='$actual_patent' ";
+
+	        if(mysqli_query($conn, $sql)){
+	      	  // header('location: /vistas/listar_vehiculos.php?success');
+	      	} else {
+	      		  echo "Error sql: ".mysqli_error($conn);
+	      	}
+	    }
+	 	}
+  }
   include("cerrar_conexion.php");
 
-  header("Location: /vistas/listar_vehiculos.php?success_change");
+  // header("Location: /vistas/listar_vehiculos.php?success_change");
  ?>

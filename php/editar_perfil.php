@@ -36,9 +36,9 @@
   }
 
 
-  $sSQL="Update usuario Set nombre='$user_name', apellido='$user_surname',
+  $sSQL="UPDATE usuario SET nombre='$user_name', apellido='$user_surname',
                             mail='$user_mail', foto_perfil= '$picture_name'
-                            Where id_usuario='$user_id' ";
+                            WHERE id_usuario='$user_id' ";
   mysqli_query($conn, $sSQL);
   include("cerrar_conexion.php");
 
