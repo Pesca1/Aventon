@@ -28,15 +28,20 @@
 		<div class="vehicle">
 			<div class="vehicle-info">
 				<h3><?php echo $vehicle['marca']." ".$vehicle['modelo']; ?></h3>
-				<?php echo $vehicle['asientos']." asientos - Patente: ".$vehicle['patente']; ?>
+				<?php
+					echo $vehicle['asientos']." asientos - Patente: ".$plate;
+					echo "<input type='hidden' value='$plate' />";
+				?>
 				<br>
 				<br>
-        <form class="" action="/vistas/editar_vehiculo.php" method="post">
+				<form class="" action="/vistas/editar_vehiculo.php" method="post">
           <input type="hidden" name="actual_patent" value=<?php echo $vehicle['patente'];?>>
           <button class="btn" name="">Modificar Información</button>
-          
         </form>
-				<button class="btn btn-danger" id="delete_vehicle">Eliminar</button>
+				<form class="" action="/php/baja_vehiculo.php" method="post">
+          <input type="hidden" name="plate" value=<?php echo $vehicle['patente'];?>>
+          <button class="btn" name="">Eliminar</button>
+        </form>
 			</div>
 			<div class="vehicle-photos">
 				<?php
@@ -80,5 +85,14 @@
     if(isset($_GET['success_change'])){
       echo '<script> show_success("¡Acción exitosa!"); </script>';
     }
+  	if(isset($_GET['pending'])){
+  		echo "<script> show_error('No se puede eliminar el vehículo, hay viajes pendientes con el.'); </script>";
+  	}
+  	if(isset($_GET['deleted'])){
+  		echo "<script> show_success('Vehículo eliminado!'); </script>";
+  	}
+  	if(isset($_GET['error'])){
+  		echo "<script> show_error('Hubo un error al intentar eliminar su vehículo. Por favor vuelva a intentarlo mas tarde.'); </script>";
+  	}
   ?>
 </html>

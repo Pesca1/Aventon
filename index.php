@@ -1,7 +1,7 @@
 <?php
   session_start();
   if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
-    header("Location: /vistas/pantalla_principal.php");
+    header("Location: /vistas/ver_perfil.php");
   }
 ?>
 <!DOCTYPE html>
