@@ -30,16 +30,15 @@
 				<h3><?php echo $vehicle['marca']." ".$vehicle['modelo']; ?></h3>
 				<?php
 					echo $vehicle['asientos']." asientos - Patente: ".$plate;
-					echo "<input type='hidden' value='$plate' />";
 				?>
 				<br>
 				<br>
 				<form class="" action="/vistas/editar_vehiculo.php" method="post">
-          <input type="hidden" name="actual_patent" value=<?php echo $vehicle['patente'];?>>
+          <input type="hidden" name="plate" value="<?php echo $vehicle['patente'];?>">
           <button class="btn" name="">Modificar Información</button>
         </form>
 				<form class="" action="/php/baja_vehiculo.php" method="post">
-          <input type="hidden" name="plate" value=<?php echo $vehicle['patente'];?>>
+          <input type="hidden" name="plate" value="<?php echo $vehicle['patente'];?>">
           <button class="btn" name="">Eliminar</button>
         </form>
 			</div>
