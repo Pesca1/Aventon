@@ -37,6 +37,9 @@ if(mysqli_query($conn, $sql)){
 	      	}
 	 	}
 	 }
+         if((intval($_POST['picture_number']) == 1) && ( $_FILES["car_picture_1"]["name"] == "")){
+           header('location: /vistas/listar_vehiculos.php?success');
+         }
 } else {
 	header('location: /php/registrar_vehiculo.php?car_error');
 }
