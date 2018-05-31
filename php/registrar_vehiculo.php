@@ -77,16 +77,17 @@
 
 
 <?php include("../vistas/footer.php") ?>
-	
+
 </body>
-
-<?php
-
-if(isset($_GET['car_error'])){
-      echo '<script> show_error("No se pudo dar de alta el vehículo"); </script>';
-    }
-
-
-include("../vistas/bootstrap.php"); ?>
+<?php include("../vistas/bootstrap.php"); ?>
+<script type="text/javascript" src="/js/registrar_usuario.js"></script>
 <script type="text/javascript" src="/js/registrar_vehiculo.js"></script>
+<?php
+if(isset($_GET['car_error'])){
+      echo '<script> show_error("Debe ingresar una patente que no este registrada en el sistema."); </script>';
+    }
+if(isset($_GET['invalid_patent'])){
+      echo '<script> show_error("Formato de patente no válido."); </script>';
+    }
+?>
 </html>

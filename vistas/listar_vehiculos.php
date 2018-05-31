@@ -39,7 +39,7 @@
         </form>
 				<form class="" action="/php/baja_vehiculo.php" method="post">
           <input type="hidden" name="plate" value="<?php echo $vehicle['patente'];?>">
-          <button class="btn" name="">Eliminar</button>
+          <button class="btn btn-danger delete_vehicle" name="">Eliminar</button>
         </form>
 			</div>
 			<div class="vehicle-photos">
