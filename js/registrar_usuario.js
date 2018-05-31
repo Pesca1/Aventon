@@ -11,7 +11,7 @@ function show_error(text){
 	$('.error').css('background-color', 'rgb(226, 104, 104)');
 }
 
-function show_success(text, color){
+function show_success(text){
 	show_error(text);
 	$('.error').css('background-color', 'rgb(189, 255, 113)');
 }
