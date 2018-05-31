@@ -29,20 +29,29 @@
   $new_patent = $_POST['patent'];
   $new_seating= $_POST['seating'];
 
-
   $query = "SELECT * FROM vehiculo WHERE patente='$actual_patent'";
   $result = mysqli_query($conn, $query);
   $vehicle = mysqli_fetch_assoc($result);
 
   if ($new_patent != ""){
-    $car_old_patent = "/[A-Za-z]{3}[0-9]{3}/";
-    $car_new_patent = "/[A-Za-z]{2}[0-9]{3}[A-Za-z]{2}/";
-    $motorcycle_old_patent = "/[0-9]{3}[A-Za-z]{3}/";
-    $motorcycle_new_patent = "/[A-Za-z]{1}[0-9]{3}[A-Za-z]{3}/";
+    
+    $query2 = "SELECT * FROM vehiculo WHERE patente='$new_patent'";
+    $result = mysqli_query($conn, $query2);
 
-    if (preg_match($car_old_patent, $new_patent) || preg_match($car_new_patent, $new_patent) || preg_match($motorcycle_old_patent, $new_patent) ||preg_match($motorcycle_new_patent, $new_patent)){
+    if (mysqli_num_rows($result) > 0) {
+      
+      header("location: /vistas/editar_vehiculo.php?duplicated_patent=$actual_patent");
+      exit();
+    }
+
+
+    $car_old_patent = "/[A-Za-z]{3}[0-9]{3}$/";
+    $car_new_patent = "/[A-Za-z]{2}[0-9]{3}[A-Za-z]{2}$/";
+
+    if (preg_match($car_old_patent, $new_patent) || preg_match($car_new_patent, $new_patent)){
     }else {
-      header("location: /vistas/editar_vehiculo.php?error_patent");
+      header("location: /vistas/editar_vehiculo.php?error_patent=$actual_patent");
+      exit();
     }
   }else {
     $new_patent = $vehicle['patente'];

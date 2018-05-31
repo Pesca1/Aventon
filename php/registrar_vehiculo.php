@@ -86,5 +86,8 @@
 if(isset($_GET['car_error'])){
       echo '<script> show_error("Debe ingresar una patente que no este registrada en el sistema."); </script>';
     }
+if(isset($_GET['invalid_patent'])){
+      echo '<script> show_error("Formato de patente no válido."); </script>';
+    }
 ?>
 </html>
