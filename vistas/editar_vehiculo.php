@@ -13,7 +13,18 @@
   <?php 
     include("header.php");
     include("../php/abrir_conexion.php");
-    $plate = $_SESSION['actual_patent'] = $_POST['plate'];
+    if (isset($_POST['plate'])){
+
+      $plate = $_SESSION['actual_patent'] = $_POST['plate'];
+
+    }elseif (isset($_GET['error_patent'])){
+
+      $plate = $_SESSION['actual_patent'] = $_GET['error_patent'];
+
+    }elseif(isset($_GET['duplicated_patent'])){
+      $plate = $_SESSION['actual_patent'] = $_GET['duplicated_patent'];
+    }
+
     $image_path = "/img/vehicles/";
     
     $query = "SELECT asientos FROM vehiculo WHERE patente='$plate'";
@@ -33,7 +44,7 @@
     <form action="/php/editar_vehiculo.php" method="post" enctype="multipart/form-data">
       <div class="form-row">
         <div class="form-group col-md-5">
-          <label>Nueva patente:</label>
+          <label>Nueva patente (Dejar en blanco para conservar patente):</label>
           <input type="text" class="form-control" name="patent" value="<? echo $plate ?>">
           <label>Asientos disponibles:</label>
           <input type="number" class="form-control" name="seating" min="1" max="45" value= "<? echo $seats?>" required="required">
@@ -72,6 +83,9 @@
 <?php
   if(isset($_GET['error_patent'])){
     echo '<script> show_error("¡Tipo de patente no valido!"); </script>';
+  }
+  if(isset($_GET['duplicated_patent'])){
+    echo '<script> show_error("Ya existe un vehículo con la patente"); </script>';
   }
 ?>
 </html>

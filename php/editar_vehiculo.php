@@ -34,12 +34,23 @@
   $vehicle = mysqli_fetch_assoc($result);
 
   if ($new_patent != ""){
+    
+    $query2 = "SELECT * FROM vehiculo WHERE patente='$new_patent'";
+    $result = mysqli_query($conn, $query2);
+
+    if (mysqli_num_rows($result) > 0) {
+      
+      header("location: /vistas/editar_vehiculo.php?duplicated_patent=$actual_patent");
+      exit();
+    }
+
+
     $car_old_patent = "/[A-Za-z]{3}[0-9]{3}$/";
     $car_new_patent = "/[A-Za-z]{2}[0-9]{3}[A-Za-z]{2}$/";
 
     if (preg_match($car_old_patent, $new_patent) || preg_match($car_new_patent, $new_patent)){
     }else {
-      header("location: /vistas/editar_vehiculo.php?error_patent");
+      header("location: /vistas/editar_vehiculo.php?error_patent=$actual_patent");
       exit();
     }
   }else {
