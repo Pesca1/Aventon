@@ -36,8 +36,9 @@
   }
 
   $consulta="SELECT * FROM usuario WHERE mail = '$user_mail'";
+  $result = mysqli_query($conn, $consulta);
   
-  if (mysqli_num_rows(mysqli_query($conn, $consulta))== 0) {
+  if ((mysqli_num_rows($result)== 0) || ($_SESSION["user_mail"] == $user_mail)) {
 
   $sSQL="UPDATE usuario SET nombre='$user_name', apellido='$user_surname',
                             mail='$user_mail', foto_perfil= '$picture_name'

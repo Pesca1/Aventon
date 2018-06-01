@@ -19,8 +19,13 @@
               <div class="form-row">
                 <div class="form-group col-md-4">
                   <label for="">Foto de perfil</label><br>
-                  <?php $user_img = $_SESSION['user_image'] ?>
-                  <img src=/img/profile_users/<?php echo "$user_img";?> width="150" height="150"><br><br>
+                  <?php 
+                    $user_img = "/img/profile_users/".$_SESSION['user_image'];
+                    if($user_img == "/img/profile_users/"){
+                      $user_img = "/img/system/default_user.jpg";
+                    }
+                  ?>
+                  <img src="<?php echo $user_img;?>" width="150" height="150"><br><br>
                   <input type="hidden" name="MAX_FILE_SIZE" value="5000000">
                   <input type="file" name="profile_image">
                 </div>
