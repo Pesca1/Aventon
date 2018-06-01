@@ -13,8 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $car_patent = test_input($_POST['patent']);
   $car_seating = test_input($_POST['seating']);
 }
-$car_old_patent = "/[A-Za-z]{3}[0-9]{3}$/";
-$car_new_patent = "/[A-Za-z]{2}[0-9]{3}[A-Za-z]{2}$/";
+$car_old_patent = "/^[A-Za-z]{3}[0-9]{3}$/";
+$car_new_patent = "/^[A-Za-z]{2}[0-9]{3}[A-Za-z]{2}$/";
 
 if (preg_match($car_old_patent, $car_patent) || preg_match($car_new_patent, $car_patent)){
 	include("abrir_conexion.php");
