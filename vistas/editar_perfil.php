@@ -54,5 +54,16 @@
 
 
   </body>
-  <?php include("../vistas/bootstrap.php"); ?>
+  <?php include("../vistas/bootstrap.php");  ?>
+  <script type="text/javascript" src="/js/registrar_usuario.js"></script>;
+  
+  
+  <?php
+if(isset($_GET['mail_error'])){
+      echo '<script> show_error("Debe ingresar un mail que no esté registrado en el sistema."); </script>';
+    }
+
+
+
+  ?>
 </html>

@@ -35,6 +35,9 @@
     $picture_name = $_SESSION['user_image'];
   }
 
+  $consulta="SELECT * FROM usuario WHERE mail = '$user_mail'";
+  
+  if (mysqli_num_rows(mysqli_query($conn, $consulta))== 0) {
 
   $sSQL="UPDATE usuario SET nombre='$user_name', apellido='$user_surname',
                             mail='$user_mail', foto_perfil= '$picture_name'
@@ -48,4 +51,10 @@
   $_SESSION['user_image'] = $picture_name;
 
   header("Location: /vistas/ver_perfil.php?success_change");
+}
+else {
+     header("location: /vistas/editar_perfil.php?mail_error");
+     exit();
+    }
+
  ?>
