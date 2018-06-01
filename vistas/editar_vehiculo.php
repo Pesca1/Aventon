@@ -41,11 +41,11 @@
   <br>
   <div class="container">
     <h5>Editar vehículo</h5><br><br>
-    <form action="/php/editar_vehiculo.php" method="post" enctype="multipart/form-data">
+    <form action="/php/editar_vehiculo.php" method="post" enctype="multipart/form-data" autocomplete="off" >
       <div class="form-row">
         <div class="form-group col-md-5">
           <label>Nueva patente (Dejar en blanco para conservar patente):</label>
-          <input type="text" class="form-control" name="patent" value="<? echo $plate ?>">
+          <input id="plate" type="text" class="form-control" name="patent" value="<? echo $plate ?>">
           <label>Asientos disponibles:</label>
           <input type="number" class="form-control" name="seating" min="1" max="45" value= "<? echo $seats?>" required="required">
         </div>
@@ -72,7 +72,7 @@
           <button class="btn btn-secondary" id="add_photo">Agregar foto</button>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Guardar</button>
+      <button type="submit" class="btn btn-primary" id="edit">Guardar</button>
     </form>
   </div>
 

@@ -11,7 +11,8 @@
 		if($sent){
 			header("Location: /index.php?recover=true");
 		} else {
-			header("Location: /index.php?recover=false");
+			// header("Location: /index.php?recover=false");
+			echo "Error: ".error_get_last()["message"]."<br>";
 		}
 	} else {
 		header("Location: /index.php?wrong_email");

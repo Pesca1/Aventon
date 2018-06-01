@@ -16,7 +16,7 @@
 ?>
 
 
-<form method="POST" action="/php/alta_vehiculo.php" id="registrovehiculo">
+<form method="POST" action="/php/alta_vehiculo.php" id="registrovehiculo" autocomplete="off">
  <div class="form_container">
     <h2>Registrar vehículo</h2>
     <br>

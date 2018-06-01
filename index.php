@@ -21,7 +21,7 @@
         <h1>Bienvenido a Aventón!</h1>
           <div class="form_container">
             <h2>Iniciar sesión</h2>
-            <form method="POST" action="/php/iniciar_sesion.php">
+            <form method="POST" action="/php/iniciar_sesion.php" autocomplete="off">
               <div class="form-group col-md-6">
                 <h3>Ingrese su mail:</h3>
                 <input type="email" class="form-control" name="mail" required="required" id="login_mail">
@@ -41,7 +41,7 @@
 
           <div class="form_container">
             <h2>Crear una cuenta</h2>
-            <form enctype="multipart/form-data" action="/php/registrar_usuario.php" method="post" id="register_form">
+            <form enctype="multipart/form-data" action="/php/registrar_usuario.php" method="post" id="register_form" autocomplete="off">
               <h3>Ingrese su nombre:</h3>
               <input type="text" name="name" required>
               <br>
