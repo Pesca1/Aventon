@@ -14,8 +14,8 @@
      <?php include("header.php"); ?><br>
 
      <div class="container">
-        <h5>Editar perfil</h2><br><br>
-            <form method="POST" action="/php/editar_perfil.php" enctype="multipart/form-data">
+        <h5>Editar perfil</h2><h6> (Dejar espacio en blanco para conservar datos)</h6><br><br>
+            <form method="POST" action="/php/editar_perfil.php" enctype="multipart/form-data" autocomplete="off">
               <div class="form-row">
                 <div class="form-group col-md-4">
                   <label for="">Foto de perfil</label><br>

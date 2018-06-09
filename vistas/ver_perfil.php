@@ -55,7 +55,7 @@
                    Ahorro: <?php echo $mostrar["ahorro"];?> <br>
                    Gasto: <?php echo $mostrar["gasto"]; ?> <br>
                 </p>
-                <p><a class="btn btn-secondary" href="#" role="button">Mis viajes &raquo;</a></p>
+                <p></p>
 
               </div><!-- /.col-lg-4 -->
             </div><!-- /.row -->

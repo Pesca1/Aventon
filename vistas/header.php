@@ -6,6 +6,6 @@
   </form>
   <button class="btn"><a href="/php/cerrar_sesion.php">Cerrar Sesión</a></button>
   <button class="btn"><a href="/vistas/listar_vehiculos.php">Mis Vehículos</a></button>
-  <button class="btn"><a href="/vistas/listar_viajes.php">Mis Viajes</a></button>
+  <button class="btn"><a href="#">Mis Viajes</a></button>
   <button class="btn"><a href="/vistas/ver_perfil.php">Mi Perfil</a></button>
 </div>
