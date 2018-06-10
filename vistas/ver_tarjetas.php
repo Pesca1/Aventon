@@ -43,7 +43,7 @@
               $card = mysqli_fetch_assoc($result);
             }
           } else {
-            echo "<h2>No hay ninguna tarjeta registrada!</h2>";
+            echo "<h2>No hay ninguna tarjeta registrada!</h2><br>";
           }
         } else {
           echo "Hubo un error al conectarse con la base de datos. <br> Por favor, intentelo nuevamente mas tarde.";
@@ -58,5 +58,11 @@
   <?php 
     include("bootstrap.php"); 
     include("../php/cerrar_conexion.php");
+  ?>
+  <script src="/js/registrar_usuario.js"></script>
+  <?php 
+    get_success("reg_success", "Tarjeta registrada con éxito!");
+    get_error("reg_error", "La tarjeta ya se encuentra registrada.");
+    get_error("db_error", "Ocurrió un error, por favor, intentelo nuevamente mas tarde.");
   ?>
 </html>
