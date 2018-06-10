@@ -33,15 +33,15 @@
                   <div class="row">
                     <div class="form-group col-md-12">
                       <label for="inputEmail4">Email</label>
-                      <input type="email"name="edit_mail" class="form-control" id="inputEmail4" placeholder="Email">
+                      <input type="email"name="edit_mail" class="form-control" id="inputEmail4" placeholder="Email" value= <?php echo $_SESSION['user_mail'];?>>
                     </div>
                     <div class="form-group col-md-6">
                       <label for="inputName">Nombre</label>
-                      <input type="text" name="edit_name" class="form-control" id="inputName">
+                      <input type="text" name="edit_name" class="form-control" id="inputName" value= <?php echo $_SESSION["user_name"]?>>
                     </div>
                     <div class="form-group col-md-6">
                       <label for="inputSurname">Apellido</label>
-                      <input type="text" name="edit_surname" class="form-control" id="inputSurname">
+                      <input type="text" name="edit_surname" class="form-control" id="inputSurname" value= <?php echo $_SESSION["user_surname"]?>>
                     </div>
                   </div>
                 </div>
