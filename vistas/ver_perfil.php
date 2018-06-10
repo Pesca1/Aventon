@@ -71,6 +71,7 @@
       <br><br><br><br>
       <button class="btn btn-warning" ><a href="/vistas/editar_perfil.php">Editar perfil</a></button>
       <button class="btn btn-danger" ><a href="/vistas/editar_contrasenia.php">Editar contraseña</a></button>
+      <button class="btn" ><a href="/vistas/ver_tarjetas.php">Mis Tarjetas</a></button>
   </div>
 </div>
 
