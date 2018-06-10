@@ -33,7 +33,13 @@ h1, h2 {
 
 #search {
   float: left;
-  width: 50%;
+  width: 30%;
+}
+
+#hello-user-css{
+  background-color: rgb(244, 66, 66);
+  cursor: default;
+  margin-right: 10%;
 }
 
 #header button {

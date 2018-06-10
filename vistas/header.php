@@ -8,4 +8,5 @@
   <button class="btn"><a href="/vistas/listar_vehiculos.php">Mis Vehículos</a></button>
   <button class="btn"><a href="#">Mis Viajes</a></button>
   <button class="btn"><a href="/vistas/ver_perfil.php">Mi Perfil</a></button>
+  <button class="btn" id="hello-user-css">Bienvenido <?php echo  $_SESSION["user_name"] ?></button>
 </div>

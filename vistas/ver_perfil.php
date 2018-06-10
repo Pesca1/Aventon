@@ -18,11 +18,12 @@
 
   <body>
 
-<?php include("header.php"); ?>
+<?php  ?>
 
 <?php
       include("../php/verficar_sesion.php");
       include("../php/abrir_conexion.php");
+      include("header.php");
       $table_user = "usuario";
       $query = mysqli_query($conn,"SELECT * from $table_user WHERE mail = '$_SESSION[user_mail]'");
       $mostrar=mysqli_fetch_assoc($query);
