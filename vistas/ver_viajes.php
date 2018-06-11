@@ -74,4 +74,8 @@
     include("../php/cerrar_conexion.php");
   ?>
   <script src="/js/registrar_usuario.js"></script>
+  <?php
+    get_error("no_car", "Debe registrar un auto para poder crear un viaje!");
+    get_error("no_card", "Debe registrar una tarjeta para poder crear un viaje!");
+  ?>
 </html>
