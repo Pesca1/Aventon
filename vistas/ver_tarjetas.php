@@ -29,12 +29,12 @@
 	  <br>
           <br>
 	  <form class="" action="/vistas/editar_tarjeta.php" method="post">
-            <input type="hidden" name="plate" value="<?= $card["numero"]; ?>">
+            <input type="hidden" name="card_number" value="<?= $card["numero"]; ?>">
             <button class="btn" name="">Modificar Información</button>
           </form>
 	  <form class="" action="/php/baja_tarjeta.php" method="post">
-            <input type="hidden" name="plate" value="<?= $card["numero"]; ?>">
-            <button class="btn btn-danger delete_vehicle" name="">Eliminar</button>
+            <input type="hidden" name="card_number" value="<?= $card["numero"]; ?>">
+            <button class="btn btn-danger delete_card" name="">Eliminar</button>
           </form>
         </div>
       </div>
@@ -60,6 +60,7 @@
     include("../php/cerrar_conexion.php");
   ?>
   <script src="/js/registrar_usuario.js"></script>
+  <script src="/js/listar_tarjetas.js"></script>
   <?php 
     get_success("reg_success", "Tarjeta registrada con éxito!");
     get_error("reg_error", "La tarjeta ya se encuentra registrada.");
