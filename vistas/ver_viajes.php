@@ -43,12 +43,12 @@
 	  <br>
           <br>
 	  <form class="" action="/vistas/editar_viaje.php" method="post">
-            <input type="hidden" name="trip_id" value="<?= $trip["id_viaje"]; ?>">
+            <input type="hidden" name="trip_id" value="<?= $trip["id"]; ?>">
             <button class="btn" name="">Modificar Viaje</button>
           </form>
 	  <form class="" action="/php/baja_viaje.php" method="post">
             <input type="hidden" name="trip_id" value="<?= $trip["id_viaje"]; ?>">
-            <button class="btn btn-danger delete_trip" name="">Eliminar</button>
+            <button class="btn btn-danger delete_trip" name="">Cancelar viaje</button>
           </form>
         </div>
       </div>
@@ -74,4 +74,9 @@
     include("../php/cerrar_conexion.php");
   ?>
   <script src="/js/registrar_usuario.js"></script>
+  <script src="/js/listar_viajes.js"></script>
+  <?php 
+    get_success("vehicle_removed_with_average", "Vehículo eliminado exitosamente y puntaje actualizado");
+    get_success("vehicle_removed", "Vehículo eliminado exitosamente");
+  ?>
 </html>
