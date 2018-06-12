@@ -75,8 +75,10 @@
   ?>
   <script src="/js/registrar_usuario.js"></script>
   <script src="/js/listar_viajes.js"></script>
-  <?php 
+  <?php
     get_success("vehicle_removed_with_average", "Vehículo eliminado exitosamente y puntaje actualizado");
     get_success("vehicle_removed", "Vehículo eliminado exitosamente");
+    get_error("no_car", "Debe registrar un auto para poder crear un viaje!");
+    get_error("no_card", "Debe registrar una tarjeta para poder crear un viaje!");
   ?>
 </html>
