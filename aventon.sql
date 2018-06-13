@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 13-06-2018 a las 04:35:56
+-- Tiempo de generación: 13-06-2018 a las 19:52:46
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.4
 
@@ -88,7 +88,8 @@ CREATE TABLE `puntua_conductor` (
   `comentario` text COLLATE utf8mb4_spanish2_ci NOT NULL,
   `calificacion` int(11) NOT NULL,
   `fecha` date NOT NULL,
-  `hora` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `hora` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `estado` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 -- --------------------------------------------------------
@@ -105,7 +106,8 @@ CREATE TABLE `puntua_pasajero` (
   `fecha` date NOT NULL,
   `hora` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `calificacion` int(11) NOT NULL,
-  `comentario` text COLLATE utf8mb4_spanish2_ci NOT NULL
+  `comentario` text COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `estado` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 -- --------------------------------------------------------
@@ -211,7 +213,6 @@ INSERT INTO `vehiculo` (`patente`, `id_usuario`, `marca`, `modelo`, `asientos`) 
 CREATE TABLE `viajes` (
   `id_viaje` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
-  `id_vehiculo` varchar(256) NOT NULL,
   `patente` varchar(10) NOT NULL,
   `origen` text NOT NULL,
   `destino` text NOT NULL,
