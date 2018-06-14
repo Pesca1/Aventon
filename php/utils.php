@@ -31,7 +31,7 @@
 
   function hasOldCalifications($conn, $id){ 
     $today = new DateTime("now");
-    $query = "SELECT * FROM puntua_pasajero WHERE id_conductor='".$id."'";
+    $query = "SELECT * FROM puntua_pasajero WHERE id_conductor='".$id."' AND estado=0";
     $result = mysqli_query($conn, $query);
     if($result){
       while($cal = mysqli_fetch_assoc($result)){
@@ -41,7 +41,7 @@
         }
       }
     }
-    $query = "SELECT * FROM puntua_conductor WHERE id_pasajero='".$id."'";
+    $query = "SELECT * FROM puntua_conductor WHERE id_pasajero='".$id."' AND estado=0";
     $result = mysqli_query($conn, $query);
     if($result){
       while($cal = mysqli_fetch_assoc($result)){
