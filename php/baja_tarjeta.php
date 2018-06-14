@@ -41,4 +41,5 @@
     include("php/cerrar_conexion.php");
   ?>
   <script src="/js/registrar_usuario.js"></script>
+
 </html>
