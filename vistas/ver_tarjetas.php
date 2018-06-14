@@ -65,5 +65,7 @@
     get_success("reg_success", "Tarjeta registrada con éxito!");
     get_error("reg_error", "La tarjeta ya se encuentra registrada.");
     get_error("db_error", "Ocurrió un error, por favor, intentelo nuevamente mas tarde.");
+    get_success("deleted_success", "La tarjeta ha sido eliminada.");
+    get_error("deleted_error", "La tarjeta no se pudo eliminar.");
   ?>
 </html>

@@ -22,7 +22,7 @@
     ?>
     <div id="body">
       <h1>Nuevo viaje</h1>
-      <form method="post" action="/php/alta_viaje.php" id="" autocomplete="off">
+      <form method="post" action="/php/alta_viaje.php" id="trip_reg" autocomplete="off">
         <h3>Vehículo</h3>
         <?php
           $query = "SELECT * FROM vehiculo WHERE id_usuario='".$_SESSION["user_id"]."'";
@@ -53,7 +53,7 @@
         <br>
         <h3>Fecha y hora</h3>
         Día:
-        <select name="exp_day" id="day">
+        <select name="day" id="day">
         <?php
           for($i = 1; $i <= 31; $i++){
             echo "<option>$i</option>";
@@ -61,7 +61,7 @@
         ?>
         </select>
         - Mes:
-        <select name="exp_month" id="month">
+        <select name="month" id="month">
         <?php
           for($i = intval(date("n")); $i <= intval(date("n"))+1; $i++){
             echo "<option>$i</option>";
@@ -72,7 +72,7 @@
           if(intval(date("n")) == 12){
         ?>
         - Año:
-        <select name="exp_year" id="year">
+        <select name="year" id="year">
         <?php
           for($i = 2018; $i <= 2019; $i++){
             echo "<option>$i</option>";
@@ -95,7 +95,7 @@
         <br>
         <br>
         <h3>Costo (en pesos)</h3>
-        <input type="number" name="price" required="required"/>
+        <input id="price" type="number" name="price" required="required"/>
         <br>
         <br>
         <h3>Tarjeta</h3>
@@ -131,5 +131,5 @@
     include("../php/cerrar_conexion.php");
   ?>
   <script src="/js/registrar_usuario.js"></script>
-  <script src="/js/registrar_tarjeta.js"></script>
+  <script src="/js/registrar_viaje.js"></script>
 </html>

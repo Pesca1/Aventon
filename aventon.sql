@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.8.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 26-05-2018 a las 21:20:05
--- Versión del servidor: 10.1.32-MariaDB
--- Versión de PHP: 7.2.5
+-- Tiempo de generación: 13-06-2018 a las 19:52:46
+-- Versión del servidor: 10.1.31-MariaDB
+-- Versión de PHP: 7.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -45,6 +45,7 @@ CREATE TABLE `direccion` (
 --
 
 CREATE TABLE `fotos_vehiculo` (
+  `id_foto` int(11) NOT NULL,
   `patente` text COLLATE utf8mb4_spanish2_ci NOT NULL,
   `foto` text COLLATE utf8mb4_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
@@ -53,11 +54,102 @@ CREATE TABLE `fotos_vehiculo` (
 -- Volcado de datos para la tabla `fotos_vehiculo`
 --
 
-INSERT INTO `fotos_vehiculo` (`patente`, `foto`) VALUES
-('ABC780', 'ABC123-1.jpg'),
-('159ASD159', '159ASD159-1.jpg'),
-('159ASD159', '159ASD159-2.jpg'),
-('159ASD159', '159ASD159-3.jpg');
+INSERT INTO `fotos_vehiculo` (`id_foto`, `patente`, `foto`) VALUES
+(1, 'ABC780', 'ABC123-1.jpg'),
+(2, '159ASD159', '159ASD159-1.jpg'),
+(3, '159ASD159', '159ASD159-2.jpg'),
+(4, '159ASD159', '159ASD159-3.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pregunta`
+--
+
+CREATE TABLE `pregunta` (
+  `id_pregunta` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `id_viaje` int(11) NOT NULL,
+  `texto` text COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `respuesta` text COLLATE utf8mb4_spanish2_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `puntua_conductor`
+--
+
+CREATE TABLE `puntua_conductor` (
+  `id_puntua_conductor` int(11) NOT NULL,
+  `id_conductor` int(11) NOT NULL,
+  `id_pasajero` int(11) NOT NULL,
+  `id_viaje` int(11) NOT NULL,
+  `comentario` text COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `calificacion` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `hora` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `estado` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `puntua_pasajero`
+--
+
+CREATE TABLE `puntua_pasajero` (
+  `id_puntua_pasajero` int(11) NOT NULL,
+  `id_pasajero` int(11) NOT NULL,
+  `id_conductor` int(11) NOT NULL,
+  `id_viaje` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `hora` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `calificacion` int(11) NOT NULL,
+  `comentario` text COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `estado` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `solicitud`
+--
+
+CREATE TABLE `solicitud` (
+  `id_solicitud` int(11) NOT NULL,
+  `id_pasajero` int(11) NOT NULL,
+  `id_viaje` int(11) NOT NULL,
+  `estado` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `solicitud`
+--
+
+INSERT INTO `solicitud` (`id_solicitud`, `id_pasajero`, `id_viaje`, `estado`) VALUES
+(1, 0, 6, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tarjetas`
+--
+
+CREATE TABLE `tarjetas` (
+  `id_usuario` int(11) NOT NULL,
+  `numero` bigint(20) UNSIGNED NOT NULL,
+  `codigo_seguridad` int(10) UNSIGNED NOT NULL,
+  `vencimiento` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tarjetas`
+--
+
+INSERT INTO `tarjetas` (`id_usuario`, `numero`, `codigo_seguridad`, `vencimiento`) VALUES
+(1, 11231231231, 123, '2018-10-18'),
+(5, 123456789123, 123, '2018-10-18');
 
 -- --------------------------------------------------------
 
@@ -119,7 +211,7 @@ INSERT INTO `vehiculo` (`patente`, `id_usuario`, `marca`, `modelo`, `asientos`) 
 --
 
 CREATE TABLE `viajes` (
-  `id_viaje` int(10) UNSIGNED NOT NULL,
+  `id_viaje` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `patente` varchar(10) NOT NULL,
   `origen` text NOT NULL,
@@ -141,6 +233,43 @@ CREATE TABLE `viajes` (
 --
 ALTER TABLE `direccion`
   ADD PRIMARY KEY (`id_direccion`);
+
+--
+-- Indices de la tabla `fotos_vehiculo`
+--
+ALTER TABLE `fotos_vehiculo`
+  ADD PRIMARY KEY (`id_foto`);
+
+--
+-- Indices de la tabla `pregunta`
+--
+ALTER TABLE `pregunta`
+  ADD PRIMARY KEY (`id_pregunta`);
+
+--
+-- Indices de la tabla `puntua_conductor`
+--
+ALTER TABLE `puntua_conductor`
+  ADD PRIMARY KEY (`id_puntua_conductor`);
+
+--
+-- Indices de la tabla `puntua_pasajero`
+--
+ALTER TABLE `puntua_pasajero`
+  ADD PRIMARY KEY (`id_puntua_pasajero`);
+
+--
+-- Indices de la tabla `solicitud`
+--
+ALTER TABLE `solicitud`
+  ADD PRIMARY KEY (`id_solicitud`);
+
+--
+-- Indices de la tabla `tarjetas`
+--
+ALTER TABLE `tarjetas`
+  ADD PRIMARY KEY (`numero`),
+  ADD UNIQUE KEY `numero` (`numero`);
 
 --
 -- Indices de la tabla `usuario`
@@ -179,6 +308,36 @@ ALTER TABLE `direccion`
   MODIFY `id_direccion` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `fotos_vehiculo`
+--
+ALTER TABLE `fotos_vehiculo`
+  MODIFY `id_foto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `pregunta`
+--
+ALTER TABLE `pregunta`
+  MODIFY `id_pregunta` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `puntua_conductor`
+--
+ALTER TABLE `puntua_conductor`
+  MODIFY `id_puntua_conductor` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `puntua_pasajero`
+--
+ALTER TABLE `puntua_pasajero`
+  MODIFY `id_puntua_pasajero` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `solicitud`
+--
+ALTER TABLE `solicitud`
+  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
@@ -188,7 +347,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `viajes`
 --
 ALTER TABLE `viajes`
-  MODIFY `id_viaje` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_viaje` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
