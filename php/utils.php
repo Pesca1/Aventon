@@ -1,4 +1,9 @@
 <?php
+  define("PENDING", 0);
+  define("ACCEPTED", 1);
+  define("REJECTED", 2);
+  define("DONE", 1);
+
   function show_error($string){
     echo "<script>show_error('$string');</script>";
   }
@@ -31,7 +36,7 @@
 
   function hasOldCalifications($conn, $id){ 
     $today = new DateTime("now");
-    $query = "SELECT * FROM puntua_pasajero WHERE id_conductor='".$id."' AND estado=0";
+    $query = "SELECT * FROM puntua_pasajero WHERE id_conductor='".$id."' AND estado=".PENDING;
     $result = mysqli_query($conn, $query);
     if($result){
       while($cal = mysqli_fetch_assoc($result)){
@@ -41,7 +46,7 @@
         }
       }
     }
-    $query = "SELECT * FROM puntua_conductor WHERE id_pasajero='".$id."' AND estado=0";
+    $query = "SELECT * FROM puntua_conductor WHERE id_pasajero='".$id."' AND estado=".PENDING;
     $result = mysqli_query($conn, $query);
     if($result){
       while($cal = mysqli_fetch_assoc($result)){
