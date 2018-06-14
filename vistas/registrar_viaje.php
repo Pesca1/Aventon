@@ -5,9 +5,10 @@
 
   if(dbOcurrences($conn, "SELECT * FROM vehiculo WHERE id_usuario='".$_SESSION["user_id"]."'") == 0){
     header("Location: /vistas/ver_viajes.php?no_car");
-  }
-  if(dbOcurrences($conn, "SELECT * FROM tarjetas WHERE id_usuario='".$_SESSION["user_id"]."'") == 0){
+  } else if(dbOcurrences($conn, "SELECT * FROM tarjetas WHERE id_usuario='".$_SESSION["user_id"]."'") == 0){
     header("Location: /vistas/ver_viajes.php?no_card");
+  } else if(hasOldCalifications($conn, $_SESSION["user_id"])) {
+    header("Location: /vistas/ver_viajes.php?pending_califications");
   }
 ?>
 <!DOCTYPE html>
@@ -31,7 +32,7 @@
             while($vehicle = mysqli_fetch_assoc($result)){
               ?>
         <div class="option">
-          <input type="radio" name="car" value="<?= $vehicle["patente"] ?>" required="required"/>
+          <input type="radio" name="car_plate" value="<?= $vehicle["patente"] ?>" required="required"/>
           <?= $vehicle["marca"]." ".$vehicle["modelo"] ?>
         </div>
               <?php
@@ -68,20 +69,6 @@
           }
         ?>
         </select>
-        <?php
-          if(intval(date("n")) == 12){
-        ?>
-        - Año:
-        <select name="year" id="year">
-        <?php
-          for($i = 2018; $i <= 2019; $i++){
-            echo "<option>$i</option>";
-          }
-        ?>
-        </select>
-        <?php
-          }
-        ?>
         - Hora:
         <input type="time" name="time" value="12:00" required="required"/>
         <br>
