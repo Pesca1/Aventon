@@ -80,5 +80,6 @@
     get_success("vehicle_removed", "Vehículo eliminado exitosamente");
     get_error("no_car", "Debe registrar un auto para poder crear un viaje!");
     get_error("no_card", "Debe registrar una tarjeta para poder crear un viaje!");
+    get_error("pending_califications", "Tiene una calificación pendiente, por favor, califique al usuario antes de crear otro viaje.");
   ?>
 </html>
