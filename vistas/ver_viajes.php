@@ -76,9 +76,13 @@
   <script src="/js/registrar_usuario.js"></script>
   <script src="/js/listar_viajes.js"></script>
   <?php
-    get_success("vehicle_removed_with_average", "Vehículo eliminado exitosamente y puntaje actualizado");
-    get_success("vehicle_removed", "Vehículo eliminado exitosamente");
+    get_success("vehicle_removed_with_average", "Viaje eliminado exitósamente y puntaje actualizado");
+    get_success("vehicle_removed", "Viaje eliminado exitósamente");
+    get_success("reg_success", "Viaje creado con éxito!");
     get_error("no_car", "Debe registrar un auto para poder crear un viaje!");
     get_error("no_card", "Debe registrar una tarjeta para poder crear un viaje!");
+    get_error("pending_califications", "Tiene una calificación pendiente, por favor, califique al usuario antes de crear otro viaje.");
+    get_error("db_error", "Ocurrió un error en la base de datos, por favor, inténtelo nuevamente mas tarde.");
+    get_error("date_error", "Usted tiene un viaje programado para la fecha ingresada.");
   ?>
 </html>
