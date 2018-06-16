@@ -14,10 +14,11 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8"/>
     <title>Aventón</title>
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" >
     <link href="/css/index.css" rel="stylesheet" type="text/css">
-    <link href="/css/listar_vehiculos.css" rel="stylesheet" type="text/css">
+    <link href="/css/ver_viaje.css" rel="stylesheet" type="text/css">
   </head>
   <body>
     <?php
@@ -38,15 +39,19 @@
     <div id="body">
       <h1>Viaje <?= $trip["origen"]." --> ".$trip["destino"] ?></h1>
       <div id="trip_info">
+        <h3>Información</h3>
         Fecha y hora: <?= $trip["fecha_hora"] ?>
         <br>
         Duración: <?= printTime($trip["duracion"]) ?>
         <br>
         Vehículo: <?= $car["marca"]." ".$car["modelo"] ?>
         <br>
-        Costo por persona: $<?= $price ?>
+        Tipo de viaje: <?= $trip["tipo"] ?>
+        <br>
+        Costo por persona: $<?= round($price) ?>
       </div>
       <div id="passengers">
+        <h3>Pasajeros</h3>
         <?php
           if($n_request == 0){
             echo "No hay pasajeros todavía.";
@@ -54,7 +59,37 @@
             while($request = mysqli_fetch_assoc($requests)){
               $query = "SELECT * FROM usuario WHERE id_usuario='".$request["id_pasajero"]."'";
               $passenger = mysqli_fetch_assoc(mysqli_query($conn, $query));
-              echo $passenger["nombre"]." ".$passenger["apellido"]."<br>";
+              echo "<div class='user'>";
+              echo $passenger["nombre"]." ".$passenger["apellido"];
+              echo "<img src='/img/profile_users/".$passenger["foto_perfil"]."' class='profile_picture'/><br>";
+              echo "</div>";
+            }
+          }
+        ?>
+        <a href="/vistas/ver_solicitudes.php" class="btn btn-primary">Ver solicitudes</a>
+      </div>
+      <div id="questions">
+        <h3>Preguntas y Respuestas</h3>
+        <?php
+          $query = "SELECT * FROM pregunta WHERE id_viaje='$trip_id'";
+          $questions = mysqli_query($conn, $query);
+          if(mysqli_num_rows($questions) == 0){
+            echo "Aún no hay preguntas para este viaje.";
+          } else {
+            while($question = mysqli_fetch_assoc($questions)){
+              $query = "SELECT * FROM usuario WHERE id_usuario='".$question["id_usuario"]."'";
+              $user = mysqli_fetch_assoc(mysqli_query($conn, $query));
+              ?>
+
+        <div class="question">
+          <strong><?= $user["nombre"]." ".$user["apellido"] ?></strong>
+           preguntó:<br>
+           - <?= $question["texto"]?>
+           <br>
+          <a class="btn btn-primary" href="/vistas/answer_question?id=<?= $question["id_pregunta"] ?>">Responder</a>
+        </div>
+
+              <?php
             }
           }
         ?>

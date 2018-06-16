@@ -40,11 +40,13 @@ h1, h2 {
   background-color: rgb(244, 66, 66);
   cursor: default;
   margin-right: 0%;
+  float: right;
+  display: none;
 }
 
 #header button {
   float: right;
-  margin-left: 15px;
+  margin-left: 10px;
 }
 
 button a {

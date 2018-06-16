@@ -47,6 +47,7 @@
           ?>
           <button class="btn btn-warning">Pendiente</button>
           <br>
+          <a class="btn btn-primary" href="/vistas/ver_viaje.php?id=<?= $trip["id_viaje"]?>">Ver viaje</a>
       	  <form class="" action="/php/aceptar_solicitud.php" method="post">
             <input type="hidden" name="request_id" value="<?= $request["id_solicitud"] ?>">
             <button class="btn btn-success" name="">Aceptar</button>
@@ -60,6 +61,7 @@
           ?>
           <button class="btn btn-success">Aceptada</button>
           <br>
+          <a class="btn btn-primary" href="/vistas/ver_viaje.php?id=<?= $trip["id_viaje"]?>">Ver viaje</a>
       	  <form class="" action="/php/baja_solicitud.php" method="post">
             <input type="hidden" name="request_id" value="<?= $request["id_solicitud"] ?>">
             <button class="btn btn-danger delete_card" name="">Eliminar</button>
