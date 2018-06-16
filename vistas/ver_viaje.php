@@ -59,9 +59,10 @@
             while($request = mysqli_fetch_assoc($requests)){
               $query = "SELECT * FROM usuario WHERE id_usuario='".$request["id_pasajero"]."'";
               $passenger = mysqli_fetch_assoc(mysqli_query($conn, $query));
-              echo "<div class='user'>";
+              echo "<div class='user'><div class='info'>";
               echo $passenger["nombre"]." ".$passenger["apellido"];
-              echo "<img src='/img/profile_users/".$passenger["foto_perfil"]."' class='profile_picture'/><br>";
+              echo "<br>".$passenger["mail"];
+              echo "</div><img src='/img/profile_users/".$passenger["foto_perfil"]."' class='profile_picture'/><br>";
               echo "</div>";
             }
           }
