@@ -24,88 +24,122 @@
     <div id="body">
       <h1>Nuevo viaje</h1>
       <form method="post" action="/php/alta_viaje.php" id="trip_reg" autocomplete="off">
-        <h3>Vehículo</h3>
-        <?php
+      <?php
           $query = "SELECT * FROM vehiculo WHERE id_usuario='".$_SESSION["user_id"]."'";
-          $result = mysqli_query($conn, $query);
+          $result = $conn->query($query);
+          
           if($result){
             while($vehicle = mysqli_fetch_assoc($result)){
               ?>
-        <div class="option">
-          <input type="radio" name="car_plate" value="<?= $vehicle["patente"] ?>" required="required"/>
-          <?= $vehicle["marca"]." ".$vehicle["modelo"] ?>
-        </div>
+            
+          <label for="" class="form-check-label">Vehículo:</label><br><br>
+          <input class="form-check-input" type="radio" name="car_plate" value="<?php $vehicle["patente"] ?>" required="required"/>
+          <?php echo($vehicle["marca"]." ".$vehicle["modelo"]) ?>
+        
               <?php
             }
           }
-        ?>
-        <br>
-        <h3>Origen</h3>
-        <input type="text" name="origin" placeholder="Ciudad de origen" required="required"/>
-        <br>
-        <br>
-        <h3>Destino</h3>
-        <input type="text" name="destination" placeholder="Ciudad de Destino" required="required"/>
-        <br>
-        <br>
-        <h3>Duración (en horas)</h3>
-        <input type="text" name="duration" required="required"/> hs
-        <br>
-        <br>
-        <h3>Fecha y hora</h3>
-        Día:
-        <select name="day" id="day">
-        <?php
-          for($i = 1; $i <= 31; $i++){
-            echo "<option>$i</option>";
-          }
-        ?>
-        </select>
-        - Mes:
-        <select name="month" id="month">
-        <?php
-          for($i = intval(date("n")); $i <= intval(date("n"))+1; $i++){
-            echo "<option>$i</option>";
-          }
-        ?>
-        </select>
-        - Hora:
-        <input type="time" name="time" value="12:00" required="required"/>
-        <br>
-        <br>
-        <h3>Tipo de viaje</h3>
-        <select name="type">
-          <option>Ocasional</option>
-          <option>Diario</option>
-          <option>Semanal</option>
-        </select>
-        <br>
-        <br>
-        <h3>Costo (en pesos)</h3>
-        <input id="price" type="number" name="price" required="required"/>
-        <br>
-        <br>
-        <h3>Tarjeta</h3>
-        <?php
-          $query = "SELECT * FROM tarjetas WHERE id_usuario='".$_SESSION["user_id"]."'";
-          $result = mysqli_query($conn, $query);
-          if($result){
-            while($card = mysqli_fetch_assoc($result)){
-              ?>
-        <div class="option">
-          <input type="radio" name="card" value="<?= $card["numero"] ?>" required="required"/>
-          Código: <?= $card["numero"] ?>
+        ?><br><br><br>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Origen:</span>
+              </div>
+              <input type="text" class="form-control" name="origin" required="required">
+            </div>         
+          </div>
+          <div class="form-group col-md-4">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Destino:</span>
+              </div>
+              <input type="text" class="form-control" name="destination" required="required">
+            </div> 
+          </div>
         </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Duración (en horas):</span>
+              </div>
+              <input type="text" class="form-control" name="duration" required="required">
+            </div> 
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="destination">Fecha y hora</label> <br>
+            Día:
+            <select name="day" id="day">
               <?php
-            }
-          }
-        ?>
-        <br>
-        <br>
-        <h3>Descripción</h3>
-        <textarea name="description" rows="5" cols="30" wrap="hard" style="resize: none">¿Algo mas para decir?</textarea>
-        <br>
-        <br>
+                for($i = 1; $i <= 31; $i++){
+                  echo "<option>$i</option>";
+                }
+                ?>
+            </select>
+            - Mes:
+            <select name="month" id="month">
+              <?php
+                for($i = intval(date("n")); $i <= intval(date("n"))+1; $i++){
+                  echo "<option>$i</option>";
+                }
+                ?>
+            </select>
+            - Hora:
+              <input type="time" name="time" value="12:00" required="required"/>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <br>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="type">Tipo de viaje</label>
+              </div>
+              <select class="custom-select" id="type" name="type">
+                <option selected>Seleccione una...</option>
+                <option>Ocasional</option>
+                <option>Diario</option>
+                <option>Semanal</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group col-md-4"><br>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Costo (en pesos)</span>
+              </div>
+              <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="price" required="required">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="credit_card">Tarjeta:</label>
+            <?php
+              $query = "SELECT * FROM tarjetas WHERE id_usuario='".$_SESSION["user_id"]."'";
+              $result = mysqli_query($conn, $query);
+              if($result){
+                while($card = mysqli_fetch_assoc($result)){
+            ?>
+            <div class="option">
+              <input type="radio" name="card" value="<?= $card["numero"] ?>" required="required"/>
+              Código: <?= $card["numero"] ?>
+            </div>
+            <?php
+                }
+              }
+            ?>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="description" >Descripción:</label><br>
+            <textarea class="form-control" name="description" rows="5" cols="30" wrap="hard" style="resize: none" placeholder="¿Algo para agregar?" ></textarea>
+          </div>
+        </div>
         <input type="submit" class="btn btn-primary" value="Registrar" id="submit"/>
       </form>
     </div>
