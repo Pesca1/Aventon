@@ -8,10 +8,10 @@
   </head>
   <body>
     <?php
-      include("php/verficar_sesion.php");
-      include("php/abrir_conexion.php");
-      include("php/utils.php");
-      include("vistas/header.php");
+      include("verficar_sesion.php");
+      include("abrir_conexion.php");
+      include("utils.php");
+      include("../vistas/header.php");
     ?>
     
     <div id="body">
