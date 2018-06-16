@@ -43,11 +43,11 @@
 	  <br>
           <br>
 	  <form class="" action="/vistas/editar_viaje.php" method="post">
-            <input type="hidden" name="trip_id" value="<?= $trip["id"]; ?>">
+            <input type="hidden" name="trip_id" value="<?= $trip["id_viaje"]; ?>">
             <button class="btn" name="">Modificar Viaje</button>
           </form>
 	  <form class="" action="/php/baja_viaje.php" method="post">
-            <input type="hidden" name="trip_id" value="<?= $trip["id_viaje"]; ?>">
+            <input type="hidden" name="trip_id" value="<?php $trip["id_viaje"]; ?>">
             <button class="btn btn-danger delete_trip" name="">Cancelar viaje</button>
           </form>
         </div>

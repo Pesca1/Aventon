@@ -5,8 +5,8 @@
   include("abrir_conexion.php");
   $trip_id = $_POST['trip_id'];
   $user_id = $_SESSION['user_id'];
-
-  if(($oc = dbOcurrences($conn, "SELECT * FROM solicitud WHERE id_viaje='$trip_id' AND estado= 1 ")) > 0 ){
+  $query = "SELECT * FROM solicitud WHERE id_viaje='$trip_id' AND estado=" .ACCEPTED;
+  if(($oc = dbOcurrences($conn, $query )) > 0 ){
 
     $query= "SELECT * FROM usuario WHERE id_usuario='$user_id' ";
     $result = mysqli_query($conn, $query);
