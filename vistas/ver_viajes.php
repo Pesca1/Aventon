@@ -27,18 +27,7 @@
           <h3><?= $trip["origen"] ?> --> <?= $trip["destino"] ?></h3>
           <?= date("d/m/Y H:i", strtotime($trip["fecha_hora"])); ?> - Duración:
           <?php
-            $hours = floor($trip["duracion"]);
-            $minutes = $trip["duracion"]-$hours;
-            if($hours > 0){
-              echo $hours.(($hours>=2)?" horas":" hora");
-              if($minutes > 0){
-                echo " y";
-              }
-            }
-            if($minutes > 0){
-              echo " ".($minutes*60)." minutos";
-            }
-            echo ".";
+            echo printTime($trip["duracion"]).".";
           ?>
 	  <br>
           <br>

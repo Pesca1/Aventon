@@ -24,6 +24,20 @@
     }
   }
 
+  function printTime($time){ 
+    $hours = floor($time);
+    $minutes = $time-$hours;
+    if($hours > 0){
+      echo $hours.(($hours>=2)?" horas":" hora");
+      if($minutes > 0){
+        echo " y";
+      }
+    }
+    if($minutes > 0){
+      echo " ".($minutes*60)." minutos";
+    }
+  }
+
   function dbOcurrences($conn, $query){
     $result = mysqli_query($conn, $query);
     if($result){
