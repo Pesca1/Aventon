@@ -60,8 +60,8 @@
               $query = "SELECT * FROM usuario WHERE id_usuario='".$request["id_pasajero"]."'";
               $passenger = mysqli_fetch_assoc(mysqli_query($conn, $query));
               echo "<div class='user'><div class='info'>";
-              echo $passenger["nombre"]." ".$passenger["apellido"];
-              echo "<br>".$passenger["mail"];
+              echo "<strong>".$passenger["nombre"]." ".$passenger["apellido"];
+              echo "</strong><br>".$passenger["mail"];
               echo "</div><img src='/img/profile_users/".$passenger["foto_perfil"]."' class='profile_picture'/><br>";
               echo "</div>";
             }
@@ -87,7 +87,16 @@
            preguntó:<br>
            - <?= $question["texto"]?>
            <br>
-          <a class="btn btn-primary" href="/vistas/answer_question?id=<?= $question["id_pregunta"] ?>">Responder</a>
+           <?php if($question["respuesta"] == ""){ ?>
+           <a class="btn btn-primary" href="/vistas/answer_question?id=<?= $question["id_pregunta"] ?>">Responder</a>
+           <?php 
+             } else {
+           ?>
+           Respondiste:<br>
+           - <?= $question["respuesta"] ?>
+           <?php
+             }
+           ?>
         </div>
 
               <?php
