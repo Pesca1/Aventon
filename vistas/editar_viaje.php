@@ -6,7 +6,7 @@
 if(hasOldCalifications($conn, $_SESSION["user_id"])) {
     header("Location: /vistas/ver_viajes.php?pending_califications");
   }
-
+  setlocale(LC_MONETARY, 'es_AR');
   $trip_id = $_POST['trip_id'];
   $query = "SELECT * FROM viajes WHERE id_viaje='".$trip_id."tr'";
   $result = mysqli_query($conn, $query);
@@ -72,7 +72,7 @@ if(hasOldCalifications($conn, $_SESSION["user_id"])) {
               <div class="input-group-prepend">
                 <span class="input-group-text">Duración (en horas):</span>
               </div>
-              <input type="text" class="form-control" name="duration" required="required" value="<?php echo $trip['duracion']; ?>">
+              <input type="text" class="form-control" name="duration" required="required" value="<?php echo money_format('%i', $trip['duracion']); ?>">
             </div> 
           </div>
 
@@ -132,9 +132,10 @@ if(hasOldCalifications($conn, $_SESSION["user_id"])) {
           <div class="form-group col-md-4"><br>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text">Costo (en pesos)</span>
+                <span class="input-group-text">Costo ($)</span>
               </div>
-              <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="price" required="required" value="<?php echo $trip['costo']; ?>">
+
+              <input type="text" class="form-control" name="price" required="required" value="<?php echo money_format('%i', $trip['costo']); ?>">
             </div>
           </div>
         </div>

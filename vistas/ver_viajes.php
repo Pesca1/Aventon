@@ -29,13 +29,15 @@
           <?php
             echo printTime($trip["duracion"]).".";
           ?>
-	  <br>
+	        <br>
           <br>
-	  <form class="" action="/vistas/editar_viaje.php" method="post">
+          <a class="btn btn-primary" href="/vistas/ver_viaje.php?id=<?= $trip["id_viaje"]?>">Ver detalles</a>
+
+	        <form class="" action="/vistas/editar_viaje.php" method="post">
             <input type="hidden" name="trip_id" value="<?= $trip["id_viaje"]; ?>">
             <button class="btn" name="">Modificar Viaje</button>
           </form>
-	  <form class="" action="/php/baja_viaje.php" method="post">
+	        <form class="" action="/php/baja_viaje.php" method="post">
             <input type="hidden" name="trip_id" value="<?= $trip["id_viaje"]; ?>">
             <button class="btn btn-danger delete_trip" name="">Cancelar viaje</button>
           </form>
@@ -43,6 +45,7 @@
       </div>
 
       <?php
+
               $trip = mysqli_fetch_assoc($result);
             }
           } else {

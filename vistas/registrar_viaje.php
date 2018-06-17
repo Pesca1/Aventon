@@ -109,7 +109,7 @@
           <div class="form-group col-md-4"><br>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text">Costo (en pesos)</span>
+                <span class="input-group-text">Costo ($)</span>
               </div>
               <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="price" required="required">
             </div>
