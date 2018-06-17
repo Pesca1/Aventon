@@ -16,11 +16,11 @@
   $card = $_POST["card"];
   $desc = $_POST["description"];
   $user_id = $_SESSION["user_id"];
-
+  
+  
   $query = "SELECT * FROM viajes WHERE id_usuario='$user_id'";
   $result = mysqli_query($conn, $query);
   if($result){
-    var_dump($result);
     while($trip = mysqli_fetch_assoc($result)){
       if(!checkTripDates($datetime, $duration, $trip["fecha_hora"], $trip["duracion"])){
         header("Location: /vistas/ver_viajes.php?date_error");

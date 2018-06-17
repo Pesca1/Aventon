@@ -33,7 +33,7 @@
               ?>
             
           <label for="" class="form-check-label">Vehículo:</label><br><br>
-          <input class="form-check-input" type="radio" name="car_plate" value="<?php $vehicle["patente"] ?>" required="required"/>
+          <input class="form-check-input" type="radio" name="car_plate" value="<?= $vehicle["patente"] ?>" required="required"/>
           <?php echo($vehicle["marca"]." ".$vehicle["modelo"]) ?>
         
               <?php
@@ -99,7 +99,6 @@
                 <label class="input-group-text" for="type">Tipo de viaje</label>
               </div>
               <select class="custom-select" id="type" name="type">
-                <option selected>Seleccione una...</option>
                 <option>Ocasional</option>
                 <option>Diario</option>
                 <option>Semanal</option>

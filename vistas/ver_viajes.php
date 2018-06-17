@@ -36,7 +36,7 @@
             <button class="btn" name="">Modificar Viaje</button>
           </form>
 	  <form class="" action="/php/baja_viaje.php" method="post">
-            <input type="hidden" name="trip_id" value="<?php $trip["id_viaje"]; ?>">
+            <input type="hidden" name="trip_id" value="<?= $trip["id_viaje"]; ?>">
             <button class="btn btn-danger delete_trip" name="">Cancelar viaje</button>
           </form>
         </div>
@@ -65,9 +65,10 @@
   <script src="/js/registrar_usuario.js"></script>
   <script src="/js/listar_viajes.js"></script>
   <?php
-    get_success("vehicle_removed_with_average", "Viaje eliminado exitósamente y puntaje actualizado");
-    get_success("vehicle_removed", "Viaje eliminado exitósamente");
+    get_success("trip_removed_with_average", "Viaje eliminado exitósamente y puntaje actualizado");
+    get_success("trip_removed", "Viaje eliminado exitósamente");
     get_success("reg_success", "Viaje creado con éxito!");
+    get_success("edit_success", "Viaje editado con éxito!");
     get_error("no_car", "Debe registrar un auto para poder crear un viaje!");
     get_error("no_card", "Debe registrar una tarjeta para poder crear un viaje!");
     get_error("pending_califications", "Tiene una calificación pendiente, por favor, califique al usuario antes de crear otro viaje.");

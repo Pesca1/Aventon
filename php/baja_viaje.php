@@ -17,14 +17,14 @@
       $query = "UPDATE usuario SET promedio_puntuacion_conductor='$average' WHERE id_usuario='$user_id'";
       $result = mysqli_query($conn, $query);
     }
-    // $query = "DELETE FROM viajes WHERE id_viaje='$trip_id'";
-	  // $result = mysqli_query($conn, $query);
-    header("location: /vistas/ver_viajes.php?vehicle_removed_with_average");
+    $query = "DELETE FROM viajes WHERE id_viaje='$trip_id'";
+	  $result = mysqli_query($conn, $query);
+    header("location: /vistas/ver_viajes.php?trip_removed_with_average");
 	  exit();
   }else{
-    // $query = "DELETE FROM viajes WHERE id_viaje='$trip_id'";
-	  // $result = mysqli_query($conn, $query);
-    header("location: /vistas/ver_viajes.php?vehicle_removed");
+    $query = "DELETE FROM viajes WHERE id_viaje='$trip_id'";
+	  $result = mysqli_query($conn, $query);
+    header("location: /vistas/ver_viajes.php?trip_removed");
 	  exit();
   }
   include("cerrar_conexion.php");

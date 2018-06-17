@@ -40,7 +40,7 @@ if(hasOldCalifications($conn, $_SESSION["user_id"])) {
               ?>
             
           <label for="" class="form-check-label">Vehículo:</label><br><br>
-          <input class="form-check-input" type="radio" name="car_plate" value="<?php $vehicle["patente"] ?>" <?php if ($vehicle["patente"] == $car["patente"]) echo "checked" ?>/>
+          <input class="form-check-input" type="radio" name="car_plate" value="<?= $vehicle["patente"] ?>" <?php if ($vehicle["patente"] == $car["patente"]) echo "checked" ?>/>
           <?php echo($vehicle["marca"]." ".$vehicle["modelo"]) ?>
         
               <?php
@@ -81,6 +81,7 @@ if(hasOldCalifications($conn, $_SESSION["user_id"])) {
             $trip_month = date("m", strtotime($trip["fecha_hora"]));
             $trip_hour = date("H", strtotime($trip["fecha_hora"]));
             $trip_minute = date("i", strtotime($trip["fecha_hora"]));
+            $trip_hour_minuete = $trip_hour.":".$trip_minute;
           ?>
 
 
@@ -109,7 +110,7 @@ if(hasOldCalifications($conn, $_SESSION["user_id"])) {
                 ?>
             </select>
             - Hora:
-              <input type="time" name="time" value="12:00" required="required"/>
+              <input type="time" name="time" value=<?= $trip_hour_minuete ?> required="required"/>
           </div>
         </div>
 
@@ -121,7 +122,6 @@ if(hasOldCalifications($conn, $_SESSION["user_id"])) {
                 <label class="input-group-text" name="type">Tipo de viaje</label>
               </div>
               <select class="custom-select" id="type" name="type">
-                <option> Seleccione una opción</option>
                 <option <?php if ($trip['tipo'] == "Ocasional") echo " selected"?>>Ocasional</option>
                 <option <?php if ($trip['tipo'] == "Diario") echo " selected"?>>Diario</option>
                 <option <?php if ($trip['tipo'] == "Semanal") echo " selected"?>>Semanal</option>
