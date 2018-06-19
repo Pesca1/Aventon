@@ -90,4 +90,10 @@
     include("../php/cerrar_conexion.php");
   ?>
   <script src="/js/registrar_usuario.js"></script>
+
+    <?php
+    get_success("deleted_success", "La solicitud ha sido eliminada.");
+    get_error("deleted_error", "La solicitud no se pudo eliminar.");
+     ?>
+
 </html>
