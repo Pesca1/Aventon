@@ -24,6 +24,7 @@
       include("../php/verficar_sesion.php");
       include("../php/abrir_conexion.php");
       include("header.php");
+      include("../php/utils.php");
       $table_user = "usuario";
       $query = mysqli_query($conn,"SELECT * from $table_user WHERE mail = '$_SESSION[user_mail]'");
       $mostrar=mysqli_fetch_assoc($query);
@@ -99,5 +100,6 @@
      if(isset($_GET['success_change'])){
        echo '<script> show_success("¡Acción exitosa!"); </script>';
      }
+     get_error("no_trips", "<span style=\"color: black;\">No hay ningún viaje registrado!</span>");
    ?>
 </html>
