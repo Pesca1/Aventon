@@ -2,13 +2,11 @@
 
 include("verficar_sesion.php");
 include("abrir_conexion.php");
+include("utils.php");
 
 $plate = $_POST['plate'];
 
-$query = "SELECT * FROM viajes WHERE patente='$plate'";
-$result = mysqli_query($conn, $query);
-
-if(mysqli_fetch_assoc($result)){
+if(vehicleHasPendingTrips($conn, $plate)){
 	header("Location: /vistas/listar_vehiculos.php?pending");
 } else {
 	$query = "SELECT * FROM fotos_vehiculo WHERE patente='$plate'";

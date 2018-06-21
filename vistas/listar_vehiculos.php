@@ -1,4 +1,4 @@
-<?php include("../php/verficar_sesion.php"); ?>
+<?php include("../php/verficar_sesion.php"); include("../php/utils.php"); ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -93,5 +93,6 @@
   	if(isset($_GET['error'])){
   		echo "<script> show_error('Hubo un error al intentar eliminar su vehículo. Por favor vuelva a intentarlo mas tarde.'); </script>";
   	}
+        get_error("edit_pending", "No es posible modificar el vehículo, ya que tiene viajes pendientes.");
   ?>
 </html>

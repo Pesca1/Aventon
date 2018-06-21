@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 13-06-2018 a las 19:52:46
--- Versión del servidor: 10.1.31-MariaDB
--- Versión de PHP: 7.2.4
+-- Tiempo de generación: 21-06-2018 a las 20:41:58
+-- Versión del servidor: 10.1.32-MariaDB
+-- Versión de PHP: 7.2.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -58,7 +58,8 @@ INSERT INTO `fotos_vehiculo` (`id_foto`, `patente`, `foto`) VALUES
 (1, 'ABC780', 'ABC123-1.jpg'),
 (2, '159ASD159', '159ASD159-1.jpg'),
 (3, '159ASD159', '159ASD159-2.jpg'),
-(4, '159ASD159', '159ASD159-3.jpg');
+(4, '159ASD159', '159ASD159-3.jpg'),
+(6, 'SYA671', 'JG4oS2blDV.jpg');
 
 -- --------------------------------------------------------
 
@@ -120,6 +121,7 @@ CREATE TABLE `solicitud` (
   `id_solicitud` int(11) NOT NULL,
   `id_pasajero` int(11) NOT NULL,
   `id_viaje` int(11) NOT NULL,
+  `numero_tarjeta` bigint(20) NOT NULL,
   `estado` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -127,8 +129,8 @@ CREATE TABLE `solicitud` (
 -- Volcado de datos para la tabla `solicitud`
 --
 
-INSERT INTO `solicitud` (`id_solicitud`, `id_pasajero`, `id_viaje`, `estado`) VALUES
-(1, 0, 6, 1);
+INSERT INTO `solicitud` (`id_solicitud`, `id_pasajero`, `id_viaje`, `numero_tarjeta`, `estado`) VALUES
+(1, 1, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -148,8 +150,7 @@ CREATE TABLE `tarjetas` (
 --
 
 INSERT INTO `tarjetas` (`id_usuario`, `numero`, `codigo_seguridad`, `vencimiento`) VALUES
-(1, 11231231231, 123, '2018-10-18'),
-(5, 123456789123, 123, '2018-10-18');
+(1, 11231231231, 123, '2018-10-18');
 
 -- --------------------------------------------------------
 
@@ -178,7 +179,7 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `apellido`, `fecha_de_nacimiento`, `mail`, `promedio_puntuacion_conductor`, `promedio_puntuacion_pasajero`, `id_direccion`, `contrasenia`, `foto_perfil`, `gasto`, `ahorro`) VALUES
 (1, 'Manuel', 'Gimenez', '1998-07-06', 'manugime@gmail.com', 0, 0, 2, 'banana', 'user1.jpg', 0, 0),
-(5, 'JoaquÃ­n \"Pesca\"', 'Rodriguez', '2000-01-01', 'joaquindea@hotmail.es', 0, 0, 0, 'chauchas', 'user5.jpg', 0, 0),
+(5, 'JoaquÃ­n', 'de Antueno', '2000-01-01', 'joaquindea@hotmail.es', 0, 0, 0, 'chauchas', 'user5.jpg', 0, 0),
 (6, 'Pesca', 'de Antueno', '2000-01-01', 'joaquinpescadeantueno@gmail.com', 0, 0, 0, 'a', 'user6.jpg', 0, 0);
 
 -- --------------------------------------------------------
@@ -202,7 +203,9 @@ CREATE TABLE `vehiculo` (
 INSERT INTO `vehiculo` (`patente`, `id_usuario`, `marca`, `modelo`, `asientos`) VALUES
 ('159ASD159', 1, 'Honda', 'Uno', 1),
 ('ABC780', 3, 'Ford', 'Fiesta', 5),
-('qwe789', 1, 'Fiat', 'Uno', 1);
+('qwe789', 1, 'Fiat', 'Uno', 1),
+('RTY987', 5, 'Citroen', 'C3', 5),
+('SYA671', 5, 'Honda', 'Fit', 1);
 
 -- --------------------------------------------------------
 
@@ -216,13 +219,20 @@ CREATE TABLE `viajes` (
   `patente` varchar(10) NOT NULL,
   `origen` text NOT NULL,
   `destino` text NOT NULL,
-  `duracion` decimal(5,0) NOT NULL,
+  `duracion` decimal(10,5) NOT NULL,
   `fecha_hora` datetime NOT NULL,
   `descripcion` text NOT NULL,
   `tipo` text NOT NULL,
-  `costo` decimal(5,0) NOT NULL,
-  `tarjeta` int(11) NOT NULL
+  `costo` decimal(10,5) NOT NULL,
+  `tarjeta` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `viajes`
+--
+
+INSERT INTO `viajes` (`id_viaje`, `id_usuario`, `patente`, `origen`, `destino`, `duracion`, `fecha_hora`, `descripcion`, `tipo`, `costo`, `tarjeta`) VALUES
+(1, 5, 'SYA671', 'La Plata', 'Buenos Aires', '0.00000', '2018-06-29 00:00:00', 'Â¿Algo mas para decir?', 'Ocasional', '0.00000', 123456789123);
 
 --
 -- Índices para tablas volcadas
@@ -311,7 +321,7 @@ ALTER TABLE `direccion`
 -- AUTO_INCREMENT de la tabla `fotos_vehiculo`
 --
 ALTER TABLE `fotos_vehiculo`
-  MODIFY `id_foto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_foto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `pregunta`
@@ -347,7 +357,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `viajes`
 --
 ALTER TABLE `viajes`
-  MODIFY `id_viaje` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_viaje` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

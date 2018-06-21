@@ -1,5 +1,6 @@
 <?php
   include("abrir_conexion.php");
+  include("utils.php");
   
   function generateRandomString($length = 10) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -29,16 +30,9 @@
   $new_patent = $_POST['patent'];
   $new_seating= $_POST['seating'];
 
-  date_default_timezone_set("America/Argentina/Buenos_Aires");
-  $now = time();
-  $query = "SELECT * FROM viajes WHERE patente='$actual_patent'";
-  $result = mysqli_query($conn, $query);
-  while($trip = mysqli_fetch_assoc($result)){
-    $date = strtotime($trip["fecha_hora"]);
-    if($date > $now){
-      header("Location: /vistas/listar_vehiculos.php?pending");
-      exit;
-    }
+  if(vehicleHasPendingTrips($conn, $actual_patent)){
+    header("Location: /vistas/listar_vehiculos.php?edit_pending");
+    exit;
   }
 
   $query = "SELECT * FROM vehiculo WHERE patente='$actual_patent'";

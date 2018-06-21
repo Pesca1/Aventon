@@ -103,4 +103,18 @@
    
     return (($chkEndTime < $startTime) || ($chkStartTime > $endTime));
   }
+
+  function vehicleHasPendingTrips($conn, $plate){
+    date_default_timezone_set("America/Argentina/Buenos_Aires");
+    $now = time();
+    $query = "SELECT * FROM viajes WHERE patente='$plate'";
+    $result = mysqli_query($conn, $query);
+    while($trip = mysqli_fetch_assoc($result)){
+      $date = strtotime($trip["fecha_hora"]);
+      if($date > $now){
+        return true;
+      }
+    }
+    return false;
+  }
 ?>
