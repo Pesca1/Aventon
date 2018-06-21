@@ -29,6 +29,18 @@
   $new_patent = $_POST['patent'];
   $new_seating= $_POST['seating'];
 
+  date_default_timezone_set("America/Argentina/Buenos_Aires");
+  $now = time();
+  $query = "SELECT * FROM viajes WHERE patente='$actual_patent'";
+  $result = mysqli_query($conn, $query);
+  while($trip = mysqli_fetch_assoc($result)){
+    $date = strtotime($trip["fecha_hora"]);
+    if($date > $now){
+      header("Location: /vistas/listar_vehiculos.php?pending");
+      exit;
+    }
+  }
+
   $query = "SELECT * FROM vehiculo WHERE patente='$actual_patent'";
   $result = mysqli_query($conn, $query);
   $vehicle = mysqli_fetch_assoc($result);
@@ -65,6 +77,9 @@
   mysqli_query($conn, $query);
 
   $query = "UPDATE fotos_vehiculo SET patente='$new_patent' WHERE patente='$actual_patent'";
+  mysqli_query($conn, $query);
+  
+  $query = "UPDATE viajes SET patente='$new_patent' WHERE patente='$actual_patent'";
   mysqli_query($conn, $query);
 
   for($i = 1; $i <= intval($_POST['delete_number']); $i++){
