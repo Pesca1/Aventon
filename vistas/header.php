@@ -1,6 +1,6 @@
 <div id="header">
   <img id="logo" src="/img/logo.jpeg" />
-  <form id="search" class="form-inline my-2 my-lg-0">
+  <form id="search" class="form-inline my-2 my-lg-0" action="/vistas/buscar_viajes.php">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     <button class="btn  my-2 my-sm-0" type="submit">Search</button>
   </form>
