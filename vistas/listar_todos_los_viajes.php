@@ -16,7 +16,7 @@
       <h1>Todos los viajes</h1>
       <?php
         $id = $_SESSION["user_id"];
-        $sql = "SELECT * FROM viajes";
+        $sql = "SELECT * FROM viajes WHERE id_usuario !=".$_SESSION["user_id"];
         $result = mysqli_query($conn, $sql);
         if($result){
           if($trip = mysqli_fetch_assoc($result)){

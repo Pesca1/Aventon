@@ -2,7 +2,7 @@
   <img id="logo" src="/img/logo.jpeg" />
   <form id="search" class="form-inline my-2 my-lg-0" action="/vistas/buscar_viajes.php">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <a class="btn btn-primary" href="/vistas/listar_todos_los_viajes.php" >buscar</a>
+    <a class="btn btn-light" href="/vistas/listar_todos_los_viajes.php" >buscar</a>
   </form>
   <button class="btn"><a href="/php/cerrar_sesion.php">Cerrar Sesión</a></button>
   <button class="btn"><a href="/vistas/listar_vehiculos.php">Mis Vehículos</a></button>

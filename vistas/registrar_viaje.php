@@ -64,9 +64,13 @@
           <div class="form-group col-md-4">
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text">Duración (en horas):</span>
+                <span class="input-group-text">Duración (horas):</span>
               </div>
-              <input type="text" class="form-control" name="duration" required="required">
+              <input type="text" class="form-control" name="duration_hours" required="required">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Duración (minutos):</span>
+              </div>
+              <input type="text" class="form-control" name="duration_minutes" required="required">
             </div> 
           </div>
 

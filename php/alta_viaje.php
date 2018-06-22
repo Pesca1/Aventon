@@ -7,7 +7,7 @@
   $plate = $_POST["car_plate"];
   $origin = trim($_POST["origin"]);
   $destination = trim($_POST["destination"]);
-  $duration = trim($_POST["duration"]);
+  $duration = intval(trim($_POST["duration_hours"]))+(intval(trim($_POST["duration_minutes"]))/60);
   $date = "2018-" . $_POST["month"] ."-". $_POST["day"];
   $time = $_POST["time"].":00";
   $datetime = $date ." ".$time;
