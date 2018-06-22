@@ -1,4 +1,6 @@
 <?php
+
+  date_default_timezone_set("America/Argentina/Buenos_Aires");
   define("PENDING", 0);
   define("ACCEPTED", 1);
   define("REJECTED", 2);
@@ -121,5 +123,27 @@
     $result = mysqli_query($conn, $query);
     
     return $total_seats - mysqli_num_rows($result);
+  }
+  
+  function vehicleHasPendingTrips($conn, $plate){
+    $now = time();
+    $query = "SELECT * FROM viajes WHERE patente='$plate'";
+    $result = mysqli_query($conn, $query);
+    while($trip = mysqli_fetch_assoc($result)){
+      $date = strtotime($trip["fecha_hora"]);
+      if($date > $now){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  function isPendingTrip($trip){
+    $now = time();
+    $date = strtotime($trip["fecha_hora"]);
+    if($date > $now){
+      return true;
+    }
+    return false;
   }
 ?>

@@ -24,6 +24,7 @@
     <div id="body">
       <h1>Nuevo viaje</h1>
       <form method="post" action="/php/alta_viaje.php" id="trip_reg" autocomplete="off">
+          <label for="" class="form-check-label">Vehículo:</label><br><br>
       <?php
           $query = "SELECT * FROM vehiculo WHERE id_usuario='".$_SESSION["user_id"]."'";
           $result = $conn->query($query);
@@ -32,9 +33,9 @@
             while($vehicle = mysqli_fetch_assoc($result)){
               ?>
             
-          <label for="" class="form-check-label">Vehículo:</label><br><br>
           <input class="form-check-input" type="radio" name="car_plate" value="<?= $vehicle["patente"] ?>" required="required"/>
           <?php echo($vehicle["marca"]." ".$vehicle["modelo"]) ?>
+          <br>
         
               <?php
             }

@@ -1,5 +1,6 @@
 <?php
   include("abrir_conexion.php");
+  include("utils.php");
   
   function generateRandomString($length = 10) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -28,6 +29,11 @@
   $actual_patent = $_SESSION['actual_patent'];
   $new_patent = $_POST['patent'];
   $new_seating= $_POST['seating'];
+
+  if(vehicleHasPendingTrips($conn, $actual_patent)){
+    header("Location: /vistas/listar_vehiculos.php?edit_pending");
+    exit;
+  }
 
   $query = "SELECT * FROM vehiculo WHERE patente='$actual_patent'";
   $result = mysqli_query($conn, $query);
@@ -65,6 +71,9 @@
   mysqli_query($conn, $query);
 
   $query = "UPDATE fotos_vehiculo SET patente='$new_patent' WHERE patente='$actual_patent'";
+  mysqli_query($conn, $query);
+  
+  $query = "UPDATE viajes SET patente='$new_patent' WHERE patente='$actual_patent'";
   mysqli_query($conn, $query);
 
   for($i = 1; $i <= intval($_POST['delete_number']); $i++){

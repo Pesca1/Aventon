@@ -15,12 +15,14 @@
     <div id="body"> 
       <h1>Mis viajes</h1>
       <?php
+        $pending = false;
         $id = $_SESSION["user_id"];
         $sql = "SELECT * FROM viajes WHERE id_usuario='$id'";
         $result = mysqli_query($conn, $sql);
         if($result){
           if($trip = mysqli_fetch_assoc($result)){
-            while($trip){?>
+            while($trip){
+              if(isPendingTrip($trip)){ $pending= true;?>
           
       <div class="vehicle">
         <div class="vehicle-info">
@@ -45,14 +47,15 @@
       </div>
 
       <?php
-
+              }
               $trip = mysqli_fetch_assoc($result);
             }
-          } else {
-            echo "<h2>No hay ningun viaje registrado!</h2><br>";
           }
         } else {
           echo "Hubo un error al conectarse con la base de datos. <br> Por favor, intentelo nuevamente mas tarde.";
+        }
+        if(!$pending){
+          echo "<h2>No hay ningun viaje registrado!</h2><br>";
         }
       ?>
       <button class="btn btn-success"><a href="/vistas/registrar_viaje.php">Crear Viaje</a></button>

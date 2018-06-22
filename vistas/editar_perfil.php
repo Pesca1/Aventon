@@ -37,11 +37,11 @@
                     </div>
                     <div class="form-group col-md-6">
                       <label for="inputName">Nombre</label>
-                      <input type="text" name="edit_name" class="form-control" id="inputName" value= <?php echo $_SESSION["user_name"]?>>
+                      <input type="text" name="edit_name" class="form-control" id="inputName" value="<?php echo $_SESSION["user_name"]?>">
                     </div>
                     <div class="form-group col-md-6">
                       <label for="inputSurname">Apellido</label>
-                      <input type="text" name="edit_surname" class="form-control" id="inputSurname" value= <?php echo $_SESSION["user_surname"]?>>
+                      <input type="text" name="edit_surname" class="form-control" id="inputSurname" value="<?php echo $_SESSION["user_surname"]?>">
                     </div>
                   </div>
                 </div>
