@@ -49,6 +49,13 @@
         Tipo de viaje: <?= $trip["tipo"] ?>
         <br>
         Costo por persona: $<?= round($price) ?>
+        <?php if($trip["descripcion"] != ""){ ?>
+        <br>
+        Descripción: 
+        <div id="trip-description">
+          <?= $trip["descripcion"] ?>
+        </div>
+        <?php } ?>
       </div>
       <div id="passengers">
         <h3>Pasajeros</h3>
