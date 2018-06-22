@@ -18,14 +18,15 @@
       $result = mysqli_query($conn, $query);
     }
     $query = "DELETE FROM viajes WHERE id_viaje='$trip_id'";
-	  $result = mysqli_query($conn, $query);
+    $result = mysqli_query($conn, $query);
     header("location: /vistas/ver_viajes.php?trip_removed_with_average");
-	  exit();
-  }else{
+    exit();
+
+  } else {
     $query = "DELETE FROM viajes WHERE id_viaje='$trip_id'";
-	  $result = mysqli_query($conn, $query);
+    $result = mysqli_query($conn, $query);
     header("location: /vistas/ver_viajes.php?trip_removed");
-	  exit();
+    exit();
   }
   include("cerrar_conexion.php");
 

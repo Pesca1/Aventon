@@ -124,7 +124,7 @@
             ?>
             <div class="option">
               <input type="radio" name="card" value="<?= $card["numero"] ?>" required="required"/>
-              Código: <?= $card["numero"] ?>
+              Código: <?= $card["numero"] ?> <br> Vencimiento: <?= $card["vencimiento"] ?>
             </div>
             <?php
                 }
