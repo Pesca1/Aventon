@@ -34,7 +34,7 @@
       $requests = mysqli_query($conn, $query);
       $n_request = mysqli_num_rows($requests);
       $remaining_seats = $car["asientos"] - $n_request;
-      $price = $trip["costo"]/($n_request+1);
+      $price = $trip["costo"];
     ?>
     <div id="body">
       <h1>Viaje <?= $trip["origen"]." --> ".$trip["destino"] ?></h1>
