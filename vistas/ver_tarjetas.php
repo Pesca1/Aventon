@@ -67,5 +67,7 @@
     get_error("db_error", "Ocurrió un error, por favor, intentelo nuevamente mas tarde.");
     get_success("deleted_success", "La tarjeta ha sido eliminada.");
     get_error("deleted_error", "La tarjeta no se pudo eliminar.");
+    get_error("pending_trip", "La tarjeta no se puede eliminar porque hay un viaje asociado a ella.");
+    get_error("pending_request", "La tarjeta no se puede eliminar porque hay una solicitud asociada a ella.");
   ?>
 </html>

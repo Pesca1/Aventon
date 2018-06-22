@@ -119,7 +119,7 @@
     return false;
   }
 
-  function isPendingTrip($conn, $trip){
+  function isPendingTrip($trip){
     $now = time();
     $date = strtotime($trip["fecha_hora"]);
     if($date > $now){
