@@ -66,13 +66,9 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">Duración (horas):</span>
               </div>
-              <input type="text" class="form-control" name="duration_hours" required="required">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Duración (minutos):</span>
-              </div>
-              <input type="text" class="form-control" name="duration_minutes" required="required">
+              <input type="number" min="0" value="0" class="form-control" name="duration_hours" required="required">
             </div> 
-          </div>
+           </div>
 
           <div class="form-group col-md-4">
             <label for="destination">Fecha y hora</label> <br>
@@ -101,13 +97,9 @@
             <br>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <label class="input-group-text" for="type">Tipo de viaje</label>
+                <span class="input-group-text">Duración (minutos):</span>
               </div>
-              <select class="custom-select" id="type" name="type">
-                <option>Ocasional</option>
-                <option>Diario</option>
-                <option>Semanal</option>
-              </select>
+              <input type="number" min="0" value="0" class="form-control" name="duration_minutes" required="required">
             </div>
           </div>
 
