@@ -103,4 +103,23 @@
    
     return (($chkEndTime < $startTime) || ($chkStartTime > $endTime));
   }
+
+
+  function availableSeats($conn, $trip_id){
+    $query = "SELECT * FROM viajes WHERE id_viaje='$trip_id'";
+    
+    $result = mysqli_query($conn, $query);
+    $trip = mysqli_fetch_assoc($result);
+    
+    
+    $query = "SELECT * FROM vehiculo WHERE patente='".$trip["patente"]."'";
+    $result = mysqli_query($conn, $query);
+    $vehicle = mysqli_fetch_assoc($result);
+    $total_seats = $vehicle["asientos"];
+    
+    $query = "SELECT * FROM solicitud WHERE id_viaje='".$trip["id_viaje"]."' AND estado=".ACCEPTED;
+    $result = mysqli_query($conn, $query);
+    
+    return $total_seats - mysqli_num_rows($result);
+  }
 ?>
