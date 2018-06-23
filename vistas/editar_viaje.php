@@ -72,7 +72,7 @@ if(hasOldCalifications($conn, $_SESSION["user_id"])) {
               <div class="input-group-prepend">
                 <span class="input-group-text">Duración (en horas):</span>
               </div>
-              <input type="text" class="form-control" name="duration" required="required" value="<?php echo money_format('%i', $trip['duracion']); ?>">
+              <input type="text" class="form-control" name="duration" required="required" value="<?php echo floatval ($trip['duracion']); ?>">
             </div> 
           </div>
 
@@ -135,7 +135,7 @@ if(hasOldCalifications($conn, $_SESSION["user_id"])) {
                 <span class="input-group-text">Costo ($)</span>
               </div>
 
-              <input type="text" class="form-control" name="price" required="required" value="<?php echo money_format('%i', $trip['costo']); ?>">
+              <input type="text" class="form-control" name="price" required="required" value="<?php echo floatval($trip['costo']); ?>">
             </div>
           </div>
         </div>
@@ -169,9 +169,9 @@ if(hasOldCalifications($conn, $_SESSION["user_id"])) {
             <textarea class="form-control" name="description" rows="5" cols="30" wrap="hard" style="resize: none" ><?php echo $trip['descripcion']; ?></textarea>
           </div>
         </div>
-        <input type="submit" class="btn btn-primary" value="Guardar" id="submit"/>        
+        <input type="submit" class="btn btn-primary" value="Guardar" id="submit"/>  
       </form>
-    </div>    
+    </div>
 
 
   </body>

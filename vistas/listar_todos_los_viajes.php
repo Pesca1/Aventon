@@ -69,7 +69,9 @@
   <?php
     get_success("sol_success", "Solicitud realizada con exito");
     get_error("no_card", "¡No posee tarjetas para poder realizar una solicitud!");
+    get_error("has_one", "Ya tienes una solicitud para este viaje");
     get_error("pending_califications", "¡Posee calificaciones de hace mas de 30 dias!, realicelas para postularse a un viaje");
+    get_error("date_error", "¡Ya tiene un viaje que coincide con esa fehca!");
     get_error("db_error", "Ha ocurrido un error en la conexión, intentelo mas tarde");
   ?>
 </html>
