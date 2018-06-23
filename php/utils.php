@@ -156,6 +156,6 @@
   }
 
   function formatCard($number){
-    return "************".substr($number, -4);
+    return "xxxxxxxxxxxx".substr($number, -4);
   }
 ?>
