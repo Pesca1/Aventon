@@ -106,7 +106,7 @@
           <div class="form-group col-md-4"><br>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text">Costo ($)</span>
+                <span class="input-group-text">Costo por persona ($)</span>
               </div>
               <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="price" required="required">
             </div>
@@ -124,7 +124,7 @@
             ?>
             <div class="option">
               <input type="radio" name="card" value="<?= $card["numero"] ?>" required="required"/>
-              Código: <?= $card["numero"] ?> <br> Vencimiento: <?= $card["vencimiento"] ?>
+              Código: <?= $card["numero"] ?> <br> Vencimiento: <?= (new DateTime($card["vencimiento"]))->format("m/Y") ?>
             </div>
             <?php
                 }

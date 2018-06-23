@@ -20,12 +20,13 @@
         $result = mysqli_query($conn, $sql);
         if($result){
           if($card = mysqli_fetch_assoc($result)){
-            while($card){?>
+            while($card){
+              $expiration = (new DateTime($card["vencimiento"]))->format("m/Y");?>
           
       <div class="vehicle">
         <div class="vehicle-info">
           <h3>Numero: <?= $card["numero"] ?></h3>
-          Vencimiento: <?= $card["vencimiento"]?>
+          Vencimiento: <?= $expiration?>
 	  <br>
           <br>
 	  <form class="" action="/vistas/editar_tarjeta.php" method="post">

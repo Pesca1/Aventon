@@ -152,6 +152,6 @@
     $card = mysqli_fetch_assoc(mysqli_query($conn, $query));
     $expiration = DateTime::createFromFormat("Y-m-d", $card["vencimiento"]);
     $today = DateTime::createFromFormat("Y-m-d", $date);
-    return ($today > $expiration);
+    return ($today >= $expiration);
   } 
 ?>
