@@ -24,14 +24,6 @@
         <br>
         <br>
         <h3>Fecha de vencimiento:</h3>
-        Día:
-        <select name="exp_day" id="day">
-        <?php
-          for($i = 1; $i <= 31; $i++){
-            echo "<option>$i</option>";
-          }
-        ?>
-        </select>
         - Mes:
         <select name="exp_month" id="month">
         <?php

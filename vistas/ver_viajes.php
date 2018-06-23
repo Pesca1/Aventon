@@ -80,5 +80,6 @@
     get_error("pending_califications", "Tiene una calificación pendiente, por favor, califique al usuario antes de crear otro viaje.");
     get_error("db_error", "Ocurrió un error en la base de datos, por favor, inténtelo nuevamente mas tarde.");
     get_error("date_error", "Usted tiene un viaje programado para la fecha ingresada.");
+    get_error("expired_card", "La tarjeta elegida expira antes de la fecha del viaje, por favor, seleccione otra tarjeta.");
   ?>
 </html>

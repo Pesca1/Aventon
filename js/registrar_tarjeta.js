@@ -26,7 +26,7 @@ $("#card_registration").submit(function (e){
   if((card_number.length != 16) || !isInteger(card_number) ){
     show_error("Número de tarjeta inválido.");
     return false;
-  } else if(!isInteger(card_code)){
+  } else if((card_code.length != 3) || !isInteger(card_code)){
     show_error("Código de seguridad inválido.");
     return false;
   } else if(isExpired(day, month, year)){

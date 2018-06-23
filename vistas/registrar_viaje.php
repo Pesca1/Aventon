@@ -64,11 +64,11 @@
           <div class="form-group col-md-4">
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text">Duración (en horas):</span>
+                <span class="input-group-text">Duración (horas):</span>
               </div>
-              <input type="text" class="form-control" name="duration" required="required">
+              <input type="number" min="0" value="0" class="form-control" name="duration_hours" required="required">
             </div> 
-          </div>
+           </div>
 
           <div class="form-group col-md-4">
             <label for="destination">Fecha y hora</label> <br>
@@ -97,20 +97,16 @@
             <br>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <label class="input-group-text" for="type">Tipo de viaje</label>
+                <span class="input-group-text">Duración (minutos):</span>
               </div>
-              <select class="custom-select" id="type" name="type">
-                <option>Ocasional</option>
-                <option>Diario</option>
-                <option>Semanal</option>
-              </select>
+              <input type="number" min="0" value="0" class="form-control" name="duration_minutes" required="required">
             </div>
           </div>
 
           <div class="form-group col-md-4"><br>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text">Costo ($)</span>
+                <span class="input-group-text">Costo por persona ($)</span>
               </div>
               <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="price" required="required">
             </div>
@@ -128,7 +124,7 @@
             ?>
             <div class="option">
               <input type="radio" name="card" value="<?= $card["numero"] ?>" required="required"/>
-              Código: <?= $card["numero"] ?>
+              Código: <?= formatCard($card["numero"]) ?> <br> Vencimiento: <?= (new DateTime($card["vencimiento"]))->format("m/Y") ?>
             </div>
             <?php
                 }

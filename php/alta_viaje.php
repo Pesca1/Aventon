@@ -7,17 +7,20 @@
   $plate = $_POST["car_plate"];
   $origin = trim($_POST["origin"]);
   $destination = trim($_POST["destination"]);
-  $duration = trim($_POST["duration"]);
+  $duration = intval(trim($_POST["duration_hours"]))+(intval(trim($_POST["duration_minutes"]))/60);
   $date = "2018-" . $_POST["month"] ."-". $_POST["day"];
   $time = $_POST["time"].":00";
   $datetime = $date ." ".$time;
-  $type = $_POST["type"];
   $price = trim($_POST["price"]);
   $card = $_POST["card"];
   $desc = $_POST["description"];
   $user_id = $_SESSION["user_id"];
   
-  
+  if(isExpiredCard($conn, $card, $date)){
+    header("Location: /vistas/ver_viajes.php?expired_card");
+    exit();
+  }
+
   $query = "SELECT * FROM viajes WHERE id_usuario='$user_id'";
   $result = mysqli_query($conn, $query);
   if($result){
@@ -48,7 +51,7 @@
   }
 
   $query = "INSERT INTO viajes (id_usuario, patente, origen, destino, duracion, fecha_hora, descripcion, tipo, costo, tarjeta)
-      VALUES ($user_id, '$plate', '$origin', '$destination', $duration, '$datetime', '$desc', '$type', $price, $card)";
+      VALUES ($user_id, '$plate', '$origin', '$destination', $duration, '$datetime', '$desc', 'Ocasional', $price, $card)";
   $result = mysqli_query($conn, $query);
 
   if($result){

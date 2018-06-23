@@ -34,7 +34,7 @@
       $requests = mysqli_query($conn, $query);
       $n_request = mysqli_num_rows($requests);
       $remaining_seats = $car["asientos"] - $n_request;
-      $price = $trip["costo"]/($n_request+1);
+      $price = $trip["costo"];
     ?>
     <div id="body">
       <h1>Viaje <?= $trip["origen"]." --> ".$trip["destino"] ?></h1>
@@ -49,6 +49,13 @@
         Tipo de viaje: <?= $trip["tipo"] ?>
         <br>
         Costo por persona: $<?= round($price) ?>
+        <?php if($trip["descripcion"] != ""){ ?>
+        <br>
+        Descripción: 
+        <div id="trip-description">
+          <?= $trip["descripcion"] ?>
+        </div>
+        <?php } ?>
       </div>
       <div id="passengers">
         <h3>Pasajeros</h3>
