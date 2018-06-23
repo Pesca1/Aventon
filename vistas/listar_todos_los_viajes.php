@@ -21,10 +21,9 @@
         if($result){
           if($trip = mysqli_fetch_assoc($result)){
             while($trip){
-              $vehicle_id = $trip["patente"];
-              $query = "SELECT * FROM vehiculo WHERE patente='$vehicle_id'";
-              $result2 = mysqli_query($conn, $query);
-              $vehicle = mysqli_fetch_assoc($result2);
+              $query = "SELECT * FROM usuario WHERE id_usuario=".$trip["id_usuario"];
+              $driver = mysqli_fetch_assoc(mysqli_query($conn, $query));
+              $name = $driver["nombre"]." ".$driver["apellido"];
       ?>
           
       <div class="vehicle">
@@ -34,7 +33,7 @@
           <?php
             echo printTime($trip["duracion"]).".";
           ?>
-          Cantidad de asientos disponibles: <?= availableSeats($conn, $trip["id_viaje"]) ?>
+          Conductor: <?= $name ?>
 	        <br>
           <br>
 	        <form class="" action="/php/verificar_disponibilidad.php" method="post">
