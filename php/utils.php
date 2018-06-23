@@ -153,5 +153,9 @@
     $expiration = DateTime::createFromFormat("Y-m-d", $card["vencimiento"]);
     $today = DateTime::createFromFormat("Y-m-d", $date);
     return ($today >= $expiration);
-  } 
+  }
+
+  function formatCard($number){
+    return "************".substr($number, -4);
+  }
 ?>

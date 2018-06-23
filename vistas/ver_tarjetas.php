@@ -25,7 +25,7 @@
           
       <div class="vehicle">
         <div class="vehicle-info">
-          <h3>Numero: <?= $card["numero"] ?></h3>
+          <h3>Numero: <?= formatCard($card["numero"]) ?></h3>
           Vencimiento: <?= $expiration?>
 	  <br>
           <br>

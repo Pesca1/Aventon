@@ -124,7 +124,7 @@
             ?>
             <div class="option">
               <input type="radio" name="card" value="<?= $card["numero"] ?>" required="required"/>
-              Código: <?= $card["numero"] ?> <br> Vencimiento: <?= (new DateTime($card["vencimiento"]))->format("m/Y") ?>
+              Código: <?= formatCard($card["numero"]) ?> <br> Vencimiento: <?= (new DateTime($card["vencimiento"]))->format("m/Y") ?>
             </div>
             <?php
                 }
