@@ -29,10 +29,6 @@
           Vencimiento: <?= $expiration?>
 	  <br>
           <br>
-	  <form class="" action="/vistas/editar_tarjeta.php" method="post">
-            <input type="hidden" name="card_number" value="<?= $card["numero"]; ?>">
-            <button class="btn" name="">Modificar Información</button>
-          </form>
 	  <form class="" action="/php/baja_tarjeta.php" method="post">
             <input type="hidden" name="card_number" value="<?= $card["numero"]; ?>">
             <button class="btn btn-danger delete_card" name="">Eliminar</button>
