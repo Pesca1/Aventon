@@ -33,7 +33,7 @@ h1, h2 {
 
 #search {
   float: left;
-  width: 30%;
+  width: 275px;
 }
 
 #hello-user-css{
@@ -47,6 +47,11 @@ h1, h2 {
 #header button {
   float: right;
   margin-left: 10px;
+}
+
+#header #left-button {
+  float: left;
+  margin-left: 0px;
 }
 
 button a {

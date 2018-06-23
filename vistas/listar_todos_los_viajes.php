@@ -21,10 +21,9 @@
         if($result){
           if($trip = mysqli_fetch_assoc($result)){
             while($trip){
-              $vehicle_id = $trip["patente"];
-              $query = "SELECT * FROM vehiculo WHERE patente='$vehicle_id'";
-              $result2 = mysqli_query($conn, $query);
-              $vehicle = mysqli_fetch_assoc($result2);
+              $query = "SELECT * FROM usuario WHERE id_usuario=".$trip["id_usuario"];
+              $driver = mysqli_fetch_assoc(mysqli_query($conn, $query));
+              $name = $driver["nombre"]." ".$driver["apellido"];
       ?>
           
       <div class="vehicle">
@@ -34,10 +33,14 @@
           <?php
             echo printTime($trip["duracion"]).".";
           ?>
-          Cantidad de asientos disponibles: <?= availableSeats($conn, $trip["id_viaje"]) ?>
+          Conductor: <?= $name ?>
 	        <br>
           <br>
-	        <form class="form-inline" action="/php/verificar_disponibilidad.php" method="post">
+	          <form class="" action="/vistas/ver_detalles_viaje.php" method="post">
+              <input type="hidden" name="trip_id" value="<?= $trip["id_viaje"]; ?>">
+              <button class="btn btn-primary" name="">Ver detalles</button>
+          </form>
+	        <form class="" action="/php/verificar_disponibilidad.php" method="post">
             <input type="hidden" name="trip_id" value="<?= $trip["id_viaje"]; ?>">
             <button class="btn btn-success" name="" <?php if (alreadyHaveRequest($conn, $_SESSION["user_id"], $trip["id_viaje"])){ echo "disabled > Asiento solicitado </button>"; }else{ echo ">Solicitar asiento</button>";} ?> 
           </form>

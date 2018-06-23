@@ -10,4 +10,5 @@
   <button class="btn"><a href="/vistas/ver_solicitudes.php">Solicitudes</a></button>
   <button class="btn btn-dark" ><a style="color: white" href="/vistas/ver_perfil.php"><?php echo  $_SESSION["user_name"] ?></a></button>
   <button class="btn" id="hello-user-css">Bienvenido!</button>
+  <button class="btn" id="left-button"><a href="/vistas/listar_todos_los_viajes.php">Viajes</a></button>
 </div>
