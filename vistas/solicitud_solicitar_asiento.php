@@ -31,7 +31,7 @@
                 ?>
               <div class="option">
                 <input type="radio" name="card" value="<?= $card["numero"] ?>" required="required"/>
-                Código: <?= $card["numero"] ?>
+                Código: <?= formatCard($card["numero"]) ?>
               </div>
               <?php
                   }

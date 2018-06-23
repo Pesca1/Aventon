@@ -106,7 +106,7 @@
     return (($chkEndTime < $startTime) || ($chkStartTime > $endTime));
   }
 
-
+  ##retorna los asientos disponibles para un viaje
   function availableSeats($conn, $trip_id){
     $query = "SELECT * FROM viajes WHERE id_viaje='$trip_id'";
     
@@ -158,4 +158,11 @@
   function formatCard($number){
     return "************".substr($number, -4);
   }
+
+  function alreadyHaveRequest($conn, $user_id, $trip_id){
+    $query = "SELECT * FROM solicitud WHERE id_pasajero='$user_id' AND id_viaje='$trip_id' ";
+    $requests = mysqli_query($conn, $query);
+    return mysqli_num_rows($requests) > 0;
+  }
+
 ?>

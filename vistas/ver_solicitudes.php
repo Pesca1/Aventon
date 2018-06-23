@@ -105,7 +105,11 @@
 
     <?php
     get_success("deleted_success", "La solicitud ha sido eliminada.");
+    get_success("success_accepted", "La solicitud ha sido aceptada exitosamente.");
     get_error("deleted_error", "La solicitud no se pudo eliminar.");
+    get_error("notification_error", "Error al enviar el correo de confirmación");
+    get_error("notification_error_cancel", "Error al enviar el correo de cancelación");
+    get_error("no_seats", "¡No hay mas asientos disponibles para este viaje!");
      ?>
 
 </html>

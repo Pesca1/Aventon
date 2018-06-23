@@ -37,9 +37,9 @@
           Cantidad de asientos disponibles: <?= availableSeats($conn, $trip["id_viaje"]) ?>
 	        <br>
           <br>
-	        <form class="" action="/php/verificar_disponibilidad.php" method="post">
+	        <form class="form-inline" action="/php/verificar_disponibilidad.php" method="post">
             <input type="hidden" name="trip_id" value="<?= $trip["id_viaje"]; ?>">
-            <button class="btn btn-success" name="">Solicitar asiento</button>
+            <button class="btn btn-success" name="" <?php if (alreadyHaveRequest($conn, $_SESSION["user_id"], $trip["id_viaje"])){ echo "disabled > Asiento solicitado </button>"; }else{ echo ">Solicitar asiento</button>";} ?> 
           </form>
         </div>
       </div>
