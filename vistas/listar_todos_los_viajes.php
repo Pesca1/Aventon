@@ -36,7 +36,11 @@
           Conductor: <?= $name ?>
 	        <br>
           <br>
-	        <form class="" action="/php/verificar_disponibilidad.php" method="post">
+	  <form class="" action="/vistas/ver_detalles_viaje.php" method="post">
+            <input type="hidden" name="trip_id" value="<?= $trip["id_viaje"]; ?>">
+            <button class="btn btn-primary" name="">Ver detalles</button>
+          </form>
+	  <form class="" action="/php/verificar_disponibilidad.php" method="post">
             <input type="hidden" name="trip_id" value="<?= $trip["id_viaje"]; ?>">
             <button class="btn btn-success" name="">Solicitar asiento</button>
           </form>
