@@ -18,8 +18,7 @@
 
     <?php
 
-	  $request=$_POST['request_id'];
-
+    $request=$_POST['request_id'];
 
     $query0 = "SELECT * FROM solicitud WHERE id_solicitud='$request'";
     $result0 = mysqli_query($conn, $query0);
@@ -44,7 +43,7 @@
       header("Location: /vistas/ver_solicitudes.php?deleted_success");
 
       $sent = mail("$mail_p", "¡Solicitud cancelada! Aventon", "Hola! Nos comunicamos para informarte que tu solicitud para el viaje: \n ".$trip['origen']." con destino a ".$trip['destino']." con fecha de salida ".$trip['fecha_hora']." \n fue cancelada. \n Equipo de Aventon ");
-        if(!$sent){
+      if(!$sent){
           header("Location: /vistas/ver_solicitudes.php?notification_error_cancel");
         }
 
@@ -67,3 +66,4 @@
   <script src="/js/registrar_usuario.js"></script>
 
 </html>
+
