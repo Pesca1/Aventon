@@ -27,6 +27,13 @@
       }
     }
 
+
+  $query = "DELETE FROM solicitud WHERE id_viaje='$trip_id'";
+  $result = mysqli_query($conn, $query);
+
+
+
+
     $query= "SELECT * FROM usuario WHERE id_usuario='$user_id' ";
     $result = mysqli_query($conn, $query);
     $user = mysqli_fetch_assoc($result);
