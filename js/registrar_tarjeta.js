@@ -22,7 +22,8 @@ $("#card_registration").submit(function (e){
   var card_code = $.trim($("#card_code").val());
   var year = $("#year").val();
   var month = $("#month").val();
-  var day = $("#day").val();
+  var day = (new Date(year, month, 0)).getDate();
+  console.log(day+"/"+month+"/"+year);
   if((card_number.length != 16) || !isInteger(card_number) ){
     show_error("Número de tarjeta inválido.");
     return false;
