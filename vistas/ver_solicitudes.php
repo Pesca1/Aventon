@@ -73,9 +73,9 @@
           <button class="btn btn-success">Aceptada</button>
           <br>
           <a class="btn btn-primary" href="/vistas/ver_viaje.php?id=<?= $trip["id_viaje"]?>">Ver viaje</a>
-      	  <form class="" action="/php/baja_solicitud.php" method="post">
+      	  <form id="delete-request" action="/php/baja_solicitud.php" method="post">
             <input type="hidden" name="request_id" value="<?= $request["id_solicitud"] ?>">
-            <button class="btn btn-danger delete_card" name="">Eliminar</button>
+            <button class="btn btn-danger delete_card" name="">Rechazar</button>
           </form>
           <?php
             }
@@ -102,9 +102,11 @@
     include("../php/cerrar_conexion.php");
   ?>
   <script src="/js/registrar_usuario.js"></script>
+  <script src="/js/ver_solicitudes.js"></script>
 
     <?php
     get_success("deleted_success", "La solicitud ha sido eliminada.");
+    get_success("rejected_success", "La solicitud ha sido rechazada.");
     get_success("success_accepted", "La solicitud ha sido aceptada exitosamente.");
     get_error("deleted_error", "La solicitud no se pudo eliminar.");
     get_error("notification_error", "Error al enviar el correo de confirmación");

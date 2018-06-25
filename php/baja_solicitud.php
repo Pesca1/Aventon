@@ -42,7 +42,7 @@
     if($result){
       header("Location: /vistas/ver_solicitudes.php?deleted_success");
 
-      $sent = mail("$mail_p", "¡Solicitud cancelada! Aventon", "Hola! Nos comunicamos para informarte que tu solicitud para el viaje: \n ".$trip['origen']." con destino a ".$trip['destino']." con fecha de salida ".$trip['fecha_hora']." \n fue cancelada. \n Equipo de Aventon ");
+      $sent = mail("$mail_p", "¡Solicitud cancelada! Aventon", "Hola! Nos comunicamos para informarte que tu solicitud para el viaje: \n ".$trip['origen']." con destino a ".$trip['destino']." con fecha de salida ".formatDate($trip['fecha_hora'])." \n fue cancelada. \n Equipo de Aventon ");
       if(!$sent){
           header("Location: /vistas/ver_solicitudes.php?notification_error_cancel");
         }
