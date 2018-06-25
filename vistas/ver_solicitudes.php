@@ -61,14 +61,14 @@
           <br>
           <?php if($request["comentario"] != ""){?>Comentario: <strong><?=  $request["comentario"]?></strong><?php } ?>
           <br>
-          <a class="btn btn-primary" href="/vistas/ver_viaje.php?id=<?= $trip["id_viaje"]?>">Ver viaje</a>
+          <a class="action btn btn-primary" href="/vistas/ver_viaje.php?id=<?= $trip["id_viaje"]?>">Ver viaje</a>
       	  <form class="" action="/php/aceptar_solicitud.php" method="post">
             <input type="hidden" name="request_id" value="<?= $request["id_solicitud"] ?>">
-            <button class="btn btn-success" name="">Aceptar</button>
+            <button class="action btn btn-success" name="">Aceptar</button>
           </form>
 	        <form class="" action="/php/cancelar_solicitud.php" method="post">
             <input type="hidden" name="request_id" value="<?= $request["id_solicitud"] ?>">
-            <button class="btn btn-danger delete_card" name="">Rechazar</button>
+            <button class="action btn btn-danger delete_card" name="">Rechazar</button>
           </form>
           <?php
             } else if($request["estado"] == ACCEPTED){
@@ -80,10 +80,10 @@
           <br>
           <?php if($request["comentario"] != ""){?>Comentario: <strong><?=  $request["comentario"]?></strong><?php } ?>
           <br>
-          <a class="btn btn-primary" href="/vistas/ver_viaje.php?id=<?= $trip["id_viaje"]?>">Ver viaje</a>
+          <a class="action btn btn-primary" href="/vistas/ver_viaje.php?id=<?= $trip["id_viaje"]?>">Ver viaje</a>
       	  <form id="delete-request" action="/php/baja_solicitud.php" method="post">
             <input type="hidden" name="request_id" value="<?= $request["id_solicitud"] ?>">
-            <button class="btn btn-danger delete_card" name="">Rechazar</button>
+            <button class="action btn btn-danger delete_card" name="">Rechazar</button>
           </form>
           <?php
             } else if($request["estado"] == REJECTED){
@@ -95,7 +95,7 @@
           <br>
           <?php if($request["comentario"] != ""){?>Comentario: <strong><?=  $request["comentario"]?></strong><?php } ?>
           <br>
-          <a class="btn btn-primary" href="/vistas/ver_viaje.php?id=<?= $trip["id_viaje"]?>">Ver viaje</a>
+          <a class="action btn btn-primary" href="/vistas/ver_viaje.php?id=<?= $trip["id_viaje"]?>">Ver viaje</a>
           <?php
             }
           ?>
