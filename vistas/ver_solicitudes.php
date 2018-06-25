@@ -13,6 +13,7 @@
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" >
     <link href="/css/index.css" rel="stylesheet" type="text/css">
     <link href="/css/listar_vehiculos.css" rel="stylesheet" type="text/css">
+    <link href="/css/listar_solicitudes.css" rel="stylesheet" type="text/css">
   </head>
   <body>
     <?php include("header.php"); ?>
@@ -20,8 +21,9 @@
       <h1>Solicitudes de viaje</h1>
       Ver: <select name="filter" onchange="location = this.value">
         <option value="?state=all" <?= (isset($_GET["state"]) && ($_GET["state"]=="all"))?"selected":"" ?>>Todas</option>
-        <option value="?state=1" <?= (isset($_GET["state"]) && ($_GET["state"]=="1"))?"selected":"" ?>>Aceptadas</option>
         <option value="?state=0" <?= (isset($_GET["state"]) && ($_GET["state"]=="0"))?"selected":"" ?>>Pendientes</option>
+        <option value="?state=1" <?= (isset($_GET["state"]) && ($_GET["state"]=="1"))?"selected":"" ?>>Aceptadas</option>
+        <option value="?state=2" <?= (isset($_GET["state"]) && ($_GET["state"]=="2"))?"selected":"" ?>>Rechazadas</option>
       </select>
       <?php
         $request_number = 0;
@@ -45,18 +47,19 @@
               $request_number += mysqli_num_rows($result1);
               while($request = mysqli_fetch_assoc($result1)){
                 $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM usuario WHERE id_usuario='".$request["id_pasajero"]."'"));
-                if($request["estado"] != REJECTED){
                   
       ?>
       <div class="vehicle">
         <div class="vehicle-info">
-          <h3><?= $user["nombre"]." ".$user["apellido"].": ".$trip["origen"]." --> ".$trip["destino"] ?></h3>
-          Fecha: <?= date("d/m/Y H:i", strtotime($trip["fecha_hora"])); ?>
-          - Duracion: <?= printTime($trip["duracion"])."." ?>
           <?php
             if($request["estado"] == PENDING){
           ?>
-          <button class="btn btn-warning">Pendiente</button>
+          <h3><?= $user["nombre"]." ".$user["apellido"].": ".$trip["origen"]." --> ".$trip["destino"] ?></h3>
+          <button class="state btn btn-warning">Pendiente</button>
+          <br>
+          Fecha: <?= date("d/m/Y H:i", strtotime($trip["fecha_hora"])); ?>
+          <br>
+          <?php if($request["comentario"] != ""){?>Comentario: <strong><?=  $request["comentario"]?></strong><?php } ?>
           <br>
           <a class="btn btn-primary" href="/vistas/ver_viaje.php?id=<?= $trip["id_viaje"]?>">Ver viaje</a>
       	  <form class="" action="/php/aceptar_solicitud.php" method="post">
@@ -70,7 +73,12 @@
           <?php
             } else if($request["estado"] == ACCEPTED){
           ?>
-          <button class="btn btn-success">Aceptada</button>
+          <h3><?= $user["nombre"]." ".$user["apellido"].": ".$trip["origen"]." --> ".$trip["destino"] ?></h3>
+          <button class="state btn btn-success">Aceptada</button>
+          <br>
+          Fecha: <?= date("d/m/Y H:i", strtotime($trip["fecha_hora"])); ?>
+          <br>
+          <?php if($request["comentario"] != ""){?>Comentario: <strong><?=  $request["comentario"]?></strong><?php } ?>
           <br>
           <a class="btn btn-primary" href="/vistas/ver_viaje.php?id=<?= $trip["id_viaje"]?>">Ver viaje</a>
       	  <form id="delete-request" action="/php/baja_solicitud.php" method="post">
@@ -78,12 +86,22 @@
             <button class="btn btn-danger delete_card" name="">Rechazar</button>
           </form>
           <?php
+            } else if($request["estado"] == REJECTED){
+          ?>
+          <h3><?= $user["nombre"]." ".$user["apellido"].": ".$trip["origen"]." --> ".$trip["destino"] ?></h3>
+          <button class="state btn btn-danger">Rechazada</button>
+          <br>
+          Fecha: <?= date("d/m/Y H:i", strtotime($trip["fecha_hora"])); ?>
+          <br>
+          <?php if($request["comentario"] != ""){?>Comentario: <strong><?=  $request["comentario"]?></strong><?php } ?>
+          <br>
+          <a class="btn btn-primary" href="/vistas/ver_viaje.php?id=<?= $trip["id_viaje"]?>">Ver viaje</a>
+          <?php
             }
           ?>
         </div>
       </div>
       <?php
-                }
               }
             }
           }

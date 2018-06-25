@@ -1,0 +1,12 @@
+h3 {
+  display: inline-block
+}
+
+.btn.state {
+  margin-left: 15px;
+  margin-top: -5px;
+}
+
+.btn {
+  margin-top: 5px;
+}
