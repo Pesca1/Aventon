@@ -73,7 +73,14 @@
               echo "</div>";
             }
           }
+          if($remaining_seats == 0){
+            echo "<strong>No hay mas lugares disponibles.</strong>";
+          } else {
+            echo "<strong>Quedan $remaining_seats lugares disponibles.</strong>";
+          }
         ?>
+        <br>
+        <br>
         <a href="/vistas/ver_solicitudes.php" class="btn btn-primary">Ver solicitudes</a>
       </div>
       <div id="questions">
