@@ -65,26 +65,49 @@ if(hasOldCalifications($conn, $_SESSION["user_id"])) {
             </div> 
           </div>
         </div>
-
-        <div class="form-row">
-          <div class="form-group col-md-4">
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Duración (en horas):</span>
-              </div>
-              <input type="text" class="form-control" name="duration" required="required" value="<?php echo floatval ($trip['duracion']); ?>">
-            </div> 
-          </div>
-
           <?php
             $trip_day = date("d", strtotime($trip["fecha_hora"]));
             $trip_month = date("m", strtotime($trip["fecha_hora"]));
             $trip_hour = date("H", strtotime($trip["fecha_hora"]));
             $trip_minute = date("i", strtotime($trip["fecha_hora"]));
             $trip_hour_minuete = $trip_hour.":".$trip_minute;
+            $duration_hours = floor($trip['duracion']);
+            $duration_minutes = $trip['duracion'] - $duration_hours;
+            if($duration_minutes > 0){
+              $duration_minutes = $duration_minutes * 60;
+            }
           ?>
+        Duración:
+        <div class="form-row">
+          <div class="form-group col-md-2">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Horas:</span>
+              </div>
+              <input type="number" min="0" value="<?php echo $duration_hours; ?>" class="form-control" name="duration_hours" required="required">
+            </div>
+          </div>
+          <div class="form-group col-md-2">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Minutos:</span>
+              </div>
+              <input type="number" min="0" max="59" value="<?php echo $duration_minutes; ?>" class="form-control" name="duration_minutes" required="required" >
+            </div>
+          </div>
 
 
+          <div class="form-group col-md-4">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Costo ($)</span>
+              </div>
+              <input type="text" class="form-control" name="price" required="required" value="<?php echo floatval($trip['costo']); ?>">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
           <div class="form-group col-md-4">
             <label for="destination">Fecha y hora</label> <br>
             Día:
@@ -112,35 +135,6 @@ if(hasOldCalifications($conn, $_SESSION["user_id"])) {
             - Hora:
               <input type="time" name="time" value=<?= $trip_hour_minuete ?> required="required"/>
           </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group col-md-4">
-            <br>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <label class="input-group-text" name="type">Tipo de viaje</label>
-              </div>
-              <select class="custom-select" id="type" name="type">
-                <option <?php if ($trip['tipo'] == "Ocasional") echo " selected"?>>Ocasional</option>
-                <option <?php if ($trip['tipo'] == "Diario") echo " selected"?>>Diario</option>
-                <option <?php if ($trip['tipo'] == "Semanal") echo " selected"?>>Semanal</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group col-md-4"><br>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Costo ($)</span>
-              </div>
-
-              <input type="text" class="form-control" name="price" required="required" value="<?php echo floatval($trip['costo']); ?>">
-            </div>
-          </div>
-        </div>
-
-        <div class="form-row">
           <div class="form-group col-md-4">
             <label for="credit_card">Tarjeta:</label>
             <?php
@@ -164,6 +158,9 @@ if(hasOldCalifications($conn, $_SESSION["user_id"])) {
               }
             ?>
           </div>
+        </div>
+
+        <div class="form-row">
           <div class="form-group col-md-4">
             <label for="description" >Descripción:</label><br>
             <textarea class="form-control" name="description" rows="5" cols="30" wrap="hard" style="resize: none" ><?php echo $trip['descripcion']; ?></textarea>

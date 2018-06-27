@@ -59,17 +59,35 @@
             </div> 
           </div>
         </div>
-
+        Duración:
         <div class="form-row">
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-2">
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text">Duración (horas):</span>
+                <span class="input-group-text">Horas:</span>
               </div>
               <input type="number" min="0" value="0" class="form-control" name="duration_hours" required="required">
             </div> 
-           </div>
-
+          </div>
+          <div class="form-group col-md-2">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Minutos:</span>
+              </div>
+              <input type="number" min="0" max="59" value="0" class="form-control" name="duration_minutes" required="required">
+            </div>
+          </div>
+          <div class="form-group col-md-4">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Costo por persona ($)</span>
+              </div>
+              <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="price" required="required">
+            </div>
+          </div>
+          
+        </div>
+        <div class="form-row">
           <div class="form-group col-md-4">
             <label for="destination">Fecha y hora</label> <br>
             Día:
@@ -89,31 +107,8 @@
                 ?>
             </select>
             - Hora:
-              <input type="time" name="time" value="12:00" required="required"/>
+            <input type="time" name="time" value="12:00" required="required"/>
           </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-4">
-            <br>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Duración (minutos):</span>
-              </div>
-              <input type="number" min="0" value="0" class="form-control" name="duration_minutes" required="required">
-            </div>
-          </div>
-
-          <div class="form-group col-md-4"><br>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Costo por persona ($)</span>
-              </div>
-              <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="price" required="required">
-            </div>
-          </div>
-        </div>
-
-        <div class="form-row">
           <div class="form-group col-md-4">
             <label for="credit_card">Tarjeta:</label>
             <?php
@@ -131,10 +126,12 @@
               }
             ?>
           </div>
+        </div>
+        <div class="form-row">
           <div class="form-group col-md-4">
             <label for="description" >Descripción:</label><br>
             <textarea class="form-control" name="description" rows="5" cols="30" wrap="hard" style="resize: none" placeholder="¿Algo para agregar?" ></textarea>
-          </div>
+          </div>    
         </div>
         <input type="submit" class="btn btn-primary" value="Registrar" id="submit"/>
       </form>

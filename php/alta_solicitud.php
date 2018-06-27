@@ -27,8 +27,9 @@
   if($result){
     $query = "SELECT * FROM usuario WHERE id_usuario=".$trip["id_usuario"];
     $driver = mysqli_fetch_assoc(mysqli_query($conn, $query));
-    $mail = "Hola! \n Te avisamos que ".$_SESSION["user_name"]." ".$_SESSION["user_surname"]." quiere participar de tu viaje de ".$trip["origen"]." a ".$trip["destino"]." el ".formatDate($trip["fecha_hora"])." hs.\n Saludos!\n Equipo de Aventon ";
-    mail($driver["mail"], "Nueva solicitud de viaje", $mail);
+    $driver_email = $driver["mail"];
+    $mail = "Hola! \n Te avisamos que ".$_SESSION['user_name']." ".$_SESSION['user_surname']." quiere participar de tu viaje de ".$trip['origen']." a ".$trip['destino']." el ".formatDate($trip['fecha_hora'])." hs.\n Saludos!\n Equipo de Aventon ";
+    mail($driver_email, "Nueva solicitud de viaje", $mail);
     header("Location: /vistas/listar_todos_los_viajes.php?sol_success");
   } else {
     header("Location: /vistas/ver_viajes.php?db_error");
