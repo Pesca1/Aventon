@@ -42,7 +42,22 @@
           </form>
 	        <form class="" action="/php/verificar_disponibilidad.php" method="post">
             <input type="hidden" name="trip_id" value="<?= $trip["id_viaje"]; ?>">
-            <button class="btn btn-success" name="" <?php if (alreadyHaveRequest($conn, $_SESSION["user_id"], $trip["id_viaje"])){ echo "disabled > Asiento solicitado </button>"; }else{ echo ">Solicitar asiento</button>";} ?> 
+            <?php
+              if (alreadyHaveRequest($conn, $_SESSION["user_id"], $trip["id_viaje"])){ 
+                $query = "SELECT * FROM solicitud WHERE id_viaje=".$trip["id_viaje"];
+                $request = mysqli_fetch_assoc(mysqli_query($conn, $query));
+                switch($request["estado"]){
+                  case PENDING:?> <button class="btn btn-warning" disabled>Asiento solicitado</button> <?
+                    break;
+                  case ACCEPTED:?> <button class="btn btn-success" disabled>Solicitud aceptada!</button> <?
+                    break;
+                  case REJECTED:?> <button class="btn btn-danger" disabled>Solicitud rechazada</button> <?
+                    break;
+                }
+              } else {
+                ?> <button class="btn btn-success">Solicitar asiento</button> <?
+              }
+            ?> 
           </form>
         </div>
       </div>
