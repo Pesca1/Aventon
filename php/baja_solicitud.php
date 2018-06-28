@@ -36,8 +36,8 @@
     $result = mysqli_query($conn, $query);
     $trip = mysqli_fetch_assoc($result);
     
-    $query = "DELETE FROM solicitud WHERE id_solicitud='$request'";
-    $result = mysqli_query($conn, $query);
+    $query = "UPDATE solicitud SET estado ='".REJECTED."' WHERE id_solicitud='$request'";
+    mysqli_query($conn, $query);
     
     if($result){
       header("Location: /vistas/ver_solicitudes.php?deleted_success");
