@@ -21,7 +21,7 @@
     exit;
   }
   
-  $query = "INSERT INTO solicitud (id_pasajero, id_viaje, estado, comentario) VALUES ('$user_id', '$trip_id', 0, '$commentary')";
+  $query = "INSERT INTO solicitud (id_pasajero, id_viaje, estado, comentario, numero_tarjeta) VALUES ('$user_id', '$trip_id', 0, '$commentary', $card_number)";
   $result = mysqli_query($conn, $query);
 
   if($result){

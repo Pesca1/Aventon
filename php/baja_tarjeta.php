@@ -16,15 +16,14 @@
   $query = "SELECT * FROM solicitud WHERE numero_tarjeta=$card";
   $result = mysqli_query($conn, $query);
   while($request = mysqli_fetch_assoc($result)){
-    $query = "SELECT * FROM viajes WHERE id_viaje='".$request["id_viaje"]."'";
+    $query = "SELECT * FROM viajes WHERE id_viaje=".$request["id_viaje"];
     $trip = mysqli_fetch_assoc(mysqli_query($conn, $query));
     echo "Viaje de ".$trip["origen"]." a ".$trip["destino"];
-    if(isPendingTrip($trip)){
+    if(isPendingTrip($trip) && ($request["estado"] != REJECTED)){
       header("Location: /vistas/ver_tarjetas.php?pending_request");
       exit();
     }
   }
-
   $query = "DELETE FROM tarjetas WHERE numero='$card'";
   $result = mysqli_query($conn, $query);
   if($result){

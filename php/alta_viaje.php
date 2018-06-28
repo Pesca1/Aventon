@@ -41,7 +41,7 @@
       $query = "SELECT * FROM viajes WHERE id_viaje='".$request["id_viaje"]."'";
       $trip = mysqli_fetch_assoc(mysqli_query($conn, $query));
       echo "Viaje: "; print_r($trip);
-      if(!checkTripDates($datetime, $duration, $trip["fecha_hora"], $trip["duracion"])){
+      if(($request["estado"] != REJECTED) && !checkTripDates($datetime, $duration, $trip["fecha_hora"], $trip["duracion"])){
         header("Location: /vistas/ver_viajes.php?date_error");
         exit;
       }

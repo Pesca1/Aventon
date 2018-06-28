@@ -141,10 +141,7 @@
   function isPendingTrip($trip){
     $now = time();
     $date = strtotime($trip["fecha_hora"]);
-    if($date > $now){
-      return true;
-    }
-    return false;
+    return ($date > $now);
   }
 
   function isExpiredCard($conn, $card_number, $date){
