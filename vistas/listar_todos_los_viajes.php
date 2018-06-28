@@ -44,14 +44,14 @@
             <input type="hidden" name="trip_id" value="<?= $trip["id_viaje"]; ?>">
             <?php
               if (alreadyHaveRequest($conn, $_SESSION["user_id"], $trip["id_viaje"])){ 
-                $query = "SELECT * FROM solicitud WHERE id_viaje=".$trip["id_viaje"];
+                $query = "SELECT * FROM solicitud WHERE id_viaje=".$trip["id_viaje"]." AND id_pasajero=".$_SESSION["user_id"];
                 $request = mysqli_fetch_assoc(mysqli_query($conn, $query));
                 switch($request["estado"]){
-                  case PENDING:?> <button class="btn btn-warning" disabled>Asiento solicitado</button> <?
+                  case PENDING: echo '<button class="btn btn-warning" disabled>Asiento solicitado</button>';
                     break;
-                  case ACCEPTED:?> <button class="btn btn-success" disabled>Solicitud aceptada!</button> <?
+                  case ACCEPTED: echo '<button class="btn btn-success" disabled>Solicitud aceptada!</button>';
                     break;
-                  case REJECTED:?> <button class="btn btn-danger" disabled>Solicitud rechazada</button> <?
+                  case REJECTED: echo '<button class="btn btn-danger" disabled>Solicitud rechazada</button>';
                     break;
                 }
               } else {
