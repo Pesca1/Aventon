@@ -17,6 +17,10 @@
   $desc = $_POST["description"];
   $user_id = $_SESSION["user_id"];
   
+  if(isExpiredCard($conn, $card, $date)){
+    header("Location: /vistas/ver_viajes.php?expired_card");
+    exit();
+  }
 
   $query = "SELECT * FROM viajes WHERE id_usuario='$user_id' AND NOT id_viaje='$trip_id'";
   $result = mysqli_query($conn, $query);

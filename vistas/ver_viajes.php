@@ -77,9 +77,10 @@
     get_success("edit_success", "Viaje editado con éxito!");
     get_error("no_car", "Debe registrar un auto para poder crear un viaje!");
     get_error("no_card", "Debe registrar una tarjeta para poder crear un viaje!");
-    get_error("pending_califications", "Tiene una calificación pendiente, por favor, califique al usuario antes de crear otro viaje.");
+    get_error("pending_califications", "Tiene una calificación pendiente, por favor, califique al usuario antes de crear/modificar otro viaje.");
     get_error("db_error", "Ocurrió un error en la base de datos, por favor, inténtelo nuevamente mas tarde.");
     get_error("date_error", "Usted tiene un viaje programado para la fecha ingresada.");
     get_error("expired_card", "La tarjeta elegida expira antes de la fecha del viaje, por favor, seleccione otra tarjeta.");
+    get_error("has_requests", "No es posible modificar el viaje, ya que tiene solicitudes.");
   ?>
 </html>

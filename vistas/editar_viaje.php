@@ -3,8 +3,12 @@
   include("../php/abrir_conexion.php");
   include("../php/utils.php");
 
-if(hasOldCalifications($conn, $_SESSION["user_id"])) {
+  if(hasOldCalifications($conn, $_SESSION["user_id"])) {
     header("Location: /vistas/ver_viajes.php?pending_califications");
+    exit();
+  } else if(dbOcurrences($conn, "SELECT * FROM solicitud WHERE id_viaje=".$_POST["trip_id"]) > 0){
+    header("Location: /vistas/ver_viajes.php?has_requests");
+    exit();
   }
   setlocale(LC_MONETARY, 'es_AR');
   $trip_id = $_POST['trip_id'];
