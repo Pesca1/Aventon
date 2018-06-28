@@ -40,7 +40,7 @@
       <h1>Viaje <?= $trip["origen"]." --> ".$trip["destino"] ?></h1>
       <div id="trip_info">
         <h3>Información</h3>
-        Fecha y hora: <?= $trip["fecha_hora"] ?>
+        Fecha y hora: <?= formatDate($trip["fecha_hora"]) ?>
         <br>
         Duración: <?= printTime($trip["duracion"]) ?>
         <br>

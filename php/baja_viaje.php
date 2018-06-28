@@ -20,7 +20,7 @@
 
       while($user = mysqli_fetch_assoc($result2)){
         $user_mail = $user['mail'];
-        $sent = mail("$user_mail", "¡El viaje al que se ha postulado fue cancelado! Aventon", "Hola! Nos comunicamos para informarte  el viaje: \n ".$trip['origen']." con destino a ".$trip['destino']." con fecha de salida ".$trip['fecha_hora']." \n fue cancelado. \n Equipo de Aventon ");
+        $sent = mail("$user_mail", "¡El viaje al que se ha postulado fue cancelado! Aventon", "Hola! Nos comunicamos para informarte  el viaje: \n ".$trip['origen']." con destino a ".$trip['destino']." con fecha de salida ".formatDate($trip['fecha_hora'])." \n fue cancelado. \n Equipo de Aventon ");
 		    if(!$sent){
           header("Location: /vistas/ver_solicitudes.php?notification_error_cancel");
         }

@@ -32,7 +32,7 @@
       <h1>Viaje <?= $trip["origen"]." --> ".$trip["destino"] ?></h1>
       <div id="trip_info">
         <h3>Información</h3>
-        Fecha y hora: <?= $trip["fecha_hora"] ?>
+        Fecha y hora: <?= formatDate($trip["fecha_hora"]) ?>
         <br>
         Duración: <?= printTime($trip["duracion"]) ?>
         <br>
@@ -60,9 +60,24 @@
           echo "</div><img src='/img/profile_users/".$passenger["foto_perfil"]."' class='profile_picture'/><br>";
           echo "</div>";
         ?>
-	      <form class="" action="/php/verificar_disponibilidad.php" method="post">
+        <form class="" action="/php/verificar_disponibilidad.php" method="post">
           <input type="hidden" name="trip_id" value="<?= $trip["id_viaje"]; ?>">
-          <button class="btn btn-success" name="" <?php if (alreadyHaveRequest($conn, $_SESSION["user_id"], $trip["id_viaje"])){ echo "disabled > Asiento solicitado </button>"; }else{ echo ">Solicitar asiento</button>";} ?> 
+            <?php
+              if (alreadyHaveRequest($conn, $_SESSION["user_id"], $trip["id_viaje"])){ 
+                $query = "SELECT * FROM solicitud WHERE id_viaje=".$trip["id_viaje"]." AND id_pasajero=".$_SESSION["user_id"];
+                $request = mysqli_fetch_assoc(mysqli_query($conn, $query));
+                switch($request["estado"]){
+                  case PENDING: echo '<button class="btn btn-warning" disabled>Asiento solicitado</button>';
+                    break;
+                  case ACCEPTED: echo '<button class="btn btn-success" disabled>Solicitud aceptada!</button>';
+                    break;
+                  case REJECTED: echo '<button class="btn btn-danger" disabled>Solicitud rechazada</button>';
+                    break;
+                }
+              } else {
+                ?> <button class="btn btn-success">Solicitar asiento</button> <?
+              }
+            ?> 
         </form>
       </div>
       <div id="questions">
