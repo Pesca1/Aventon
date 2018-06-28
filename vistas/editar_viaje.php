@@ -29,7 +29,7 @@ if(hasOldCalifications($conn, $_SESSION["user_id"])) {
     ?><br><br>
     <div class="container">
       <h3>Editar viaje: <?= $trip["origen"] ?> --> <?= $trip["destino"] ?> del <?= date("d/m/Y H:i", strtotime($trip["fecha_hora"])); ?></h3>
-      <form action="/php/editar_viaje.php?edit=true" method="post" autocomplete="off">
+      <form action="/php/editar_viaje.php?edit=true" id="trip_reg" method="post" autocomplete="off">
         <input name="trip_id" type="hidden" value="<?= $trip["id_viaje"] ?>"
       <?php
           $query = "SELECT * FROM vehiculo WHERE id_usuario='".$_SESSION["user_id"]."'";
@@ -116,8 +116,9 @@ if(hasOldCalifications($conn, $_SESSION["user_id"])) {
                 for($i = 1; $i <= 31; $i++){
                   if ($trip_day == $i){
                     echo "<option selected>$i</option>";
-                  }
-                  echo "<option>$i</option>";
+                  }else
+                    echo "<option>$i</option>";
+                  
                 }
                 ?>
             </select>
@@ -127,7 +128,7 @@ if(hasOldCalifications($conn, $_SESSION["user_id"])) {
                 for($i = intval(date("n")); $i <= intval(date("n"))+1; $i++){
                   if ($trip_month == $i){
                     echo "<option selected>$i</option>";
-                  }
+                  }else
                   echo "<option>$i</option>";
                 }
                 ?>
@@ -151,7 +152,7 @@ if(hasOldCalifications($conn, $_SESSION["user_id"])) {
             ?>
             <div class="option">
               <input type="radio" name="card" value="<?= $card["numero"] ?>" required="required" <?php if ($trip_card["numero"] == $card["numero"]) echo "checked" ?> />
-              Código: <?= $card["numero"] ?>
+              Código: <?= formatCard($card["numero"]) ?>
             </div>
             <?php
                 }
