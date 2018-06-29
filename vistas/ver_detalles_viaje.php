@@ -103,7 +103,7 @@
            <?php 
              } else {
            ?>
-           Respondiste:<br>
+           <?= $passenger["nombre"] ?> respondio:<br>
            - <?= $question["respuesta"] ?>
            <?php
              }

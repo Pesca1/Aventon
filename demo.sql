@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
--- https://www.phpmyadmin.net/
+-- version 4.5.2
+-- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 28-06-2018 a las 23:42:44
--- Versión del servidor: 10.1.32-MariaDB
--- Versión de PHP: 7.2.5
+-- Tiempo de generación: 29-06-2018 a las 20:37:31
+-- Versión del servidor: 10.1.13-MariaDB
+-- Versión de PHP: 5.6.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -73,6 +71,13 @@ CREATE TABLE `pregunta` (
   `texto` text COLLATE utf8mb4_spanish2_ci NOT NULL,
   `respuesta` text COLLATE utf8mb4_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `pregunta`
+--
+
+INSERT INTO `pregunta` (`id_pregunta`, `id_usuario`, `id_viaje`, `texto`, `respuesta`) VALUES
+(1, 3, 2, 'Buenas, hay lugar para una valija chica en el baul?', 'No, disculpa, el baul es chiquito');
 
 -- --------------------------------------------------------
 
@@ -138,7 +143,8 @@ CREATE TABLE `solicitud` (
 
 INSERT INTO `solicitud` (`id_solicitud`, `id_pasajero`, `id_viaje`, `numero_tarjeta`, `estado`, `comentario`) VALUES
 (2, 1, 2, 1234567891234511, 0, 'Hola, me gustarÃ­a viajar con vos, puedo llevar \r\nmorfi! Saludos!'),
-(3, 2, 1, 7891789178917891, 1, '');
+(4, 2, 3, 7891789178917891, 0, 'Hola, me gustaria participar del viaje'),
+(5, 4, 3, 1213141516171819, 0, '');
 
 -- --------------------------------------------------------
 
@@ -158,6 +164,7 @@ CREATE TABLE `tarjetas` (
 --
 
 INSERT INTO `tarjetas` (`id_usuario`, `numero`, `codigo_seguridad`, `vencimiento`) VALUES
+(4, 1213141516171819, 123, '2035-01-31'),
 (1, 1234567891234511, 123, '2030-01-31'),
 (1, 4567456745674567, 123, '2020-09-30'),
 (2, 7891789178917891, 123, '2023-06-30'),
@@ -189,9 +196,10 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `apellido`, `fecha_de_nacimiento`, `mail`, `promedio_puntuacion_conductor`, `promedio_puntuacion_pasajero`, `id_direccion`, `contrasenia`, `foto_perfil`, `gasto`, `ahorro`) VALUES
-(1, 'JoaquiÅ„', 'de Antueno', '1998-01-08', 'joaquindea@hotmail.es', 50, 0, 0, '1', 'user1.jpg', 0, 0),
+(1, 'JoaquiÅ„', 'de Antueno', '1998-01-08', 'joaquindea@hotmail.es', 49, 0, 0, '1', 'user1.jpg', 0, 0),
 (2, 'Roby', 'Goren', '1993-06-13', 'joaquinpescadeantueno@gmail.com', 70, 0, 0, '1', 'user2.jpeg', 0, 0),
-(3, 'Sebastian', 'Zecenarro', '1996-07-17', 'sebazece@gmail.com', 0, 0, 0, '1', 'user3.png', 0, 0);
+(3, 'Sebastian', 'Zecenarro', '1996-07-17', 'sebazece@gmail.com', 0, 0, 0, '1', 'user3.png', 0, 0),
+(4, 'Barbara', 'Rodriguez', '1983-01-01', 'sebazecenarro@gmail.com', 0, 0, 0, '1', '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -213,8 +221,9 @@ CREATE TABLE `vehiculo` (
 
 INSERT INTO `vehiculo` (`patente`, `id_usuario`, `marca`, `modelo`, `asientos`) VALUES
 ('FGH159', 2, 'Citroen', 'C3', 6),
-('HJK789', 1, 'Renault', 'Sandero', 4),
-('MLK282', 1, 'Fiat', 'Vivace', 4);
+('HJK789', 1, 'Renault', 'Sandero', 2),
+('MLK282', 1, 'Fiat', 'Vivace', 4),
+('POI123', 4, 'Citroen', '2cv', 5);
 
 -- --------------------------------------------------------
 
@@ -241,8 +250,11 @@ CREATE TABLE `viajes` (
 --
 
 INSERT INTO `viajes` (`id_viaje`, `id_usuario`, `patente`, `origen`, `destino`, `duracion`, `fecha_hora`, `descripcion`, `tipo`, `costo`, `tarjeta`) VALUES
-(1, 1, 'HJK789', 'La Plata', 'Buenos Aires', '1.00000', '2018-07-15 16:00:00', '', 'Ocasional', '100.00000', 4567456745674567),
-(2, 2, 'FGH159', 'Punta Indio', 'Mar del Plata', '2.50000', '2018-07-05 12:00:00', '', 'Ocasional', '50.00000', 7891789178917891);
+(2, 2, 'FGH159', 'Punta Indio', 'Mar del Plata', '2.50000', '2018-07-05 12:00:00', '', 'Ocasional', '50.00000', 7891789178917891),
+(3, 1, 'HJK789', 'La Plata', 'Buenos Aires', '3.00000', '2018-07-15 16:00:00', '', 'Ocasional', '50.00000', 4567456745674567),
+(4, 2, 'FGH159', 'Azul', 'Chascomus', '1.50000', '2018-07-15 15:30:00', 'No hay lugar para valijas.', 'Ocasional', '150.00000', 7891789178917891),
+(5, 4, 'POI123', 'Tandil', 'Tigre', '8.00000', '2018-07-05 12:00:00', '', 'Ocasional', '300.00000', 1213141516171819),
+(6, 4, 'POI123', 'LoberÃ­a', 'Necochea', '1.00000', '2018-07-21 12:00:00', '', 'Ocasional', '150.00000', 1213141516171819);
 
 --
 -- Índices para tablas volcadas
@@ -326,50 +338,41 @@ ALTER TABLE `viajes`
 --
 ALTER TABLE `direccion`
   MODIFY `id_direccion` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `fotos_vehiculo`
 --
 ALTER TABLE `fotos_vehiculo`
   MODIFY `id_foto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT de la tabla `pregunta`
 --
 ALTER TABLE `pregunta`
-  MODIFY `id_pregunta` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id_pregunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `puntua_conductor`
 --
 ALTER TABLE `puntua_conductor`
   MODIFY `id_puntua_conductor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT de la tabla `puntua_pasajero`
 --
 ALTER TABLE `puntua_pasajero`
   MODIFY `id_puntua_pasajero` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `solicitud`
 --
 ALTER TABLE `solicitud`
-  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `viajes`
 --
 ALTER TABLE `viajes`
-  MODIFY `id_viaje` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-COMMIT;
-
+  MODIFY `id_viaje` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
