@@ -12,8 +12,8 @@
       include("header.php");
     ?>
     <div id="body">
-      <h1>Nuevo viaje ocasional</h1>
-      <form method="post" action="/php/alta_viaje.php" id="trip_reg" autocomplete="off">
+      <h1>Nuevo viaje semanal</h1>
+      <form method="post" action="/php/alta_viaje_semanal.php" id="trip_reg" autocomplete="off">
           <label for="" class="form-check-label">Vehículo:</label><br><br>
       <?php
           $query = "SELECT * FROM vehiculo WHERE id_usuario='".$_SESSION["user_id"]."'";
@@ -79,26 +79,35 @@
         </div>
         <div class="form-row">
           <div class="form-group col-md-4">
-            <label for="destination">Fecha y hora</label> <br>
-            Día:
-            <select name="day" id="day">
-              <?php
-                for($i = 1; $i <= 31; $i++){
-                  echo "<option>$i</option>";
-                }
-                ?>
-            </select>
-            - Mes:
-            <select name="month" id="month">
-              <?php
-                for($i = intval(date("n")); $i <= intval(date("n"))+1; $i++){
-                  echo "<option>$i</option>";
-                }
-                ?>
-            </select>
-            - Hora:
-            <input type="time" name="time" value="12:00" required="required"/>
+            <label for="destination">Días</label> <br>
+            <label><input class="day" type="checkbox" name="monday"/>  Lunes</label><br>
+            <label><input class="day" type="checkbox" name="tuesday"/>  Martes</label><br>
+            <label><input class="day" type="checkbox" name="wednesday"/>  Miércoles</label><br>
+            <label><input class="day" type="checkbox" name="thursday"/>  Jueves</label><br>
+            <label><input class="day" type="checkbox" name="friday"/>  Viernes</label><br>
+            <label><input class="day" type="checkbox" name="saturday"/>  Sabado</label><br>
+            <label><input class="day" type="checkbox" name="sunday"/>  Domingo</label>
           </div>
+          <div class="form-group col-md-4">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Semanas a repetir</span>
+                <input class="form-control" type="number" max="4" min="1" name="weeks" value="1"/>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Hora</span>
+                <input class="form-control" type="time" name="time" required="required" value="12:00"/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="description" >Descripción:</label><br>
+            <textarea class="form-control" name="description" rows="5" cols="30" wrap="hard" style="resize: none" placeholder="¿Algo para agregar?" ></textarea>
+          </div>    
           <div class="form-group col-md-4">
             <label for="credit_card">Tarjeta:</label>
             <?php
@@ -117,12 +126,6 @@
             ?>
           </div>
         </div>
-        <div class="form-row">
-          <div class="form-group col-md-4">
-            <label for="description" >Descripción:</label><br>
-            <textarea class="form-control" name="description" rows="5" cols="30" wrap="hard" style="resize: none" placeholder="¿Algo para agregar?" ></textarea>
-          </div>    
-        </div>
         <input type="submit" class="btn btn-primary" value="Registrar" id="submit"/>
       </form>
     </div>
@@ -135,5 +138,5 @@
     include("../php/cerrar_conexion.php");
   ?>
   <script src="/js/registrar_usuario.js"></script>
-  <script src="/js/registrar_viaje.js"></script>
+  <script src="/js/registrar_viaje_semanal.js"></script>
 </html>

@@ -1,10 +1,21 @@
 <?php
+  $days = array(
+    1 => "Lunes",
+    2 => "Martes",
+    3 => "Miércoles",
+    4 => "Jueves",
+    5 => "Viernes",
+    6 => "Sábado",
+    7 => "Domingo",
+  );
 
   date_default_timezone_set("America/Argentina/Buenos_Aires");
   define("PENDING", 0);
   define("ACCEPTED", 1);
   define("REJECTED", 2);
   define("DONE", 1);
+  define("ONE_TIME_TRIP", 0);
+  define("WEEKLY_TRIP", 1);
 
   function show_error($string){
     echo "<script>show_error('$string');</script>";
@@ -151,6 +162,14 @@
     $today = DateTime::createFromFormat("Y-m-d", $date);
     return ($today >= $expiration);
   }
+  
+  function isExpiredCardCommonDate($conn, $card_number, $date){
+    $query = "SELECT * FROM tarjetas WHERE numero=$card_number";
+    $card = mysqli_fetch_assoc(mysqli_query($conn, $query));
+    $expiration = DateTime::createFromFormat("Y-m-d", $card["vencimiento"]);
+    $today = DateTime::createFromFormat("Y-m-d H:i:s", $date);
+    return ($today >= $expiration);
+  }
 
   function formatCard($number){
     return "xxxxxxxxxxxx".substr($number, -4);
@@ -169,5 +188,35 @@
 
   function formatDate($date){
     return (new DateTime($date))->format("d/m/Y H:i");
+  }
+
+
+  /* Recibe la informacion del viaje y retorna las fechas (array de string) de todos los viajes individuales.
+     $days: array del 1 al 7 con un booleano que esta en true si ese dia se viaja
+     $time: hora en formato hh:mm:ss del viaje
+     $weeks: semanas que se repite
+  */
+  function createWeeklyTrips($days, $time, $weeks){
+    $trips = array();
+    $dayOfWeek = intval(date("N"));
+    $today = time();
+    for($i = $dayOfWeek + 1; $i <= 7; $i++){
+      if($days[$i]){
+        $date = $today + (($i - $dayOfWeek)*24*60*60);
+        $dateTime = date("Y-m-d", $date)." ".$time;
+        array_push($trips, $dateTime);
+      }
+    }
+    $sunday = $today + ((7 - $dayOfWeek)*24*60*60);
+    for($week = 0; $week <= $weeks-2; $week++){
+      for($day = 1; $day <= 7; $day++){
+        if($days[$day]){
+          $date = $sunday + ($day*24*60*60) + ($week*7*24*60*60);
+          $dateTime = date("Y-m-d", $date)." ".$time;
+          array_push($trips, $dateTime);  
+        }
+      }
+    }
+    return $trips;
   }
 ?>

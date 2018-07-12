@@ -51,7 +51,7 @@
   }
 
   $query = "INSERT INTO viajes (id_usuario, patente, origen, destino, duracion, fecha_hora, descripcion, tipo, costo, tarjeta)
-      VALUES ($user_id, '$plate', '$origin', '$destination', $duration, '$datetime', '$desc', 'Ocasional', $price, $card)";
+      VALUES ($user_id, '$plate', '$origin', '$destination', $duration, '$datetime', '$desc', ".ONE_TIME_TRIP.", $price, $card)";
   $result = mysqli_query($conn, $query);
 
   if($result){

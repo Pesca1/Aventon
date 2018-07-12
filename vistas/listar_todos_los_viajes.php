@@ -29,6 +29,9 @@
       <div class="vehicle">
         <div class="vehicle-info">
           <h3><?= $trip["origen"] ?> --> <?= $trip["destino"] ?></h3>
+          <?=
+            ($trip["tipo"] == WEEKLY_TRIP)?"<strong>Viaje semanal</strong> - Comienza el ":"";
+          ?>
           <?= date("d/m/Y H:i", strtotime($trip["fecha_hora"])); ?> - Duración:
           <?php
             echo printTime($trip["duracion"]).".";

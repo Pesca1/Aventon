@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 23-06-2018 a las 20:01:27
+-- Tiempo de generación: 12-07-2018 a las 19:02:18
 -- Versión del servidor: 10.1.32-MariaDB
 -- Versión de PHP: 7.2.5
 
@@ -55,11 +55,10 @@ CREATE TABLE `fotos_vehiculo` (
 --
 
 INSERT INTO `fotos_vehiculo` (`id_foto`, `patente`, `foto`) VALUES
-(1, 'ABC780', 'ABC123-1.jpg'),
-(2, '159ASD159', '159ASD159-1.jpg'),
-(3, '159ASD159', '159ASD159-2.jpg'),
-(4, '159ASD159', '159ASD159-3.jpg'),
-(7, 'ASD430', 'ASD430-1.jpg');
+(1, 'HJK789', 'HJK789-1.jpg'),
+(2, 'FGH159', 'FGH159-1.jpeg'),
+(3, 'FGH159', 'FGH159-2.jpeg'),
+(4, 'MLK282', 'MLK282-1.jpg');
 
 -- --------------------------------------------------------
 
@@ -92,6 +91,13 @@ CREATE TABLE `puntua_conductor` (
   `hora` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `estado` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `puntua_conductor`
+--
+
+INSERT INTO `puntua_conductor` (`id_puntua_conductor`, `id_conductor`, `id_pasajero`, `id_viaje`, `comentario`, `calificacion`, `fecha`, `hora`, `estado`) VALUES
+(4, 8, 2, 0, '', 0, '2018-05-16', '2018-06-28 21:16:46', 0);
 
 -- --------------------------------------------------------
 
@@ -126,6 +132,15 @@ CREATE TABLE `solicitud` (
   `comentario` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `solicitud`
+--
+
+INSERT INTO `solicitud` (`id_solicitud`, `id_pasajero`, `id_viaje`, `numero_tarjeta`, `estado`, `comentario`) VALUES
+(2, 1, 2, 1234567891234511, 0, 'Hola, me gustarÃ­a viajar con vos, puedo llevar \r\nmorfi! Saludos!'),
+(3, 2, 1, 7891789178917891, 1, ''),
+(4, 1, 3, 1234567891234511, 2, '');
+
 -- --------------------------------------------------------
 
 --
@@ -144,9 +159,11 @@ CREATE TABLE `tarjetas` (
 --
 
 INSERT INTO `tarjetas` (`id_usuario`, `numero`, `codigo_seguridad`, `vencimiento`) VALUES
-(1, 11231231231, 123, '2018-10-18'),
-(5, 1231231231234123, 123, '2018-09-01'),
-(5, 7897897897897894, 123, '2018-06-30');
+(1, 1234123412341234, 123, '2018-07-31'),
+(1, 1234567891234511, 123, '2030-01-31'),
+(1, 4567456745674567, 123, '2020-09-30'),
+(2, 7891789178917891, 123, '2023-06-30'),
+(3, 9874987498749874, 123, '2035-01-31');
 
 -- --------------------------------------------------------
 
@@ -174,9 +191,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `apellido`, `fecha_de_nacimiento`, `mail`, `promedio_puntuacion_conductor`, `promedio_puntuacion_pasajero`, `id_direccion`, `contrasenia`, `foto_perfil`, `gasto`, `ahorro`) VALUES
-(1, 'Manuel', 'Gimenez', '1998-07-06', 'manugime@gmail.com', 0, 0, 2, 'banana', 'user1.jpg', 0, 0),
-(5, 'JoaquÃ­n', 'de Antueno', '2000-01-01', 'joaquindea@hotmail.es', 10, 0, 0, 'chauchas', 'user5.jpg', 0, 0),
-(6, 'Pesca', 'de Antueno', '2000-01-01', 'joaquinpescadeantueno@gmail.com', 10, 0, 0, 'a', 'user6.jpg', 0, 0);
+(1, 'JoaquiÅ„', 'de Antueno', '1998-01-08', 'joaquindea@hotmail.es', 50, 0, 0, '1', 'user1.jpg', 0, 0),
+(2, 'Roby', 'Goren', '1993-06-13', 'joaquinpescadeantueno@gmail.com', 70, 0, 0, '1', 'user2.jpeg', 0, 0),
+(3, 'Sebastian', 'Zecenarro', '1996-07-17', 'sebazece@gmail.com', 0, 0, 0, '1', 'user3.png', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -197,10 +214,10 @@ CREATE TABLE `vehiculo` (
 --
 
 INSERT INTO `vehiculo` (`patente`, `id_usuario`, `marca`, `modelo`, `asientos`) VALUES
-('159ASD159', 1, 'Honda', 'Uno', 1),
-('ABC780', 3, 'Ford', 'Fiesta', 5),
-('ASD430', 5, 'Fiat', 'Vivace', 4),
-('qwe789', 1, 'Fiat', 'Uno', 1);
+('ABC123', 3, 'Honda Fit', 'Fir', 5),
+('FGH159', 2, 'Citroen', 'C3', 6),
+('HJK789', 1, 'Renault', 'Sandero', 4),
+('MLK282', 1, 'Fiat', 'Vivace', 4);
 
 -- --------------------------------------------------------
 
@@ -217,7 +234,7 @@ CREATE TABLE `viajes` (
   `duracion` decimal(10,5) NOT NULL,
   `fecha_hora` datetime NOT NULL,
   `descripcion` text NOT NULL,
-  `tipo` text NOT NULL,
+  `tipo` int(11) NOT NULL,
   `costo` decimal(10,5) NOT NULL,
   `tarjeta` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -227,7 +244,44 @@ CREATE TABLE `viajes` (
 --
 
 INSERT INTO `viajes` (`id_viaje`, `id_usuario`, `patente`, `origen`, `destino`, `duracion`, `fecha_hora`, `descripcion`, `tipo`, `costo`, `tarjeta`) VALUES
-(13, 5, 'ASD430', 'a', 'a', '1.00000', '2018-07-01 12:00:00', 'Nada', 'Ocasional', '50.00000', 1231231231234123);
+(1, 1, 'HJK789', 'La Plata', 'Buenos Aires', '1.00000', '2018-07-15 16:00:00', '', 0, '100.00000', 4567456745674567),
+(2, 2, 'FGH159', 'Punta Indio', 'Mar del Plata', '2.50000', '2018-07-05 12:00:00', '', 0, '50.00000', 7891789178917891),
+(3, 3, 'ABC123', 'Ensenada', 'Berisso', '0.25000', '2018-07-20 12:00:00', '', 0, '50.00000', 9874987498749874),
+(10, 1, 'MLK282', 'a', 'a', '1.00000', '2018-07-17 12:00:00', '', 1, '50.00000', 4567456745674567),
+(11, 1, 'HJK789', 'Temperley', 'LoberÃ­a', '2.00000', '2018-07-13 09:00:00', '', 1, '50.00000', 1234567891234511);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `viaje_semanal`
+--
+
+CREATE TABLE `viaje_semanal` (
+  `id_viaje_semanal` int(11) NOT NULL,
+  `id_viaje` int(11) NOT NULL,
+  `fecha_hora` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `viaje_semanal`
+--
+
+INSERT INTO `viaje_semanal` (`id_viaje_semanal`, `id_viaje`, `fecha_hora`) VALUES
+(6, 10, '2018-07-17 12:00:00'),
+(7, 11, '2018-07-13 09:00:00'),
+(8, 11, '2018-07-14 09:00:00'),
+(9, 11, '2018-07-16 09:00:00'),
+(10, 11, '2018-07-18 09:00:00'),
+(11, 11, '2018-07-20 09:00:00'),
+(12, 11, '2018-07-21 09:00:00'),
+(13, 11, '2018-07-23 09:00:00'),
+(14, 11, '2018-07-25 09:00:00'),
+(15, 11, '2018-07-27 09:00:00'),
+(16, 11, '2018-07-28 09:00:00'),
+(17, 11, '2018-07-30 09:00:00'),
+(18, 11, '2018-08-01 09:00:00'),
+(19, 11, '2018-08-03 09:00:00'),
+(20, 11, '2018-08-04 09:00:00');
 
 --
 -- Índices para tablas volcadas
@@ -303,6 +357,12 @@ ALTER TABLE `viajes`
   ADD PRIMARY KEY (`id_viaje`);
 
 --
+-- Indices de la tabla `viaje_semanal`
+--
+ALTER TABLE `viaje_semanal`
+  ADD PRIMARY KEY (`id_viaje_semanal`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -316,7 +376,7 @@ ALTER TABLE `direccion`
 -- AUTO_INCREMENT de la tabla `fotos_vehiculo`
 --
 ALTER TABLE `fotos_vehiculo`
-  MODIFY `id_foto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_foto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `pregunta`
@@ -328,7 +388,7 @@ ALTER TABLE `pregunta`
 -- AUTO_INCREMENT de la tabla `puntua_conductor`
 --
 ALTER TABLE `puntua_conductor`
-  MODIFY `id_puntua_conductor` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_puntua_conductor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `puntua_pasajero`
@@ -340,19 +400,25 @@ ALTER TABLE `puntua_pasajero`
 -- AUTO_INCREMENT de la tabla `solicitud`
 --
 ALTER TABLE `solicitud`
-  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `viajes`
 --
 ALTER TABLE `viajes`
-  MODIFY `id_viaje` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_viaje` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT de la tabla `viaje_semanal`
+--
+ALTER TABLE `viaje_semanal`
+  MODIFY `id_viaje_semanal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
