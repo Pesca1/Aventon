@@ -1,8 +1,19 @@
 <div id="header">
   <img id="logo" src="/img/logo.jpeg" />
-  <form id="search" class="form-inline my-2 my-lg-0" action="/vistas/buscar_viajes.php">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <a class="btn btn-light" href="/vistas/listar_todos_los_viajes.php" >buscar</a>
+  <form class="form-inline" method="post" action="/vistas/buscar_viaje.php">
+    <label class="sr-only" for="inlineFormInputName2">Name</label>
+    <input type="text" name="origin" class="form-control mb-2 mr-sm-2 search s1" id="inlineFormInputName2" placeholder="Origen">
+
+    <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
+    <div class="input-group mb-2 mr-sm-2">
+      <input type="text" name="destination" class="form-control search s2" id="inlineFormInputGroupUsername2" placeholder="Destino">
+    </div>
+
+    <div class="form-check mb-2 mr-sm-2">
+      <input type="date" name="date" class="form-control search" id="date" name="date" placeholder="Fecha">
+    </div>
+
+    <button type="submit" class="btn mb-2">Buscar</button>
   </form>
   <button class="btn"><a href="/php/cerrar_sesion.php">Cerrar Sesión</a></button>
   <button class="btn"><a href="/vistas/listar_vehiculos.php">Mis Vehículos</a></button>

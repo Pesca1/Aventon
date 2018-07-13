@@ -51,7 +51,38 @@ h1, h2 {
 
 #header #left-button {
   float: left;
-  margin-left: 0px;
+  margin-left: 10px;
+}
+
+#header form {
+  float: left;
+}
+
+#header form .search {
+  width: 100px;
+  margin-left:0px;
+  margin-right:0px !important;
+}
+
+.s1 {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right-color: grey;
+}
+
+.s2 {
+  border-radius: 0;
+  border-right-color: grey;
+  border-left-color: grey;
+}
+
+#header #date {
+  width: 175px;
+  height: 38px;
+  margin-left: -8px;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-left-color: grey;
 }
 
 button a {
@@ -65,7 +96,7 @@ button a:hover {
 
 #body {
   padding-top: 30px;
-  padding-b5ttom: 20px;
+  padding-bottom: 20px;
   padding-left: 30px;
   background-color: rgb(247, 227, 227);
   width: 99%;
