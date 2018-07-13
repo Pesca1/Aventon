@@ -80,3 +80,16 @@ $("#recover_passwd").click(function (e){
 		return false;
 	}
 });
+
+$('#search-form').submit(function(e){
+  var origin = $('.s1').val();
+  var dest = $('.s2').val();
+  var date = $('#date').val();
+  if((origin == "") && (dest == "") && (date == "")){
+    show_error("Por favor, especifique origen, destino o fecha del viaje a buscar.");
+    return false;
+  } else if(Date.parse(date) < Date.now()){
+    show_error("Especifique una fecha posterior al día de hoy.");
+    return false;
+  }
+});

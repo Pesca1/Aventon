@@ -36,6 +36,13 @@ h1, h2 {
   width: 275px;
 }
 
+#header #search-button {
+  margin-left: -8px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left-color: grey;
+}
+
 #hello-user-css{
   background-color: rgb(244, 66, 66);
   cursor: default;
@@ -80,8 +87,7 @@ h1, h2 {
   width: 175px;
   height: 38px;
   margin-left: -8px;
-  border-top-left-radius: 0 !important;
-  border-bottom-left-radius: 0 !important;
+  border-radius: 0 !important;
   border-left-color: grey;
 }
 
@@ -161,4 +167,5 @@ button a:hover {
   opacity: 1;
   border-radius: 3%;
   padding: 20px;
+  color: black !important;
 }

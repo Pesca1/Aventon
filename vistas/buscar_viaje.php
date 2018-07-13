@@ -14,15 +14,19 @@
       include("header.php");
 
       $user_id = $_SESSION["user_id"];
+      $title = "";
       $query = "SELECT * from viajes WHERE id_usuario!=$user_id";
-      if(isset($_POST["date"]) && $_POST["date"]!=""){
-        $query .= " AND CAST(fecha_hora as DATE)='".$_POST["date"]."'";
-      }
       if(isset($_POST["origin"]) && $_POST["origin"]!=""){
         $query .= " AND origen='".$_POST["origin"]."'";
+        $title .= " desde <strong>".$_POST["origin"]."</strong>";
       }
       if(isset($_POST["destination"]) && $_POST["destination"]!=""){
         $query .= " AND destino='".$_POST["destination"]."'";
+        $title .= " hasta <strong>".$_POST["destination"]."</strong>";
+      }
+      if(isset($_POST["date"]) && $_POST["date"]!=""){
+        $query .= " AND CAST(fecha_hora as DATE)='".$_POST["date"]."'";
+        $title .= " para el <strong>".(new DateTime($_POST["date"]))->format("d/m/Y")."</strong>";
       }
 
       $result = mysqli_query($conn, $query);
@@ -30,6 +34,11 @@
     <div id="body">
       <h1>Resultados de la búsqueda</h1>
       <?php
+        if(mysqli_num_rows($result) == 0){
+          echo "<h2>No se encontrarón viajes$title</h2>";
+        } else {
+          echo "<h2>Viajes$title</h2>";
+        }
         while($trip = mysqli_fetch_assoc($result)){
           $query = "SELECT * FROM usuario WHERE id_usuario=".$trip["id_usuario"];
           $driver = mysqli_fetch_assoc(mysqli_query($conn, $query));
