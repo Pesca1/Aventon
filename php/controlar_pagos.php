@@ -14,7 +14,10 @@
         $text = "Hola ".$user["nombre"]."!\nTe informamos que se debitó el costo del viaje de ".$trip["origen"]." a ".$trip["destino"].", $".formatPrice($trip["costo"]).", de tu tarjeta ".formatCard($trip["tarjeta"]).".\nTe deseamos un buen viaje!\nEquipo de Aventón";
         mail($user["mail"], "Buen viaje!", $text);
 
-        $query = "INSERT INTO transaccion (id_usuario, id_viaje, monto, tipo) VALUES (".$user["id_usuario"].",".$trip["id_viaje"].",".$trip["costo"].",".PASSENGER.")";
+        $query = "INSERT INTO transaccion (id_usuario, id_viaje, monto, tipo, fecha_hora) VALUES (".$user["id_usuario"].",".$trip["id_viaje"].",".$trip["costo"].",".PASSENGER.", '".$trip["fecha_hora"]."')";
+        mysqli_query($conn, $query);
+        $transactionId = mysqli_fetch_array(mysqli_query($conn, "SELECT LAST_INSERT_ID();"))[0];
+        $query = "INSERT INTO notificacion (id_usuario, id_transaccion) VALUES (".$user["id_usuario"].", $transactionId)";
         mysqli_query($conn, $query);
         $query = "UPDATE viajes SET pago_pasajero=".PAID_TRIP." WHERE id_viaje=".$trip["id_viaje"];
         mysqli_query($conn, $query);
@@ -37,6 +40,9 @@
           $text = "Hola ".$user["nombre"]."!\nTe informamos que se debitó el costo del viaje de ".$weeklyTrip["origen"]." a ".$weeklyTrip["destino"].", $".formatPrice($weeklyTrip["costo"]).", de tu tarjeta ".formatCard($weeklyTrip["tarjeta"]).".\nTe deseamos un buen viaje!\nEquipo de Aventón";
           mail($user["mail"], "Buen viaje!", $text);
           $query = "INSERT INTO transaccion (id_usuario, id_viaje, monto, tipo, fecha_hora) VALUES (".$user["id_usuario"].",".$weeklyTrip["id_viaje"].",".$weeklyTrip["costo"].",".PASSENGER.", '".$trip["fecha_hora"]."')";
+          mysqli_query($conn, $query); 
+          $transactionId = mysqli_fetch_array(mysqli_query($conn, "SELECT LAST_INSERT_ID();"))[0];
+          $query = "INSERT INTO notificacion (id_usuario, id_transaccion) VALUES (".$user["id_usuario"].", $transactionId)";
           mysqli_query($conn, $query);
           $query = "UPDATE viaje_semanal SET pago_pasajero=".PAID_TRIP." WHERE id_viaje_semanal=".$trip["id_viaje_semanal"];
           mysqli_query($conn, $query);
