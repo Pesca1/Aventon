@@ -16,6 +16,10 @@
   define("DONE", 1);
   define("ONE_TIME_TRIP", 0);
   define("WEEKLY_TRIP", 1);
+  define("PAID_TRIP", 1);
+  define("UNPAID_TRIP", 0);
+  define("DRIVER", 0);
+  define("PASSENGER", 1);
 
   function show_error($string){
     echo "<script>show_error('$string');</script>";
@@ -135,24 +139,34 @@
     
     return $total_seats - mysqli_num_rows($result);
   }
+
+  function isPendingTrip($conn, $trip){
+    $now = time();
+    if((!isset($trip["tipo"])) || ($trip["tipo"] == ONE_TIME_TRIP)){
+      $date = strtotime($trip["fecha_hora"]);
+      return ($date > $now);
+    } else {
+      $query = "SELECT * FROM viaje_semanal WHERE id_viaje=".$trip["id_viaje"];
+      $trips = mysqli_query($conn, $query);
+      while($weeklyTrip = mysqli_fetch_assoc($trips)){
+        if(strtotime($weeklyTrip["fecha_hora"]) > $now){
+          return true;
+        }
+      }
+      return false;
+    }
+  }
   
   function vehicleHasPendingTrips($conn, $plate){
     $now = time();
     $query = "SELECT * FROM viajes WHERE patente='$plate'";
     $result = mysqli_query($conn, $query);
     while($trip = mysqli_fetch_assoc($result)){
-      $date = strtotime($trip["fecha_hora"]);
-      if($date > $now){
+      if(isPendingTrip($conn, $trip)){
         return true;
       }
     }
     return false;
-  }
-
-  function isPendingTrip($trip){
-    $now = time();
-    $date = strtotime($trip["fecha_hora"]);
-    return ($date > $now);
   }
 
   function isExpiredCard($conn, $card_number, $date){
@@ -173,6 +187,10 @@
 
   function formatCard($number){
     return "xxxxxxxxxxxx".substr($number, -4);
+  }
+
+  function formatPrice($price){
+    return substr($price, 0, 6);
   }
 
   function alreadyHaveRequest($conn, $user_id, $trip_id){

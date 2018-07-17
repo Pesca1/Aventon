@@ -115,6 +115,19 @@
           }
         ?>
       </div>
+      <?php
+        if($trip["tipo"]==WEEKLY_TRIP){
+          echo "<div id='dates'><h3>Fechas</h3><table>";
+          $query = "SELECT * FROM viaje_semanal WHERE id_viaje=$trip_id";
+          $dates = mysqli_query($conn, $query);
+          while($date = mysqli_fetch_assoc($dates)){
+            $obj = new DateTime($date["fecha_hora"]);
+            $weekDay = $days[$obj->format("N")];
+            echo "<tr><td> - ".$weekDay." ".$obj->format("d/m")."</td></tr>";
+          }
+          echo "</table></div>";
+        }
+       ?>
     </div>
     <?php
       include("footer.php");

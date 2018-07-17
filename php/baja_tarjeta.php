@@ -7,7 +7,7 @@
   $query = "SELECT * FROM viajes WHERE tarjeta=$card";
   $result = mysqli_query($conn, $query);
   while($trip = mysqli_fetch_assoc($result)){
-    if(isPendingTrip($trip)){
+    if(isPendingTrip($conn, $trip)){
       header("Location: /vistas/ver_tarjetas.php?pending_trip");
       exit();
     }
@@ -19,7 +19,7 @@
     $query = "SELECT * FROM viajes WHERE id_viaje=".$request["id_viaje"];
     $trip = mysqli_fetch_assoc(mysqli_query($conn, $query));
     echo "Viaje de ".$trip["origen"]." a ".$trip["destino"];
-    if(isPendingTrip($trip) && ($request["estado"] != REJECTED)){
+    if(isPendingTrip($conn, $trip) && ($request["estado"] != REJECTED)){
       header("Location: /vistas/ver_tarjetas.php?pending_request");
       exit();
     }

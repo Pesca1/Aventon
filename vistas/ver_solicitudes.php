@@ -33,20 +33,21 @@
           echo "<h2>Ocurrió un error al conectarse a la base de datos, por favor, intentelo mas tarde.</h2>";
         } else {
           while($trip = mysqli_fetch_assoc($result)){
-            $trip_id = $trip["id_viaje"];
-            $query = "SELECT * FROM solicitud WHERE id_viaje='$trip_id'";
-            if(isset($_GET["state"])){
-              if($_GET["state"] != "all"){
-                $query .= "AND estado=".$_GET["state"];
+            if(isPendingTrip($conn, $trip)){
+              $trip_id = $trip["id_viaje"];
+              $query = "SELECT * FROM solicitud WHERE id_viaje='$trip_id'";
+              if(isset($_GET["state"])){
+                if($_GET["state"] != "all"){
+                  $query .= "AND estado=".$_GET["state"];
+                }
               }
-            }
-            $result1 = mysqli_query($conn, $query);
-            if(!$result1){
-              echo "<h2>Ocurrió un error al conectarse a la base de datos, por favor, intentelo mas tarde.</h2>";
-            } else {
-              $request_number += mysqli_num_rows($result1);
-              while($request = mysqli_fetch_assoc($result1)){
-                $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM usuario WHERE id_usuario='".$request["id_pasajero"]."'"));
+              $result1 = mysqli_query($conn, $query);
+              if(!$result1){
+                echo "<h2>Ocurrió un error al conectarse a la base de datos, por favor, intentelo mas tarde.</h2>";
+              } else {
+                $request_number += mysqli_num_rows($result1);
+                while($request = mysqli_fetch_assoc($result1)){
+                  $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM usuario WHERE id_usuario='".$request["id_pasajero"]."'"));
                   
       ?>
       <div class="vehicle">
@@ -104,6 +105,7 @@
       <?php
               }
             }
+          }
           }
           if($request_number == 0){
             echo "<h2>No hay ninguna solicitud!</h2>";

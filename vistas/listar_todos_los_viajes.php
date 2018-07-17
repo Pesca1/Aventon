@@ -21,9 +21,10 @@
         if($result){
           if($trip = mysqli_fetch_assoc($result)){
             while($trip){
-              $query = "SELECT * FROM usuario WHERE id_usuario=".$trip["id_usuario"];
-              $driver = mysqli_fetch_assoc(mysqli_query($conn, $query));
-              $name = $driver["nombre"]." ".$driver["apellido"];
+              if((isPendingTrip($conn, $trip))){
+                $query = "SELECT * FROM usuario WHERE id_usuario=".$trip["id_usuario"];
+                $driver = mysqli_fetch_assoc(mysqli_query($conn, $query));
+                $name = $driver["nombre"]." ".$driver["apellido"];
       ?>
           
       <div class="vehicle">
@@ -66,7 +67,7 @@
       </div>
 
       <?php
-
+              }
               $trip = mysqli_fetch_assoc($result);
             }
           } else {

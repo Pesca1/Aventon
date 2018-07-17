@@ -22,7 +22,7 @@
         if($result){
           if($trip = mysqli_fetch_assoc($result)){
             while($trip){
-              if(isPendingTrip($trip)){ $pending= true;?>
+              if(isPendingTrip($conn, $trip)){ $pending= true;?>
           
       <div class="vehicle">
         <div class="vehicle-info">
