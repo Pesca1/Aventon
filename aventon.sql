@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 17-07-2018 a las 19:19:39
+-- Tiempo de generación: 17-07-2018 a las 23:08:31
 -- Versión del servidor: 10.1.32-MariaDB
 -- Versión de PHP: 7.2.5
 
@@ -59,6 +59,18 @@ INSERT INTO `fotos_vehiculo` (`id_foto`, `patente`, `foto`) VALUES
 (2, 'FGH159', 'FGH159-1.jpeg'),
 (3, 'FGH159', 'FGH159-2.jpeg'),
 (4, 'MLK282', 'MLK282-1.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `notificacion`
+--
+
+CREATE TABLE `notificacion` (
+  `id_notificacion` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `id_transaccion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -181,9 +193,9 @@ CREATE TABLE `transaccion` (
 --
 
 INSERT INTO `transaccion` (`id_transaccion`, `id_usuario`, `id_viaje`, `monto`, `tipo`, `fecha_hora`) VALUES
-(2, 2, 1, '100.00000', 1, '2018-07-17 15:53:16'),
-(3, 3, 1, '100.00000', 1, '2018-07-17 15:53:21'),
-(4, 1, 13, '50.00000', 1, '2018-07-17 15:00:00');
+(4, 1, 13, '50.00000', 1, '2018-07-17 15:00:00'),
+(9, 2, 1, '100.00000', 1, '2018-07-15 19:00:00'),
+(10, 3, 1, '100.00000', 1, '2018-07-15 19:00:00');
 
 -- --------------------------------------------------------
 
@@ -327,6 +339,12 @@ ALTER TABLE `fotos_vehiculo`
   ADD PRIMARY KEY (`id_foto`);
 
 --
+-- Indices de la tabla `notificacion`
+--
+ALTER TABLE `notificacion`
+  ADD PRIMARY KEY (`id_notificacion`);
+
+--
 -- Indices de la tabla `pregunta`
 --
 ALTER TABLE `pregunta`
@@ -412,6 +430,12 @@ ALTER TABLE `fotos_vehiculo`
   MODIFY `id_foto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT de la tabla `notificacion`
+--
+ALTER TABLE `notificacion`
+  MODIFY `id_notificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT de la tabla `pregunta`
 --
 ALTER TABLE `pregunta`
@@ -421,7 +445,7 @@ ALTER TABLE `pregunta`
 -- AUTO_INCREMENT de la tabla `puntua_conductor`
 --
 ALTER TABLE `puntua_conductor`
-  MODIFY `id_puntua_conductor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_puntua_conductor` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `puntua_pasajero`
@@ -439,7 +463,7 @@ ALTER TABLE `solicitud`
 -- AUTO_INCREMENT de la tabla `transaccion`
 --
 ALTER TABLE `transaccion`
-  MODIFY `id_transaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_transaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
