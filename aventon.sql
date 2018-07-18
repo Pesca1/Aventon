@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 17-07-2018 a las 23:08:31
+-- Tiempo de generación: 18-07-2018 a las 18:52:37
 -- Versión del servidor: 10.1.32-MariaDB
 -- Versión de PHP: 7.2.5
 
@@ -69,7 +69,8 @@ INSERT INTO `fotos_vehiculo` (`id_foto`, `patente`, `foto`) VALUES
 CREATE TABLE `notificacion` (
   `id_notificacion` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
-  `id_transaccion` int(11) NOT NULL
+  `id_transaccion` int(11) NOT NULL,
+  `tipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -99,8 +100,7 @@ CREATE TABLE `puntua_conductor` (
   `id_viaje` int(11) NOT NULL,
   `comentario` text COLLATE utf8mb4_spanish2_ci NOT NULL,
   `calificacion` int(11) NOT NULL,
-  `fecha` date NOT NULL,
-  `hora` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `fecha` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `estado` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
@@ -115,8 +115,7 @@ CREATE TABLE `puntua_pasajero` (
   `id_pasajero` int(11) NOT NULL,
   `id_conductor` int(11) NOT NULL,
   `id_viaje` int(11) NOT NULL,
-  `fecha` date NOT NULL,
-  `hora` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `fecha` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `calificacion` int(11) NOT NULL,
   `comentario` text COLLATE utf8mb4_spanish2_ci NOT NULL,
   `estado` tinyint(1) NOT NULL DEFAULT '0'
@@ -136,18 +135,6 @@ CREATE TABLE `solicitud` (
   `estado` int(1) NOT NULL,
   `comentario` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `solicitud`
---
-
-INSERT INTO `solicitud` (`id_solicitud`, `id_pasajero`, `id_viaje`, `numero_tarjeta`, `estado`, `comentario`) VALUES
-(2, 1, 2, 1234567891234511, 0, 'Hola, me gustarÃ­a viajar con vos, puedo llevar \r\nmorfi! Saludos!'),
-(3, 2, 1, 7891789178917891, 1, ''),
-(4, 1, 3, 1234567891234511, 2, ''),
-(5, 2, 10, 7891789178917891, 0, ''),
-(6, 3, 1, 1234561234561234, 1, ''),
-(7, 1, 13, 1234567891234511, 1, '');
 
 -- --------------------------------------------------------
 
@@ -187,15 +174,6 @@ CREATE TABLE `transaccion` (
   `tipo` int(11) NOT NULL,
   `fecha_hora` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `transaccion`
---
-
-INSERT INTO `transaccion` (`id_transaccion`, `id_usuario`, `id_viaje`, `monto`, `tipo`, `fecha_hora`) VALUES
-(4, 1, 13, '50.00000', 1, '2018-07-17 15:00:00'),
-(9, 2, 1, '100.00000', 1, '2018-07-15 19:00:00'),
-(10, 3, 1, '100.00000', 1, '2018-07-15 19:00:00');
 
 -- --------------------------------------------------------
 
@@ -273,19 +251,6 @@ CREATE TABLE `viajes` (
   `pago_pasajero` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `viajes`
---
-
-INSERT INTO `viajes` (`id_viaje`, `id_usuario`, `patente`, `origen`, `destino`, `duracion`, `fecha_hora`, `descripcion`, `tipo`, `costo`, `tarjeta`, `pago_conductor`, `pago_pasajero`) VALUES
-(1, 1, 'HJK789', 'La Plata', 'Buenos Aires', '1.00000', '2018-07-15 16:00:00', '', 0, '100.00000', 4567456745674567, 0, 1),
-(2, 2, 'FGH159', 'Punta Indio', 'Mar del Plata', '2.50000', '2018-07-05 12:00:00', '', 0, '50.00000', 7891789178917891, 0, 0),
-(3, 3, 'ABC123', 'Ensenada', 'Berisso', '0.25000', '2018-07-20 12:00:00', '', 0, '50.00000', 9874987498749874, 0, 0),
-(10, 1, 'MLK282', 'a', 'a', '1.00000', '2018-07-17 12:00:00', '', 1, '50.00000', 4567456745674567, 0, 0),
-(11, 1, 'HJK789', 'Temperley', 'LoberÃ­a', '2.00000', '2018-07-13 09:00:00', '', 1, '50.00000', 1234567891234511, 0, 0),
-(12, 2, 'FGH159', 'City Bell', 'Informatica', '1.00000', '2018-07-18 12:00:00', '', 0, '50.00000', 7891789178917891, 0, 0),
-(13, 2, 'FGH159', 'bb', 'b', '1.00000', '2018-07-18 17:00:00', '', 1, '50.00000', 7891789178917891, 0, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -299,28 +264,6 @@ CREATE TABLE `viaje_semanal` (
   `pago_conductor` int(11) NOT NULL DEFAULT '0',
   `pago_pasajero` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `viaje_semanal`
---
-
-INSERT INTO `viaje_semanal` (`id_viaje_semanal`, `id_viaje`, `fecha_hora`, `pago_conductor`, `pago_pasajero`) VALUES
-(6, 10, '2018-07-17 12:00:00', 0, 0),
-(7, 11, '2018-07-13 09:00:00', 0, 0),
-(8, 11, '2018-07-14 09:00:00', 0, 0),
-(9, 11, '2018-07-16 09:00:00', 0, 0),
-(10, 11, '2018-07-18 09:00:00', 0, 0),
-(11, 11, '2018-07-20 09:00:00', 0, 0),
-(12, 11, '2018-07-21 09:00:00', 0, 0),
-(13, 11, '2018-07-23 09:00:00', 0, 0),
-(14, 11, '2018-07-25 09:00:00', 0, 0),
-(15, 11, '2018-07-27 09:00:00', 0, 0),
-(16, 11, '2018-07-28 09:00:00', 0, 0),
-(17, 11, '2018-07-30 09:00:00', 0, 0),
-(18, 11, '2018-08-01 09:00:00', 0, 0),
-(19, 11, '2018-08-03 09:00:00', 0, 0),
-(20, 11, '2018-08-04 09:00:00', 0, 0),
-(21, 13, '2018-07-17 12:00:00', 0, 1);
 
 --
 -- Índices para tablas volcadas
@@ -433,7 +376,7 @@ ALTER TABLE `fotos_vehiculo`
 -- AUTO_INCREMENT de la tabla `notificacion`
 --
 ALTER TABLE `notificacion`
-  MODIFY `id_notificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_notificacion` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `pregunta`
@@ -457,13 +400,13 @@ ALTER TABLE `puntua_pasajero`
 -- AUTO_INCREMENT de la tabla `solicitud`
 --
 ALTER TABLE `solicitud`
-  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `transaccion`
 --
 ALTER TABLE `transaccion`
-  MODIFY `id_transaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_transaccion` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
@@ -475,13 +418,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `viajes`
 --
 ALTER TABLE `viajes`
-  MODIFY `id_viaje` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_viaje` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `viaje_semanal`
 --
 ALTER TABLE `viaje_semanal`
-  MODIFY `id_viaje_semanal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_viaje_semanal` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
