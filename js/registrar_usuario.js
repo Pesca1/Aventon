@@ -8,12 +8,18 @@ function show_error(text){
 		$(this).css('display', 'none');
 		$('.error').css('display', 'none');
 	});
-	$('.error').css('background-color', 'rgb(226, 104, 104)');
 }
 
 function show_success(text){
-	show_error(text);
-	$('.error').css('background-color', 'rgb(189, 255, 113)');
+	$('body').append('<div class="error_container"></div><div class="success"><h3>'+ text +'</h3></div>');
+	$('.success').click(function(){
+		$(this).css('display', 'none');
+		$('.error_container').css('display', 'none');
+	});
+	$('.error_container').click(function(){
+		$(this).css('display', 'none');
+		$('.success').css('display', 'none');
+	});
 }
 
 function validateEmail(sEmail) {
@@ -93,3 +99,7 @@ $('#search-form').submit(function(e){
     return false;
   }
 });
+
+for(var i = 0; i < notifications.length; i++){
+  show_success(notifications[i]);
+}

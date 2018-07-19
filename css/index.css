@@ -169,3 +169,16 @@ button a:hover {
   padding: 20px;
   color: black !important;
 }
+
+.success {
+  position: fixed;
+  top: 40%;
+  left: calc(50% - 170px);
+  width: 300px;
+  height: content;
+  background-color: rgb(189, 255, 113);
+  opacity: 1;
+  border-radius: 3%;
+  padding: 20px;
+  color: black !important;
+}

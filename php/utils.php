@@ -1,25 +1,5 @@
 <?php
-  $days = array(
-    1 => "Lunes",
-    2 => "Martes",
-    3 => "Miércoles",
-    4 => "Jueves",
-    5 => "Viernes",
-    6 => "Sábado",
-    7 => "Domingo",
-  );
-
-  date_default_timezone_set("America/Argentina/Buenos_Aires");
-  define("PENDING", 0);
-  define("ACCEPTED", 1);
-  define("REJECTED", 2);
-  define("DONE", 1);
-  define("ONE_TIME_TRIP", 0);
-  define("WEEKLY_TRIP", 1);
-  define("PAID_TRIP", 1);
-  define("UNPAID_TRIP", 0);
-  define("DRIVER", 0);
-  define("PASSENGER", 1);
+  include_once("constants.php");
 
   function show_error($string){
     echo "<script>show_error('$string');</script>";
@@ -155,6 +135,17 @@
       }
       return false;
     }
+  }
+
+  function isFinishedTrip($datetime, $duration){
+    $now = time();
+    $finishTime = strtotime($datetime) + ($duration*60*60);
+    //echo "Fecha: $datetime - Duracion: $duration - Finalizacion: ".date("d/m/Y H:i:s", $finishTime)."<br>";
+    return ($finishTime < $now);
+  }
+
+  function finishTime($datetime, $duration){
+    return date("Y-m-d H:i:s",strtotime($datetime) + ($duration*60*60)); 
   }
   
   function vehicleHasPendingTrips($conn, $plate){

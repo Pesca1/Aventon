@@ -80,19 +80,19 @@
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="destination">Días</label> <br>
-            <label><input class="day" type="checkbox" name="monday"/>  Lunes</label><br>
-            <label><input class="day" type="checkbox" name="tuesday"/>  Martes</label><br>
-            <label><input class="day" type="checkbox" name="wednesday"/>  Miércoles</label><br>
-            <label><input class="day" type="checkbox" name="thursday"/>  Jueves</label><br>
-            <label><input class="day" type="checkbox" name="friday"/>  Viernes</label><br>
-            <label><input class="day" type="checkbox" name="saturday"/>  Sabado</label><br>
-            <label><input class="day" type="checkbox" name="sunday"/>  Domingo</label>
+            <label><input class="day" type="checkbox" name="monday" id="day1"/>  Lunes</label><br>
+            <label><input class="day" type="checkbox" name="tuesday" id="day2"/>  Martes</label><br>
+            <label><input class="day" type="checkbox" name="wednesday" id="day3"/>  Miércoles</label><br>
+            <label><input class="day" type="checkbox" name="thursday" id="day4"/>  Jueves</label><br>
+            <label><input class="day" type="checkbox" name="friday" id="day5"/>  Viernes</label><br>
+            <label><input class="day" type="checkbox" name="saturday" id="day6"/>  Sabado</label><br>
+            <label><input class="day" type="checkbox" name="sunday" id="day7"/>  Domingo</label>
           </div>
           <div class="form-group col-md-4">
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text">Semanas a repetir</span>
-                <input class="form-control" type="number" max="4" min="1" name="weeks" value="1"/>
+                <span class="input-group-text">Semanas a repetir (incluyendo actual)</span>
+                <input class="form-control" type="number" max="4" min="1" name="weeks" id="weeks" value="1"/>
               </div>
             </div>
             <div class="input-group mb-3">

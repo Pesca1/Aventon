@@ -25,7 +25,7 @@
 
       $_SESSION['loggedin'] = true;
       $_SESSION['start'] = time();
-      $_SESSION['expire'] = $_SESSION['start'] + (5 * 60); //sesion de 5 minutos
+      $_SESSION['expire'] = $_SESSION['start'] + (60 * 60); //sesion de 5 minutos
       $_SESSION['user_id'] = $consult['id_usuario'];
 
       header('location: /vistas/ver_perfil.php');
