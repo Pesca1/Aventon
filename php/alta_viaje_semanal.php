@@ -75,8 +75,8 @@
   }
   
 
-  $query = "INSERT INTO viajes (id_usuario, patente, origen, destino, duracion, fecha_hora, descripcion, tipo, costo, tarjeta)
-      VALUES ($user_id, '$plate', '$origin', '$destination', $duration, '$tripDates[0]', '$desc', ".WEEKLY_TRIP.", $price, $card)";
+  $query = "INSERT INTO viajes (id_usuario, patente, origen, destino, duracion, fecha_hora, descripcion, tipo, costo, tarjeta, semanas)
+      VALUES ($user_id, '$plate', '$origin', '$destination', $duration, '$tripDates[0]', '$desc', ".WEEKLY_TRIP.", $price, $card, $weeks)";
   $result = mysqli_query($conn, $query);
 
   if(!$result){

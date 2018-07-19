@@ -78,6 +78,7 @@
     get_success("reg_success", "Viaje creado con éxito!");
     get_success("edit_success", "Viaje editado con éxito!");
     get_error("no_car", "Debe registrar un auto para poder crear un viaje!");
+    get_error("date_trip_error", "No se ha creado el viaje, la fecha ya ha pasado");
     get_error("no_card", "Debe registrar una tarjeta para poder crear un viaje!");
     get_error("pending_califications", "Tiene una calificación pendiente, por favor, califique al usuario antes de crear/modificar otro viaje.");
     get_error("db_error", "Ocurrió un error en la base de datos, por favor, inténtelo nuevamente mas tarde.");

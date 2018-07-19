@@ -125,7 +125,7 @@
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text">Semanas a repetir</span>
-                <input class="form-control" type="number" max="4" min="1" name="weeks" value="1"/>
+                <input class="form-control" type="number" max="4" min="1" name="weeks" value="<?= $trip['semanas'] ?>"/>
               </div>
             </div>
             <div class="input-group mb-3">

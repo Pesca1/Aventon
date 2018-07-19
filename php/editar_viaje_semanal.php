@@ -68,8 +68,11 @@
     header("Location: /vistas/ver_viajes.php?db_error");
   }
 
-
   $tripDates = createWeeklyTrips($days, $time, $weeks);
+  
+  if (empty($tripDates)){
+    header("Location: /vistas/ver_viajes.php?date_trip_error");
+  }
   foreach($tripDates as $tripDate){
     // echo $tripDate."<br>";
     if(isExpiredCardCommonDate($conn, $card, $tripDate)){
@@ -88,7 +91,8 @@
                               origen='$origin',       destino='$destination',
                               duracion='$duration',   fecha_hora= '".$tripDates[0]."',
                               descripcion='$desc',    tipo='".WEEKLY_TRIP."',
-                              costo='$price',         tarjeta='$card' WHERE id_viaje='$trip_id'";
+                              costo='$price',         tarjeta='$card',
+                              semanas='$weeks' WHERE id_viaje='$trip_id'";
   $result = mysqli_query($conn, $query);
 
   if(!$result){
