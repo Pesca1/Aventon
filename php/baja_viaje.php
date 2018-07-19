@@ -9,7 +9,6 @@
   $result = mysqli_query($conn, $query);
   $trip = mysqli_fetch_assoc($result);
 
-
   $query = "SELECT * FROM solicitud WHERE id_viaje='$trip_id' AND estado=" .ACCEPTED;
   if(($oc = dbOcurrences($conn, $query )) > 0 ){
 
@@ -26,18 +25,25 @@
         }
       }
     }
-
+    
 
   $query = "DELETE FROM solicitud WHERE id_viaje='$trip_id'";
   $result = mysqli_query($conn, $query);
-
-
+  if ($trip['tipo'] == WEEKLY_TRIP){
+    $query = "DELETE FROM viaje_semanal WHERE id_viaje='$trip_id'";
+    $result = mysqli_query($conn, $query);
+    
+    if (!$result){
+      header("location: /vistas/ver_viajes.php?db_error");
+      exit();
+    }
+  }
 
 
     $query= "SELECT * FROM usuario WHERE id_usuario='$user_id' ";
     $result = mysqli_query($conn, $query);
     $user = mysqli_fetch_assoc($result);
-
+    echo "gato";
     if ($user['promedio_puntuacion_conductor'] > 0){
       $average = $user['promedio_puntuacion_conductor'] - 1;
       $query = "UPDATE usuario SET promedio_puntuacion_conductor='$average' WHERE id_usuario='$user_id'";
@@ -49,6 +55,17 @@
     exit();
 
   } else {
+    $query = "DELETE FROM solicitud WHERE id_viaje='$trip_id'";
+    $result = mysqli_query($conn, $query);
+    if ($trip['tipo'] == WEEKLY_TRIP){
+      $query = "DELETE FROM viaje_semanal WHERE id_viaje='$trip_id'";
+      $result = mysqli_query($conn, $query);
+    
+      if (!$result){
+        header("location: /vistas/ver_viajes.php?db_error");
+        exit();
+      }
+    }
     $query = "DELETE FROM viajes WHERE id_viaje='$trip_id'";
     $result = mysqli_query($conn, $query);
     header("location: /vistas/ver_viajes.php?trip_removed");

@@ -237,4 +237,13 @@
     }
     return $trips;
   }
+
+  function daysOfTrips($trips){
+    $arrayDays = array();
+    while ($result = mysqli_fetch_array($trips)){
+      $arrayDays[] = date('N', strtotime($result["fecha_hora"]));
+    }
+    $arrayDays = array_unique($arrayDays);
+    return $arrayDays;
+  }
 ?>
