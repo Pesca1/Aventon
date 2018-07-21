@@ -101,5 +101,6 @@
        echo '<script> show_success("¡Acción exitosa!"); </script>';
      }
      get_error("no_trips", "<span style=\"color: black;\">No hay ningún viaje registrado!</span>");
+     get_error("no_requests", "<span style=\"color: black;\">No ha enviado ninguna solicitud!</span>");
    ?>
 </html>
