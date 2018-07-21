@@ -69,7 +69,7 @@
   }
 
   $tripDates = createWeeklyTrips($days, $time, $weeks);
-  
+    
   if (empty($tripDates)){
     header("Location: /vistas/ver_viajes.php?date_trip_error");
   }

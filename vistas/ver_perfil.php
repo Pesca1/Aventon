@@ -93,7 +93,10 @@
     <script src="../bootstrap-4.1.1/dist/js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Dont actually copy the next line! -->
     <script src="../bootstrap-4.1.1/assets/js/vendor/holder.min.js"></script>
-    <?php include("footer.php") ?>
+    <?php 
+      include("footer.php");
+      include("bootstrap.php");
+    ?>
   </body>
    <script src="/js/registrar_usuario.js"></script>
    <?php

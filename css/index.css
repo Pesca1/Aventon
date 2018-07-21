@@ -182,3 +182,7 @@ button a:hover {
   padding: 20px;
   color: black !important;
 }
+
+.dropdown-item:active {
+  background-color: rgb(244, 66, 66);
+}
