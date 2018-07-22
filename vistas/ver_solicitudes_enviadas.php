@@ -45,6 +45,7 @@
       ?>
       <div class="vehicle">
         <div class="vehicle-info">
+          
           <?php
             if($request["estado"] == PENDING){
           ?>
@@ -59,7 +60,11 @@
               <input type="hidden" name="trip_id" value="<?= $trip["id_viaje"]; ?>">
               <button class="btn btn-primary" name="">Ver detalles</button>
           </form> 
-      	 
+      	  <form id="delete-request" action="/php/baja_solicitud_propia.php" method="post">
+            <input type="hidden" name="request_id" value="<?= $request["id_solicitud"] ?>">
+            <button class="action btn btn-danger delete_card" name="">Eliminar</button>
+          </form>
+
           <?php
             } else if($request["estado"] == ACCEPTED){
           ?>
@@ -74,6 +79,10 @@
               <input type="hidden" name="trip_id" value="<?= $trip["id_viaje"]; ?>">
               <button class="btn btn-primary" name="">Ver detalles</button>
           </form> 
+          <form id="delete-request" action="/php/baja_solicitud_propia_aceptada.php" method="post">
+            <input type="hidden" name="request_id" value="<?= $request["id_solicitud"] ?>">
+            <button class="action btn btn-danger delete_card" name="">Eliminar</button>
+          </form>
           
           <?php
             } else if($request["estado"] == REJECTED){
@@ -114,6 +123,11 @@
     include("bootstrap.php"); 
     include("../php/cerrar_conexion.php");
   ?>
+  <script src="/js/registrar_usuario.js"></script>
   <script src="/js/ver_solicitudes.js"></script>
-
+   <?php 
+      get_success("deleted_success", "La solicitud ha sido eliminada.");
+      get_error("deleted_error", "La solicitud no se pudo eliminar.");
+      get_error("notification_error_cancel", "Error al enviar el correo de cancelación");
+   ?>
 </html>
