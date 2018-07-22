@@ -15,7 +15,8 @@
   <body>
     <?php
       include("header.php");
-      $trip_id = $_POST["trip_id"];
+
+      (isset($_POST["trip_id"]))? $trip_id = $_POST["trip_id"] : $trip_id = $_GET["trip_id"];
       $query = "SELECT * FROM viajes WHERE id_viaje='$trip_id'";
       $result = mysqli_query($conn, $query);
       $trip = mysqli_fetch_assoc($result);
@@ -128,6 +129,14 @@
           echo "</table></div>";
         }
        ?>
+      <div id="questions">
+        <form action="/php/enviar_pregunta.php" method="post">
+          <h4>Haga una pregunta:</h4>
+          <input type="hidden" value="<?= $trip_id ?>" name="trip_id">
+          <textarea class="form-control" name="question" rows="5" cols="20" wrap="hard" style="resize: none" required="required" ></textarea><br>
+          <button type="submit" class="btn btn-success">Enviar comentario</button>
+        </form>
+      </div>
     </div>
     <?php
       include("footer.php");

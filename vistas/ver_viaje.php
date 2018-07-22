@@ -102,7 +102,21 @@
            - <?= $question["texto"]?>
            <br>
            <?php if($question["respuesta"] == ""){ ?>
-           <a class="btn btn-primary" href="/vistas/answer_question?id=<?= $question["id_pregunta"] ?>">Responder</a>
+            <p>
+              <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample<?= $question["id_pregunta"] ?>" role="button" aria-expanded="false" aria-controls="collapseExample<?= $question["id_pregunta"] ?>">
+                Responder
+              </a>
+            </p>
+            <div class="collapse" id="collapseExample<?= $question["id_pregunta"] ?>">
+              <div class="card card-body">
+                <form action="/php/responder_pregunta.php" method="post">
+                  <input type="hidden" value="<?= $question["id_pregunta"] ?>" name="question_id">
+                  <input type="hidden" value="<?= $trip_id ?>" name="trip_id">
+                  <textarea class="form-control" name="answer" rows="2" cols="20" wrap="hard" style="resize: none" required="required" ></textarea><br>
+                  <button type="submit" class="btn btn-primary"> Enviar</button>
+                </form>
+              </div>
+            </div>
            <?php 
              } else {
            ?>
@@ -117,6 +131,7 @@
             }
           }
         ?>
+        
       </div>
       <?php
         if($trip["tipo"]==WEEKLY_TRIP){
