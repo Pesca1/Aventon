@@ -94,29 +94,11 @@
             while($question = mysqli_fetch_assoc($questions)){
               $query = "SELECT * FROM usuario WHERE id_usuario='".$question["id_usuario"]."'";
               $user = mysqli_fetch_assoc(mysqli_query($conn, $query));
-              ?>
-
-        <div class="question">
-          <strong><?= $user["nombre"]." ".$user["apellido"] ?></strong>
-           preguntó:<br>
-           - <?= $question["texto"]?>
-           <br>
-           <?php if($question["respuesta"] == ""){ ?>
-           <a class="btn btn-primary" href="/vistas/answer_question?id=<?= $question["id_pregunta"] ?>">Responder</a>
-           <?php 
-             } else {
-           ?>
-           Respondiste:<br>
-           - <?= $question["respuesta"] ?>
-           <?php
-             }
-           ?>
-        </div>
-
-              <?php
+              include("_comment_driver.php");
             }
           }
         ?>
+        
       </div>
       <?php
         if($trip["tipo"]==WEEKLY_TRIP){
@@ -132,6 +114,7 @@
         }
        ?>
     </div>
+    
     <?php
       include("footer.php");
     ?>
