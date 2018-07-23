@@ -52,8 +52,9 @@
     if($result){
       while($cal = mysqli_fetch_assoc($result)){
         $date = new DateTime($cal["fecha"]);
-        if($today->diff($date)->m >= 1){
-          return true;
+//        if($today->diff($date)->m >= 1){
+          if($today > $date){   
+        return true;
         }
       }
     }
@@ -62,7 +63,8 @@
     if($result){
       while($cal = mysqli_fetch_assoc($result)){
         $date = new DateTime($cal["fecha"]);
-        if($today->diff($date)->m >= 1){
+//        if($today->diff($date)->m >= 1){
+        if($today > $date){  
           return true;
         }
       }

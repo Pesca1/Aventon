@@ -25,6 +25,7 @@
       <a class="dropdown-item" href="/vistas/listar_vehiculos.php">Mis vehículos</a>
       <a class="dropdown-item" href="/vistas/ver_solicitudes.php">Solicitudes recibidas</a>
       <a class="dropdown-item" href="/vistas/ver_solicitudes_enviadas.php">Solicitudes enviadas</a></button>
+      <a class="dropdown-item" href="/vistas/ver_calificaciones_pendientes.php">Calificaciones pendientes</a></button>
       <a class="dropdown-item" href="/vistas/ver_resumen_cuenta.php">Resumen de cuenta</a>
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="/php/cerrar_sesion.php">Cerrar sesión</a>

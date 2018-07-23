@@ -105,5 +105,6 @@
      }
      get_error("no_trips", "<span style=\"color: black;\">No hay ningún viaje registrado!</span>");
      get_error("no_requests", "<span style=\"color: black;\">No ha enviado ninguna solicitud!</span>");
+     get_error("no_ratings", "<span style=\"color: black;\">No tiene calificaciones pendientes!</span>");
    ?>
 </html>
