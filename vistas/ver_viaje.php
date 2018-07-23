@@ -94,40 +94,7 @@
             while($question = mysqli_fetch_assoc($questions)){
               $query = "SELECT * FROM usuario WHERE id_usuario='".$question["id_usuario"]."'";
               $user = mysqli_fetch_assoc(mysqli_query($conn, $query));
-              ?>
-
-        <div class="question">
-          <strong><?= $user["nombre"]." ".$user["apellido"] ?></strong>
-           preguntó:<br>
-           - <?= $question["texto"]?>
-           <br>
-           <?php if($question["respuesta"] == ""){ ?>
-            <p>
-              <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample<?= $question["id_pregunta"] ?>" role="button" aria-expanded="false" aria-controls="collapseExample<?= $question["id_pregunta"] ?>">
-                Responder
-              </a>
-            </p>
-            <div class="collapse" id="collapseExample<?= $question["id_pregunta"] ?>">
-              <div class="card card-body">
-                <form action="/php/responder_pregunta.php" method="post">
-                  <input type="hidden" value="<?= $question["id_pregunta"] ?>" name="question_id">
-                  <input type="hidden" value="<?= $trip_id ?>" name="trip_id">
-                  <textarea class="form-control" name="answer" rows="2" cols="20" wrap="hard" style="resize: none" required="required" ></textarea><br>
-                  <button type="submit" class="btn btn-primary"> Enviar</button>
-                </form>
-              </div>
-            </div>
-           <?php 
-             } else {
-           ?>
-           Respondiste:<br>
-           - <?= $question["respuesta"] ?>
-           <?php
-             }
-           ?>
-        </div>
-
-              <?php
+              include("_comment_driver.php");
             }
           }
         ?>
@@ -147,6 +114,7 @@
         }
        ?>
     </div>
+    
     <?php
       include("footer.php");
     ?>
