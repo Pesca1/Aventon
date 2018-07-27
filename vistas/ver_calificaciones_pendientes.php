@@ -34,12 +34,12 @@
                		$driver= mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM usuario WHERE id_usuario='".$calification["id_conductor"]."'"));
 
         ?>
-     			 <div class="vehicle">
-       			 <div class="vehicle-info">
        			 <?php
             		if($calification["estado"] == PENDING and !isPendingTrip($conn, $trip)){
           		 ?>
-          			  <h3><?= $driver["nombre"]." ".$driver["apellido"] ?></h3>
+          		    <div class="vehicle">
+                  <div class="vehicle-info">
+              	  <h3><?= $driver["nombre"]." ".$driver["apellido"] ?></h3>
           			  <br>
           			  <?= $trip["origen"]." --> ".$trip["destino"] ?>
           			  <br>
@@ -49,12 +49,10 @@
             		  <input type="hidden" name="calification_id" value="<?= $calification["id_puntua_conductor"] ?>">
            			  <button class="action btn btn-danger delete_card" name="">Calificar al conductor</button>
           			  </form>
-				<?php
+                  </div>
+                  </div>  
+				    <?php
           			}
-          		?>
-          		</div>
-      			</div>
-      			<?php
           			}
           		  }	
           		?>
@@ -74,12 +72,13 @@
 
 
         ?>
-     			 <div class="vehicle">
-       			 <div class="vehicle-info">
+     			  
        			 <?php
             		if($calification["estado"] == PENDING and !isPendingTrip($conn, $trip)){
           		 ?>
-          			  <h3><?= $passenger["nombre"]." ".$passenger["apellido"] ?></h3>
+          			  <div class="vehicle">
+                  <div class="vehicle-info">
+                  <h3><?= $passenger["nombre"]." ".$passenger["apellido"] ?></h3>
           			  <br>
           			  <?= $trip["origen"]." --> ".$trip["destino"] ?>
           			  <br>
@@ -89,12 +88,11 @@
             		  <input type="hidden" name="calification_id" value="<?= $calification["id_puntua_pasajero"] ?>">
            			  <button class="action btn btn-danger delete_card" name="">Calificar al pasajero</button>
           			  </form>
-				<?php
+                  </div>
+                  </div>
+
+				    <?php
           			}
-          		?>
-          		</div>
-      			</div>
-      			<?php
           			}
           		  }	
           		?>
@@ -111,5 +109,9 @@
   ?>
   <script src="/js/registrar_usuario.js"></script>
   <script src="/js/ver_solicitudes.js"></script>
+
+  <?php 
+  get_error("blank_comment", "Debe escribir un comentario!");
+  ?>
 
 </html>
