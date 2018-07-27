@@ -245,4 +245,9 @@
     $requests = mysqli_query($conn, $query);
     return mysqli_num_rows($requests) > 0;
   }
+  function countRequests($trip_id, $conn){
+    $query = "SELECT * FROM solicitud WHERE id_viaje=$trip_id";
+    $result = mysqli_query($conn, $query);
+    return mysqli_num_rows($result);
+  }
 ?>
