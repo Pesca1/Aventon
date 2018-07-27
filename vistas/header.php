@@ -15,6 +15,7 @@
     <button type="submit" class="btn mb-2" id="search-button">Buscar</button>
   </form>
   <button class="btn" id="left-button"><a href="/vistas/listar_todos_los_viajes.php">Todos los viajes</a></button>
+  <a href="/php/controlar_pagos.php">Controlar pagos</a>
   <div class="btn-group float-right">
     <button type="button" class="btn btn-dark"><a href="/vistas/ver_perfil.php" style="color: white;"><?= $_SESSION["user_name"] ?></a></button>
     <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

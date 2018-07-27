@@ -239,4 +239,10 @@
     $arrayDays = array_unique($arrayDays);
     return $arrayDays;
   }
+
+  function haveRequest($conn, $trip_id){
+    $query = "SELECT * FROM solicitud WHERE id_viaje='$trip_id' ";
+    $requests = mysqli_query($conn, $query);
+    return mysqli_num_rows($requests) > 0;
+  }
 ?>
