@@ -81,7 +81,12 @@
         ?>
         <br>
         <br>
-        <a href="/vistas/ver_solicitudes.php" class="btn btn-primary">Ver solicitudes</a>
+        <form action="/vistas/ver_solicitudes.php">
+          <input type="hidden" name="trip_id" value=<?= $trip["id_viaje"] ?>>
+          <button type="send" class="btn btn-primary">
+            Ver solicitudes <span class="badge badge-light"><?= countRequests($trip["id_viaje"], $conn) ?></span>
+          </button>
+        </form>
       </div>
       <div id="questions">
         <h3>Preguntas y Respuestas</h3>

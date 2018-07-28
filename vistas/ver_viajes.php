@@ -43,7 +43,13 @@
           </form>
 	        <form class="" action="/php/baja_viaje.php" method="post">
             <input type="hidden" name="trip_id" value="<?= $trip["id_viaje"]; ?>">
-            <button class="btn btn-danger delete_trip" name="">Cancelar viaje</button>
+            <button class="btn btn-danger <?= (haveRequest($conn, $trip['id_viaje']))? "delete_trip_with_request" : "delete_trip" ?>" name="">Cancelar viaje</button>
+          </form>
+          <form action="/vistas/ver_solicitudes.php">
+                <input type="hidden" name="trip_id" value=<?= $trip["id_viaje"] ?>>
+                <button type="send" class="btn btn-success">
+                  Ver solicitudes <span class="badge badge-light"><?= countRequests($trip["id_viaje"], $conn) ?></span>
+                </button>
           </form>
         </div>
       </div>

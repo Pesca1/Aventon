@@ -20,14 +20,14 @@
     <div id="body">
       <h1>Solicitudes de viaje</h1>
       Ver: <select name="filter" onchange="location = this.value">
-        <option value="?state=all" <?= (isset($_GET["state"]) && ($_GET["state"]=="all"))?"selected":"" ?>>Todas</option>
-        <option value="?state=0" <?= (isset($_GET["state"]) && ($_GET["state"]=="0"))?"selected":"" ?>>Pendientes</option>
-        <option value="?state=1" <?= (isset($_GET["state"]) && ($_GET["state"]=="1"))?"selected":"" ?>>Aceptadas</option>
-        <option value="?state=2" <?= (isset($_GET["state"]) && ($_GET["state"]=="2"))?"selected":"" ?>>Rechazadas</option>
+        <option value="?state=all&trip_id=<?= $_GET['trip_id'] ?>" <?= (isset($_GET["state"]) && ($_GET["state"]=="all"))?"selected":"" ?>>Todas</option>
+        <option value="?state=0&trip_id=<?= $_GET['trip_id'] ?>" <?= (isset($_GET["state"]) && ($_GET["state"]=="0"))?"selected":"" ?>>Pendientes</option>
+        <option value="?state=1&trip_id=<?= $_GET['trip_id'] ?>" <?= (isset($_GET["state"]) && ($_GET["state"]=="1"))?"selected":"" ?>>Aceptadas</option>
+        <option value="?state=2&trip_id=<?= $_GET['trip_id'] ?>" <?= (isset($_GET["state"]) && ($_GET["state"]=="2"))?"selected":"" ?>>Rechazadas</option>
       </select>
       <?php
         $request_number = 0;
-        $query = "SELECT * FROM viajes WHERE id_usuario='".$_SESSION["user_id"]."'";
+        $query = "SELECT * FROM viajes WHERE id_viaje='".$_GET["trip_id"]."'";
         $result = mysqli_query($conn, $query);
         if(!$result){
           echo "<h2>Ocurrió un error al conectarse a la base de datos, por favor, intentelo mas tarde.</h2>";
@@ -55,8 +55,8 @@
           <?php
             if($request["estado"] == PENDING){
           ?>
-          <h3><?= $user["nombre"]." ".$user["apellido"].": ".$trip["origen"]." --> ".$trip["destino"] ?></h3>
-          <button class="state btn btn-warning">Pendiente</button>
+          <h3><?= $user["nombre"]." ".$user["apellido"] ?></h3>
+          <h3><span class="badge badge-pill badge-warning">Pendiente</span></h3>
           <br>
           Fecha: <?= date("d/m/Y H:i", strtotime($trip["fecha_hora"])); ?>
           <br>
@@ -74,8 +74,8 @@
           <?php
             } else if($request["estado"] == ACCEPTED){
           ?>
-          <h3><?= $user["nombre"]." ".$user["apellido"].": ".$trip["origen"]." --> ".$trip["destino"] ?></h3>
-          <button class="state btn btn-success">Aceptada</button>
+          <h3><?= $user["nombre"]." ".$user["apellido"] ?></h3>
+          <h3><span class="badge badge-pill badge-success">Aceptada</span></h3>
           <br>
           Fecha: <?= date("d/m/Y H:i", strtotime($trip["fecha_hora"])); ?>
           <br>
@@ -89,8 +89,8 @@
           <?php
             } else if($request["estado"] == REJECTED){
           ?>
-          <h3><?= $user["nombre"]." ".$user["apellido"].": ".$trip["origen"]." --> ".$trip["destino"] ?></h3>
-          <button class="state btn btn-danger">Rechazada</button>
+          <h3><?= $user["nombre"]." ".$user["apellido"] ?></h3>
+          <h3><span class="badge badge-pill badge-danger">Rechazada</span></h3>
           <br>
           Fecha: <?= date("d/m/Y H:i", strtotime($trip["fecha_hora"])); ?>
           <br>
