@@ -107,5 +107,6 @@
      get_error("no_requests", "<span style=\"color: black;\">No ha enviado ninguna solicitud!</span>");
      get_error("no_ratings", "<span style=\"color: black;\">No tiene calificaciones pendientes!</span>");
      get_success("calification_success", "El usuario ha sido calificado.");
+     get_error("no_califications", "<span style=\"color: black;\">Aún no ha recibido calificaciones!</span>");
    ?>
 </html>
