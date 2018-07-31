@@ -14,7 +14,7 @@
   $trip = mysqli_fetch_assoc($result);
 
   if(availableSeats($conn, $trip["id_viaje"]) <= 0){
-    header("Location: /vistas/ver_solicitudes.php?no_seats");
+    header("Location: /vistas/ver_solicitudes.php?no_seats&trip_id=".$request["id_viaje"]);
     exit();
   }else{
     $query = "UPDATE solicitud SET estado ='".ACCEPTED."' WHERE id_solicitud='$request_id'";
@@ -26,9 +26,9 @@
     $user_mail = $user["mail"];
     $sent = mail("$user_mail", "¡Su solicitud ha sido aceptada! Aventon", "Hola! Nos comunicamos para informarte que tu solicitud para el viaje: \n ".$trip['origen']." con destino a ".$trip['destino']." \n fue aceptado, esperamos que disfrutes de este viaje. \n Equipo de Aventon ");
 		if(!$sent){
-      header("Location: /vistas/ver_solicitudes.php?notification_error");
+      header("Location: /vistas/ver_solicitudes.php?notification_error&trip_id=".$request["id_viaje"]);
     }
-    header ("Location: /vistas/ver_solicitudes.php?success_accepted");
+    header ("Location: /vistas/ver_solicitudes.php?success_accepted&trip_id=".$request["id_viaje"]);
     include("php/cerrar_conexion.php");
   }
 

@@ -40,11 +40,11 @@
     mysqli_query($conn, $query);
     
     if($result){
-      header("Location: /vistas/ver_solicitudes.php?deleted_success");
+      header("Location: /vistas/ver_solicitudes.php?deleted_success&trip_id=".$id_v);
 
       $sent = mail("$mail_p", "¡Solicitud cancelada! Aventon", "Hola! Nos comunicamos para informarte que tu solicitud para el viaje: \n ".$trip['origen']." con destino a ".$trip['destino']." con fecha de salida ".formatDate($trip['fecha_hora'])." \n fue cancelada. \n Equipo de Aventon ");
       if(!$sent){
-          header("Location: /vistas/ver_solicitudes.php?notification_error_cancel");
+          header("Location: /vistas/ver_solicitudes.php?notification_error_cancel&trip_id=".$id_v);
         }
 
     $query= "SELECT * FROM usuario WHERE id_usuario='$user_id' ";
@@ -58,7 +58,7 @@
     }
 
     } else {
-      header("Location: /vistas/ver_solicitudes.php?deleted_error");
+      header("Location: /vistas/ver_solicitudes.php?deleted_error&trip_id=".$id_v);
     }
 
     ?>

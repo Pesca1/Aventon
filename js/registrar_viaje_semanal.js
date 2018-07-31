@@ -9,16 +9,20 @@ function dayChecked(){
 }
 
 function weekCheck(){
-  var weeks = $("#weeks").val();
+  var weeks = parseInt($("#weeks").val());
   var today = new Date().getDay();
+    console.log("Semanas: "+weeks);
   if(weeks == 1){
+    console.log("Igual a uno");
     for(var i = 7; i > today; i--){
+      console.log("Checkeando #day"+i);
       if($("#day"+i).prop("checked")){
         return true;
       }
     }
+    return false;
   }
-  return false;
+  return true;
 }
 
 $("#trip_reg").submit(function(e){

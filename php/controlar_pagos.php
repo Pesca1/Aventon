@@ -1,6 +1,8 @@
 <?php
+  set_time_limit(0);
   include("abrir_conexion.php");
   include("utils.php");
+  
 
   $query = "SELECT * FROM viajes WHERE pago_pasajero=".UNPAID_TRIP." AND tipo=".ONE_TIME_TRIP;
   $trips = mysqli_query($conn, $query);
@@ -126,7 +128,6 @@
       }
     }
   }
-
 
   include("cerrar_conexion.php");
 ?>

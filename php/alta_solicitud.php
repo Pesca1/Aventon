@@ -17,7 +17,7 @@
   $trip = mysqli_fetch_assoc($result);
 
   if ($card["vencimiento"] < $trip["fecha_hora"]){
-    header("Location: /vistas/solicitud_solicitar_asiento.php?card_expirated");
+    header("Location: /vistas/solicitud_solicitar_asiento.php?trip_id=$trip_id&card_expirated");
     exit;
   }
   

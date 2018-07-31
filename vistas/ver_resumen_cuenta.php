@@ -18,6 +18,9 @@
     <div id="body">
       <h1>Resumen de cuenta</h1>
       <?php
+        if(mysqli_num_rows($result) == 0){
+          echo "<h2>Todavía no realizó ningún viaje.</h2>";
+        }
         while ($transaction = mysqli_fetch_assoc($result)){
           $q = "SELECT * FROM viajes WHERE id_viaje='".$transaction['id_viaje']."' ";
           $result2 = mysqli_query($conn, $q);

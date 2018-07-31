@@ -18,13 +18,15 @@
         $id = $_SESSION["user_id"];
         $sql = "SELECT * FROM viajes WHERE id_usuario !=".$_SESSION["user_id"];
         $result = mysqli_query($conn, $sql);
+        $noPending = true;
         if($result){
-          if($trip = mysqli_fetch_assoc($result)){
-            while($trip){
+          if(mysqli_num_rows($result) != 0){
+            while($trip = mysqli_fetch_assoc($result)){
               if((isPendingTrip($conn, $trip))){
                 $query = "SELECT * FROM usuario WHERE id_usuario=".$trip["id_usuario"];
                 $driver = mysqli_fetch_assoc(mysqli_query($conn, $query));
                 $name = $driver["nombre"]." ".$driver["apellido"];
+                $noPending = false;
       ?>
           
       <div class="vehicle">
@@ -68,7 +70,9 @@
 
       <?php
               }
-              $trip = mysqli_fetch_assoc($result);
+            }
+            if($noPending){
+              echo "<h2>No hay ningun viaje registrado!</h2><br>";
             }
           } else {
             echo "<h2>No hay ningun viaje registrado!</h2><br>";

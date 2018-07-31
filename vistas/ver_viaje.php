@@ -46,7 +46,7 @@
         <br>
         Vehículo: <?= $car["marca"]." ".$car["modelo"] ?>
         <br>
-        Tipo de viaje: <?= $trip["tipo"] ?>
+        Tipo de viaje: <?= ($trip["tipo"] == ONE_TIME_TRIP)?"Ocasional":"Semanal" ?>
         <br>
         Costo por persona: $<?= round($price) ?>
         <?php if($trip["descripcion"] != ""){ ?>

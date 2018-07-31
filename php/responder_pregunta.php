@@ -23,9 +23,9 @@
     $user_email = $user["mail"];
     $mail = "Hola! \n Te avisamos que ".$_SESSION['user_name']." ".$_SESSION['user_surname']." acaba de responder tu comentario que hiciste en la publicación del viaje de ".$trip['origen']." a ".$trip['destino']." el ".formatDate($trip['fecha_hora'])." hs.\n Pudes entrar a la aplicación para ver la respuesta \n Saludos, equipo de Aventon ";
     mail($user_email, "Te han respondido una pregunta", $mail);
-    header("Location: /vistas/ver_viaje?id=$trip_id");
+    header("Location: /vistas/ver_viaje.php?id=$trip_id");
   }else{
-    header("Location: /vistas/ver_viaje?db_error&id=$trip_id");
+    header("Location: /vistas/ver_viaje.php?db_error&id=$trip_id");
   }
 
   include("cerrar_conexion.php");

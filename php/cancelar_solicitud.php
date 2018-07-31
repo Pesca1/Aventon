@@ -41,15 +41,15 @@
     mysqli_query($conn, $query);
     
     if($result){
-      header("Location: /vistas/ver_solicitudes.php?rejected_success");
+      header("Location: /vistas/ver_solicitudes.php?rejected_success&trip_id=".$id_v);
 
       $sent = mail("$mail_p", "¡Solicitud Rechazada! Aventon", "Hola! Nos comunicamos para informarte que tu solicitud para el viaje: \n ".$trip['origen']." con destino a ".$trip['destino']." con fecha de salida ".$trip['fecha_hora']." \n fue rechazada. \n Equipo de Aventon ");
         if(!$sent){
-          header("Location: /vistas/ver_solicitudes.php?notification_error_cancel");
+          header("Location: /vistas/ver_solicitudes.php?notification_error_cancel&trip_id=".$id_v);
         }
 
     } else {
-      header("Location: /vistas/ver_solicitudes.php?deleted_error");
+      header("Location: /vistas/ver_solicitudes.php?deleted_error&trip_id=".$id_v);
     }
 
     ?>
