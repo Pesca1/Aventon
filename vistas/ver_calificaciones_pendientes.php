@@ -3,7 +3,7 @@
   include("../php/abrir_conexion.php");
   include("../php/utils.php");
   $user=$_SESSION["user_id"];
-  if(hasOldCalifications($conn, $user) == false){
+  if(hasOldCalificationsInGeneral($conn, $user) == false){
     header("Location: /vistas/ver_perfil.php?no_ratings");
   }
 ?>
