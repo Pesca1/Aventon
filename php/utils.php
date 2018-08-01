@@ -123,6 +123,12 @@
   }
 
   function isPendingTrip($conn, $trip){
+    $query = "SELECT * FROM usuario WHERE id_usuario=".$trip["id_usuario"];
+    $user = mysqli_fetch_assoc(mysqli_query($conn, $query));
+    if($user["mail"] == "0"){
+      return false;
+    }
+
     $now = time();
     if((!isset($trip["tipo"])) || ($trip["tipo"] == ONE_TIME_TRIP)){
       $date = strtotime($trip["fecha_hora"]);

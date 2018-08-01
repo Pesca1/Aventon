@@ -115,6 +115,9 @@
     if(isset($_GET['wrong_email'])){
       echo '<script> show_error("El mail ingresado no esta registrado en Aventón."); </script>';
     }
+    if(isset($_GET['deleted_account'])){
+      echo '<script> show_success("La cuenta ha sido eliminada."); </script>';
+    }
 
     if(isset($_GET['recover'])){
       if($_GET['recover'] == 'false'){

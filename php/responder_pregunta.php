@@ -22,7 +22,9 @@
     $user = mysqli_fetch_assoc(mysqli_query($conn, $query2));
     $user_email = $user["mail"];
     $mail = "Hola! \n Te avisamos que ".$_SESSION['user_name']." ".$_SESSION['user_surname']." acaba de responder tu comentario que hiciste en la publicación del viaje de ".$trip['origen']." a ".$trip['destino']." el ".formatDate($trip['fecha_hora'])." hs.\n Pudes entrar a la aplicación para ver la respuesta \n Saludos, equipo de Aventon ";
-    mail($user_email, "Te han respondido una pregunta", $mail);
+    if($user_mail != "0"){ 
+      mail($user_email, "Te han respondido una pregunta", $mail);
+    }
     header("Location: /vistas/ver_viaje.php?id=$trip_id");
   }else{
     header("Location: /vistas/ver_viaje.php?db_error&id=$trip_id");

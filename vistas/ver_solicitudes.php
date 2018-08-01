@@ -16,9 +16,13 @@
     <link href="/css/listar_solicitudes.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <?php include("header.php"); ?>
+    <?php include("header.php"); 
+        $query = "SELECT * FROM viajes WHERE id_viaje='".$_GET["trip_id"]."'";
+        $result = mysqli_query($conn, $query);
+        $trip = mysqli_fetch_assoc($result);
+    ?>
     <div id="body">
-      <h1>Solicitudes de viaje</h1>
+      <h1>Solicitudes del viaje <?= $trip["origen"]." --> ".$trip["destino"] ?></h1>
       Ver: <select name="filter" onchange="location = this.value">
         <option value="?state=all&trip_id=<?= $_GET['trip_id'] ?>" <?= (isset($_GET["state"]) && ($_GET["state"]=="all"))?"selected":"" ?>>Todas</option>
         <option value="?state=0&trip_id=<?= $_GET['trip_id'] ?>" <?= (isset($_GET["state"]) && ($_GET["state"]=="0"))?"selected":"" ?>>Pendientes</option>

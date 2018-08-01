@@ -70,9 +70,10 @@
     </div>
     <div class="col-md-4">
       <br><br><br><br>
-      <button class="btn btn-warning" ><a href="/vistas/editar_perfil.php">Editar perfil</a></button>
-      <button class="btn btn-danger" ><a href="/vistas/editar_contrasenia.php">Editar contraseña</a></button>
-      <button class="btn" ><a href="/vistas/ver_tarjetas.php">Mis Tarjetas</a></button>
+      <button class="btn btn-warning" ><a href="/vistas/editar_perfil.php">Editar perfil</a></button><br><br>
+      <button class="btn btn-danger" ><a href="/vistas/editar_contrasenia.php">Editar contraseña</a></button><br><br>
+      <button class="btn" ><a href="/vistas/ver_tarjetas.php">Mis Tarjetas</a></button><br><br>
+      <button class="btn btn-danger" ><a href="/vistas/eliminar_cuenta.php">Eliminar cuenta</a></button>
   </div>
 </div>
 
