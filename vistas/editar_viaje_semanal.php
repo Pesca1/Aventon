@@ -27,7 +27,7 @@
       $car = mysqli_fetch_assoc($result);
     ?>
     <div id="body">
-      <h3>Editar viaje semanal: <?= $trip["origen"] ?> --> <?= $trip["destino"] ?></h3>
+      <h3>Editar viaje recurrente: <?= $trip["origen"] ?> --> <?= $trip["destino"] ?></h3>
       <form action="/php/editar_viaje_semanal.php" id="trip_reg" method="post" autocomplete="off">
         <input name="trip_id" type="hidden" value="<?= $trip["id_viaje"] ?>">
           <label for="" class="form-check-label">Vehículo:</label><br><br>

@@ -18,7 +18,7 @@
   <body>
     <?php include("header.php"); ?>
     <div id="body">
-      <h1>Solicitudes enviadas</h1>
+      <h1>Solicitudes realizadas</h1>
       Ver: <select name="filter" onchange="location = this.value">
         <option value="?state=all" <?= (isset($_GET["state"]) && ($_GET["state"]=="all"))?"selected":"" ?>>Todas</option>
         <option value="?state=0" <?= (isset($_GET["state"]) && ($_GET["state"]=="0"))?"selected":"" ?>>Pendientes</option>
@@ -62,7 +62,7 @@
           </form> 
       	  <form id="delete-request" action="/php/baja_solicitud_propia.php" method="post">
             <input type="hidden" name="request_id" value="<?= $request["id_solicitud"] ?>">
-            <button class="action btn btn-danger delete_card" name="">Eliminar</button>
+            <button class="action btn btn-danger delete_card" name="">Cancelarla</button>
           </form>
 
           <?php
@@ -79,9 +79,9 @@
               <input type="hidden" name="trip_id" value="<?= $trip["id_viaje"]; ?>">
               <button class="btn btn-primary" name="">Ver detalles</button>
           </form> 
-          <form id="delete-request" action="/php/baja_solicitud_propia_aceptada.php" method="post">
+          <form id="delete-request-accept" action="/php/baja_solicitud_propia_aceptada.php" method="post">
             <input type="hidden" name="request_id" value="<?= $request["id_solicitud"] ?>">
-            <button class="action btn btn-danger delete_card" name="">Eliminar</button>
+            <button class="action btn btn-danger delete_card" name="">Cancelarla</button>
           </form>
           
           <?php

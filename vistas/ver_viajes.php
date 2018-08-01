@@ -28,7 +28,7 @@
         <div class="vehicle-info">
           <h3><?= $trip["origen"] ?> --> <?= $trip["destino"] ?></h3>
           <?=
-            ($trip["tipo"] == WEEKLY_TRIP)?"<strong>Viaje semanal</strong> - Comienza el ":"";
+            ($trip["tipo"] == WEEKLY_TRIP)?"<strong>Viaje recurrente</strong> - Comienza el ":"";
           ?>
           <?= date("d/m/Y H:i", strtotime($trip["fecha_hora"])); ?> - Duración:
           <?php
@@ -46,10 +46,10 @@
             <button class="btn btn-danger <?= (haveRequest($conn, $trip['id_viaje']))? "delete_trip_with_request" : "delete_trip" ?>" name="">Cancelar viaje</button>
           </form>
           <form action="/vistas/ver_solicitudes.php">
-                <input type="hidden" name="trip_id" value=<?= $trip["id_viaje"] ?>>
-                <button type="send" class="btn btn-success">
-                  Ver solicitudes <span class="badge badge-light"><?= countRequests($trip["id_viaje"], $conn) ?></span>
-                </button>
+            <input type="hidden" name="trip_id" value=<?= $trip["id_viaje"] ?>>
+            <button type="send" class="btn btn-success">
+              Ver solicitudes <span class="badge badge-light"><?= countRequests($trip["id_viaje"], $conn) ?></span>
+            </button>
           </form>
         </div>
       </div>

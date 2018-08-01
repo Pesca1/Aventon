@@ -12,7 +12,7 @@
       include("header.php");
     ?>
     <div id="body">
-      <h1>Nuevo viaje semanal</h1>
+      <h1>Nuevo viaje recurrente</h1>
       <form method="post" action="/php/alta_viaje_semanal.php" id="trip_reg" autocomplete="off">
           <label for="" class="form-check-label">Vehículo:</label><br><br>
       <?php
@@ -56,7 +56,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">Horas:</span>
               </div>
-              <input type="number" min="0" value="0" class="form-control" name="duration_hours" required="required">
+              <input type="number" min="1"  value="0" class="form-control" name="duration_hours" required="required">
             </div> 
           </div>
           <div class="form-group col-md-2">

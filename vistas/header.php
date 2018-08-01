@@ -24,7 +24,7 @@
     <div class="dropdown-menu">
       <a class="dropdown-item" href="/vistas/ver_viajes.php">Mis viajes</a>
       <a class="dropdown-item" href="/vistas/listar_vehiculos.php">Mis vehículos</a>
-      <a class="dropdown-item" href="/vistas/ver_solicitudes_enviadas.php">Solicitudes enviadas</a></button>
+      <a class="dropdown-item" href="/vistas/ver_solicitudes_enviadas.php">Solicitudes realizadas</a></button>
       <a class="dropdown-item" href="/vistas/ver_calificaciones_pendientes.php">Calificaciones pendientes</a></button>
       <a class="dropdown-item" href="/vistas/listar_comentarios.php">Calificaciones recibidas</a></button>
       <a class="dropdown-item" href="/vistas/ver_resumen_cuenta.php">Resumen de cuenta</a>

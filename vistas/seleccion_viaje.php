@@ -25,10 +25,10 @@
     ?>
     <div id="body">
       <h1>Tipo de viaje</h1>
-      <h2>¿Desea crear un viaje ocasional o semanal?</h2>
+      <h2>¿Desea crear un viaje ocasional o recurrente?</h2>
       <br>
       <a class="btn btn-primary" href="/vistas/registrar_viaje.php">Ocasional</a>
-      <a class="btn btn-primary" href="/vistas/registrar_viaje_semanal.php">Semanal</a>
+      <a class="btn btn-primary" href="/vistas/registrar_viaje_semanal.php">Recurrente</a>
     </div>
     <?php
       include("footer.php");
