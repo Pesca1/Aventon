@@ -60,12 +60,15 @@
               <input type="hidden" name="trip_id" value="<?= $trip["id_viaje"]; ?>">
               <button class="btn btn-primary" name="">Ver detalles</button>
           </form> 
+          <?php
+           if(isPendingTrip($conn, $trip)){
+          ?>
       	  <form id="delete-request" action="/php/baja_solicitud_propia.php" method="post">
             <input type="hidden" name="request_id" value="<?= $request["id_solicitud"] ?>">
             <button class="action btn btn-danger delete_card" name="">Cancelarla</button>
           </form>
-
           <?php
+            }
             } else if($request["estado"] == ACCEPTED){
           ?>
           <h3><?= $trip["origen"]." --> ".$trip["destino"] ?></h3>
@@ -79,12 +82,15 @@
               <input type="hidden" name="trip_id" value="<?= $trip["id_viaje"]; ?>">
               <button class="btn btn-primary" name="">Ver detalles</button>
           </form> 
+          <?php
+           if(isPendingTrip($conn, $trip)){
+          ?>
           <form id="delete-request-accept" action="/php/baja_solicitud_propia_aceptada.php" method="post">
             <input type="hidden" name="request_id" value="<?= $request["id_solicitud"] ?>">
             <button class="action btn btn-danger delete_card" name="">Cancelarla</button>
           </form>
-          
           <?php
+            }
             } else if($request["estado"] == REJECTED){
           ?>
           <h3><?= $trip["origen"]." --> ".$trip["destino"] ?></h3>
